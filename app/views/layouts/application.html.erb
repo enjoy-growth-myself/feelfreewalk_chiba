@@ -1,15 +1,65 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>ChibacityWalk</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+    <head>
+        <title>chibacity_walk</title>
+            <%= csrf_meta_tags %>
+            <%= csp_meta_tag %>
+            <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+            <%= stylesheet_link_tag    'application', media: 'all' %>
+            <!--, 'data-turbolinks-track': 'reload'を削除-->
+            <%= javascript_include_tag 'application', data: {"turbolinks" => false} %>
+    </head>
+    <body>
+    <div id="container">
+        <div id="header">
+            <header class="navbar ">
+            <div class="container">
+                <nav class="navbar-header navbar-left">
+                    <span class="logo">chibacitywalk</span>
+                </nav>
+                <nav class="nav_text">
+                    <ul class="nav navbar-nav navbar-right" data-hover="dropdown" data-animations="zoomIn fadeIn fadeInUp fadeIn">
+                        <% if user_signed_in? %>
+                            <p class="navbar-text navbar-left">ようこそ、<%= current_user.name %> さん！</p>
+                            <li class="nav_li"><%=  "マイページ" %></li>
+                            <li class="nav_li"><%=  'お気に入り' %></li>
+                            <li class="nav_li"><%=  '投稿一覧' %></li>
+                            <li class="nav_li"><%= link_to 'logout', destroy_user_session_path, method: :delete, class: 'glyphicon glyphicon-log-out logout nav_li_text' %></li>
+                        <% else %>
+                          <li class="nav_li"><%= 'home' %></li>
+                          <li class="nav_li"><%= 'about' %></li>
+                          <li><%= link_to '新規登録', new_user_registration_path, class: 'glyphicon glyphicon-edit sign_up nav_li_text' %></li>
+                          <li><%= link_to 'ログイン', new_user_session_path, class: 'glyphicon glyphicon-log-in sign_in nav_li_text' %></li>
+                        <% end %>
+                    </ul>
+                </nav>
+            </div>
+            </header>
+        </div>
+    </div>
+    <div class="container">
+      <p id="notice"><%= notice %></p> <!--デバイスでnotice設定されているので呼び出してるだけ-->
+      <%= yield %>
+    </div>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+    <div id="footer">
+    <footer class="container-fluid bg-4 text-center">
+        <div class="row text-center">
+            <div class="col-md-6">
+                <div class="social">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="col-12">
+                <hr class="light">
+                <h5>@CopyRight chibacity_walk.inc</h5>
+            </div>
+        </div>
+    </footer>
+    </div>
 
-  <body>
-    <%= yield %>
-  </body>
+    </body>
 </html>
+
