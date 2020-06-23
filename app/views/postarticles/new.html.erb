@@ -1,0 +1,26 @@
+<h2>新規投稿</h2>
+
+<div class="container">
+	<h1>商品新規登録</h1>
+		
+      <div>
+		<%= form_with(model: @postarticle, local: true) do |form| %>
+
+	        <h4>タイトル</he>
+	        <%= form.label :title %>
+	        <%= form.text_field :title %></p>
+	        
+	         <h4>内容</h4>
+	         <%= form.label :body %>
+	         <%= form.text_area :body %>
+
+	         <h4>住所</h4>
+	         <%= form.label :address %>
+	         <%= form.text_field :address %>
+	      <div class="actions">
+	      	<h4>subumitボタン確認</h4>
+	        <%= form.submit "新規投稿", class: "btn btn-primary pull-right" %>
+	      </div>
+    	<% end %>
+    </div>
+</div>

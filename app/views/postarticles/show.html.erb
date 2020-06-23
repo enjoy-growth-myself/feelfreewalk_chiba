@@ -1,0 +1,6 @@
+<h2>投稿詳細</h2>
+
+<p><%= @postarticle.title %></p>
+<P><%= @postarticle.body %></P>
+<p><%= @postarticle.address %></p>
+<%= link_to "Destroy",@postarticle, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_postarticle_#{@postarticle.id}" %>
