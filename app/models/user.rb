@@ -7,4 +7,5 @@ class User < ApplicationRecord
   validates :name, presence: true,length: {maximum: 20, minimum: 2}
   
   attachment :profile_image, destroy: false
+  has_many :postarticles
 end

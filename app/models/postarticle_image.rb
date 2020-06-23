@@ -1,0 +1,2 @@
+class PostarticleImage < ApplicationRecord
+end
