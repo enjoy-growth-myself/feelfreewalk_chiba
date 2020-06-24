@@ -1,12 +1,12 @@
 <h2>投稿編集画面</h2>
 
-<div class="container">
+
 	<h1>編集</h1>
 		
       <div>
 		<%= form_with(model: @postarticle, local: true) do |form| %>
 
-	        <h4>タイトル</he>
+	        <h4>タイトル</h4>
 	        <%= form.label :title %>
 	        <%= form.text_field :title %></p>
 	        
@@ -18,13 +18,12 @@
 	        <%= form.label :address %>
 	        <%= form.text_field :address %>
 
-	        	<%= form.fields_for :postarticle_images do |image| %>
-	        		<%= image.attachment_field :image %>
 	      	<h4>subumitボタン確認</h4>
 	        <%= form.submit "更新", class: "btn btn-primary pull-right" %>
 	      </div>
 	   		<%= link_to "詳細画面に戻る", postarticle_path, class: "back" %>
-	   	<% end %>
+	   	
     	<% end %>
     </div>
 </div>
+

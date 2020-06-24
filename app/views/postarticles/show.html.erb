@@ -1,12 +1,22 @@
-<h2>投稿詳細</h2>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-6 col-xs-offset-3">
+			<h2>投稿詳細</h2>
 
-<p><%= @postarticle.title %></p>
-<P><%= @postarticle.body %></P>
-<p><%= @postarticle.address %></p>
+			<% @postarticle.postarticle_images.each do |image| %>
 
-<% @postarticle.postarticle_images.each do |image| %>
+				<p><%= attachment_image_tag image, :image, size: "555x300", fallback: "no_image.jpg"%></p>
+			<% end %>
 
-	<p><%= attachment_image_tag image, :image, size: "100x100", fallback: "no_image.jpg"%></p>
-<% end %>
-	<%= link_to "テキストの編集", edit_postarticle_path(@postarticle), class: "btn-sm btn-success edit_postarticle_#{@postarticle.id}" %>
-	<%= link_to "Destroy",@postarticle, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_postarticle_#{@postarticle.id}" %>
+			<div class="postarticle_title_box">
+				<h2 class="postarticle_title"><%= @postarticle.title %></h2>
+		</div>
+			<P><%= @postarticle.body %></P>
+			<p><%= @postarticle.address %></p>
+
+			
+				<%= link_to "テキストの編集", edit_postarticle_path(@postarticle), class: "btn-sm btn-success edit_postarticle_#{@postarticle.id}" %>
+				<%= link_to "Destroy",@postarticle, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_postarticle_#{@postarticle.id}" %>
+		</div>
+	</div>
+</div>

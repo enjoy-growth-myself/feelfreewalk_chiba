@@ -1,1 +1,25 @@
 <h2>投稿一覧</h2>
+<table>
+	<tr>
+		<th>投稿記事の写真</th>
+		<th>投稿基地タイトル</th>
+		<th>投稿記事の内容</th>
+		<th>詳細ページへのリンク</th>
+	</tr>
+
+<% @postarticles.each do |article| %>
+	<tr>
+		<td>
+			<% article.postarticle_images.first(1).each do |image| %>
+
+				<p><%= attachment_image_tag image, :image, size: "50x50", fallback: "no_image.jpg"%></p>
+			<% end %>
+		</td>
+		<td><%= article.title %></td>
+		<td><%= article.body %></td>
+		<td><%= link_to "詳細画面", postarticle_path(article), class: "back" %></td>
+		
+	</tr>
+<% end %>
+
+</table>

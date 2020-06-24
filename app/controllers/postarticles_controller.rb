@@ -16,6 +16,7 @@ class PostarticlesController < ApplicationController
 	end
 
 	def index
+		@postarticles = Postarticle.all
 	end
 
 	def show
@@ -25,20 +26,23 @@ class PostarticlesController < ApplicationController
 
 	def edit
 		@postarticle = Postarticle.find(params[:id])
-		
 	end
 
 	def update
 		@postarticle = Postarticle.find(params[:id])
+		params[:postarticle_images].present?
+		@postarticle.update(postarticle_params)
+		redirect_to postarticle_path(@postarticle), notice: '更新に成功しました'
 	end
 
 	def destroy
 	  	@postarticle = Postarticle.find(params[:id])
 	  	@postarticle.destroy
 	  	redirect_to postarticles_path, notice: "successfully delete book!"
-  end
+  	end
 		
+	private
 	def postarticle_params
-    params.require(:postarticle).permit(:title, :body, :address, :user_id, postarticle_images_attributes: [:image])
-  end
+    	params.require(:postarticle).permit(:title, :body, :address, :user_id, postarticle_images_attributes: [:image])
+  	end
 end

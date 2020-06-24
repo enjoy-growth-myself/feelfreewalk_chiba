@@ -24,5 +24,34 @@
 			    </tr>
 			<% end %>
 		</div>
+
+		<div>
+			<%= link_to '新規投稿', new_postarticle_path %>
+		</div>
+		<div class="col-xs-9">
+		<h2>投稿記事一覧</h2>
+		<!--books一覧 -->
+		<table class="table table-hover table-inverse">
+			<thead>
+				<tr>
+					<th>タイトル</th>
+					<th>本文</th>
+					<th colspan="3"></th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<% @postarticles.each do |article| %>
+				<tr>
+					<td><%= article.title %></td>
+					<td><%= article.body %></td>
+					<td><%= link_to "詳細画面", postarticle_path(article), class: "" %></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+		<!--books一覧 -->
+
+	</div>
 	</div>
 </div>

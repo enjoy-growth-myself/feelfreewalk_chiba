@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     	params_user = User.find(params[:id])
 	    if current_user == params_user
 	       @user = User.find(current_user.id)
+	       @postarticles = @user.postarticles
 	    else
 	       @user = User.find(params[:id])
 	    end
