@@ -3,4 +3,10 @@
 <p><%= @postarticle.title %></p>
 <P><%= @postarticle.body %></P>
 <p><%= @postarticle.address %></p>
-<%= link_to "Destroy",@postarticle, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_postarticle_#{@postarticle.id}" %>
+
+<% @postarticle.postarticle_images.each do |image| %>
+
+	<p><%= attachment_image_tag image, :image, size: "100x100", fallback: "no_image.jpg"%></p>
+<% end %>
+	<%= link_to "テキストの編集", edit_postarticle_path(@postarticle), class: "btn-sm btn-success edit_postarticle_#{@postarticle.id}" %>
+	<%= link_to "Destroy",@postarticle, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_postarticle_#{@postarticle.id}" %>

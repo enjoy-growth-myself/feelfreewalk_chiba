@@ -1,6 +1,7 @@
 class PostarticlesController < ApplicationController
 	def new
 		@postarticle = Postarticle.new
+		@postarticle.postarticle_images.build
 	end
 
 	def create
@@ -12,7 +13,6 @@ class PostarticlesController < ApplicationController
 	    	@postarticle = Postarticle.new
 	    	render :index
     	end
-		
 	end
 
 	def index
@@ -20,18 +20,25 @@ class PostarticlesController < ApplicationController
 
 	def show
 		@postarticle = Postarticle.find(params[:id])
+		@postarticle_image = @postarticle.postarticle_images
 	end
 
 	def edit
+		@postarticle = Postarticle.find(params[:id])
+		
+	end
+
+	def update
+		@postarticle = Postarticle.find(params[:id])
 	end
 
 	def destroy
-  	@postarticle = Postarticle.find(params[:id])
-  	@postarticle.destroy
-  	redirect_to postarticles_path, notice: "successfully delete book!"
+	  	@postarticle = Postarticle.find(params[:id])
+	  	@postarticle.destroy
+	  	redirect_to postarticles_path, notice: "successfully delete book!"
   end
 		
 	def postarticle_params
-    params.require(:postarticle).permit(:title, :body, :address,)
+    params.require(:postarticle).permit(:title, :body, :address, :user_id, postarticle_images_attributes: [:image])
   end
 end

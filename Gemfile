@@ -73,3 +73,5 @@ gem 'kaminari'
 gem 'jp_prefecture'
 
 gem 'faker'
+
+gem 'pry-byebug'

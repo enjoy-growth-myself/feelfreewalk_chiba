@@ -1,7 +1,7 @@
-<h2>新規投稿</h2>
+<h2>投稿編集画面</h2>
 
 <div class="container">
-	<h1>新規登録</h1>
+	<h1>編集</h1>
 		
       <div>
 		<%= form_with(model: @postarticle, local: true) do |form| %>
@@ -19,12 +19,12 @@
 	        <%= form.text_field :address %>
 
 	        	<%= form.fields_for :postarticle_images do |image| %>
-	        		<%= image.attachment_field :image,  :multiple => true %>
-	      <div class="actions">
+	        		<%= image.attachment_field :image %>
 	      	<h4>subumitボタン確認</h4>
-	        <%= form.submit "新規投稿", class: "btn btn-primary pull-right" %>
+	        <%= form.submit "更新", class: "btn btn-primary pull-right" %>
 	      </div>
-	    <% end %>
+	   		<%= link_to "詳細画面に戻る", postarticle_path, class: "back" %>
+	   	<% end %>
     	<% end %>
     </div>
 </div>

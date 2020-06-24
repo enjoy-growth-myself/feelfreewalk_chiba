@@ -1,4 +1,5 @@
 class PostarticleImage < ApplicationRecord
 
-	belongs_to :postarticles
+	belongs_to :postarticle, optional: true
+	attachment :image
 end
