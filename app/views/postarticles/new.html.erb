@@ -17,11 +17,8 @@
 	        <h4>住所</h4>
 	        <%= form.label :address %>
 	        <%= form.text_field :address %>
-	        	
 	        		<%= form.fields_for :postarticle_images do |image| %>
-	        		<% 5.times do %>
-	        			<%= image.attachment_field :image,  :multiple => true %>
-	        		<% end %>
+	        			<%= image.attachment_field :image %>
 	      <div class="actions">
 	      	<h4>subumitボタン確認</h4>
 	        <%= form.submit "新規投稿", class: "btn btn-primary pull-right" %>

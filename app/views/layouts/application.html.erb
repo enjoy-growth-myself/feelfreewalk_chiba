@@ -23,7 +23,7 @@
                             <p class="navbar-text navbar-left">ようこそ、<%= current_user.name %> さん！</p>
                             <li class="nav_li"><%=  "マイページ" %></li>
                             <li class="nav_li"><%=  'お気に入り' %></li>
-                            <li class="nav_li"><%=  '投稿一覧' %></li>
+                            <li class="nav_li"><%=  link_to '投稿一覧',postarticles_path, class: 'glyphicon glyphicon-book books nav_li_text'%></li>
                             <li class="nav_li"><%= link_to 'logout', destroy_user_session_path, method: :delete, class: 'glyphicon glyphicon-log-out logout nav_li_text' %></li>
                         <% else %>
                           <li class="nav_li"><%= 'home' %></li>

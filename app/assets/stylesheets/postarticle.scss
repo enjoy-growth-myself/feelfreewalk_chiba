@@ -5,6 +5,38 @@
     border-top: solid 10px rgba(255,60,0,0.9);
 }
 
+.pstarticle_body{
+	width: 100%;
+	margin-top: 10px;
+}
+
+.pstarticle_body_text{
+	font-family:"Arial", "メイリオ";
+	font-size:21px;
+}
+
+.address_body{
+	width: 100%;
+	margin-top: 10px;
+}
+
+.postarticle_address_text{
+	font-family:"Arial", "メイリオ";
+	font-size:14px;
+}
+
 .postarticle_title {
 	color : blue;
+}
+
+.index_box {
+	width :50%;
+	margin:10px;
+	font-size:21px;
+	width:100%;
+}
+
+.index-title {
+	font-family:"Arial", "メイリオ";
+	font-size:21px;
 }

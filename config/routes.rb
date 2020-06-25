@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   resources :postarticles do
   	resources :postarticle_images 
   end
+
+  resources :postarticle_images, only: [:edit, :update]
 end

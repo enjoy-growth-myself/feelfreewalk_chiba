@@ -30,7 +30,6 @@ class PostarticlesController < ApplicationController
 
 	def update
 		@postarticle = Postarticle.find(params[:id])
-		params[:postarticle_images].present?
 		@postarticle.update(postarticle_params)
 		redirect_to postarticle_path(@postarticle), notice: '更新に成功しました'
 	end
