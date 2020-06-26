@@ -75,3 +75,10 @@ gem 'jp_prefecture'
 gem 'faker'
 
 gem 'pry-byebug'
+
+gem 'geocoder'
+
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
