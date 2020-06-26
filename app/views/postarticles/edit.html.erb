@@ -1,28 +1,30 @@
-<h2>投稿編集画面</h2>
-
-
-	<h1>編集</h1>
-		
-      <div>
+<div class="container">
+    <div class="row">
+        <h2 class="col-xs-6 col-xs-offset-3 edit_title">投稿内容の編集</h2>
+    </div>
 		<%= form_with(model: @postarticle, local: true) do |form| %>
+		<div class="row">
+        	<div class="col-xs-6 col-xs-offset-3 edit_field ">
+		        <p class="edit_text"><%= form.label :title %></p>
+		        <%= form.text_field :title, class: 'form-control' %>
+	    	</div>
 
-	        <h4>タイトル</h4>
-	        <%= form.label :title %>
-	        <%= form.text_field :title %></p>
-	        
-	        <h4>内容</h4>
-	        <%= form.label :body %>
-	        <%= form.text_area :body %>
 
-	        <h4>住所</h4>
-	        <%= form.label :address %>
-	        <%= form.text_field :address %>
+	        <div class="col-xs-6 col-xs-offset-3 edit_field">
+		         <p class="edit_text"><%= form.label :body %></p>
+		        <%= form.text_area :body, class: "form-control input-lg" %>
+		    </div>
 
-	      	<h4>subumitボタン確認</h4>
-	        <%= form.submit "更新", class: "btn btn-primary pull-right" %>
-	      </div>
-	   		<%= link_to "詳細画面に戻る", postarticle_path, class: "back" %>
-	   	
+		    <div class="col-xs-6 col-xs-offset-3 edit_field">
+		        <p class="edit_text"><%= form.label :address %></p>
+		        <%= form.text_field :address, class: 'form-control' %>
+	    	</div>
+
+	    	<div class="col-xs-6 col-xs-offset-3 edit_field">
+		      	<h4>subumitボタン確認</h4>
+		      	<%= link_to "詳細画面に戻る", postarticle_path, class: "btn btn-info" %>
+		        <%= form.submit "更新", class: "btn btn-primary " %>
+	   		</div>
     	<% end %>
     </div>
 </div>

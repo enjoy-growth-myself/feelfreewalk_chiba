@@ -21,8 +21,10 @@
                     <ul class="nav navbar-nav navbar-right" data-hover="dropdown" data-animations="zoomIn fadeIn fadeInUp fadeIn">
                         <% if user_signed_in? %>
                             <p class="navbar-text navbar-left">ようこそ、<%= current_user.name %> さん！</p>
-                            <li class="nav_li"><%=  "マイページ" %></li>
+                            
+                            <li><%=  link_to 'マイページ',user_path(current_user), class: 'glyphicon glyphicon-user nav_li_text'%></li>
                             <li class="nav_li"><%=  'お気に入り' %></li>
+
                             <li class="nav_li"><%=  link_to '投稿一覧',postarticles_path, class: 'glyphicon glyphicon-book books nav_li_text'%></li>
                             <li class="nav_li"><%= link_to 'logout', destroy_user_session_path, method: :delete, class: 'glyphicon glyphicon-log-out logout nav_li_text' %></li>
                         <% else %>

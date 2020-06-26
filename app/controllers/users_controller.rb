@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+	before_action :authenticate_user!
+	before_action :only_current_user, only: [:update,:edit]
+
 	def index
 		@users = User.all
 		@user = current_user
@@ -22,5 +25,24 @@ class UsersController < ApplicationController
 	end
 
 	def update
-	end
+		@user = User.find(params[:id])
+		if @user.update(user_params)
+	   # @book = Book.new
+			 redirect_to(user_path(current_user.id), notice: "successfully updated user!")
+		else
+			render "edit"
+		end
+  	end
+
+  	private
+  def user_params
+  	params.require(:user).permit(:name, :introduction, :profile_image)
+  end
+
+  #url直接防止メソッドを自己定義してbefore_actionで発動。
+  def only_current_user
+  	unless params[:id].to_i == current_user.id
+  		redirect_to user_path(current_user)
+  	end
+  end
 end

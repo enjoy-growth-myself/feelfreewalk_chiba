@@ -2,12 +2,23 @@
 	width: 100%;
 	padding: 0.5px 1px;
     margin: 2px 0;
-    border-top: solid 10px rgba(255,60,0,0.9);
+    border-bottom: solid 10px rgba(255,60,0,0.9);
+}
+
+.postarticle_title {
+	font-family:"Arial", "メイリオ";
+	font-size:32px;
 }
 
 .pstarticle_body{
 	width: 100%;
 	margin-top: 10px;
+}
+
+.postarticle_image_box {
+	width: 100%;
+	margin-top: 10px;
+	padding-bottom: 15px;
 }
 
 .pstarticle_body_text{
@@ -25,9 +36,6 @@
 	font-size:14px;
 }
 
-.postarticle_title {
-	color : blue;
-}
 
 .index_box {
 	width :50%;

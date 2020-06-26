@@ -21,7 +21,7 @@ class PostarticlesController < ApplicationController
 
 	def show
 		@postarticle = Postarticle.find(params[:id])
-		@postarticle_image = @postarticle.postarticle_images
+		@postarticle_image = PostarticleImage.new
 	end
 
 	def edit
@@ -37,7 +37,7 @@ class PostarticlesController < ApplicationController
 	def destroy
 	  	@postarticle = Postarticle.find(params[:id])
 	  	@postarticle.destroy
-	  	redirect_to postarticles_path, notice: "successfully delete book!"
+	  	redirect_to postarticles_path, notice: "画像の削除に成功しました"
   	end
 		
 	private

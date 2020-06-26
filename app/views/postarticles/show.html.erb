@@ -1,19 +1,25 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-6 col-xs-offset-3">
-			<h2>投稿詳細</h2>
-
-			<% @postarticle.postarticle_images.each do |image| %>
-
-				<p><%= attachment_image_tag image, :image, size: "555x300", fallback: "no_image.jpg"%></p>
-				<%= link_to "画像の編集", edit_postarticle_image_path(image), class: "btn-sm btn-success edit_postarticle_#{@postarticle.id}" %>
-			<% end %>
-
 			<div class="postarticle_title_box">
 				<h2 class="postarticle_title"><%= @postarticle.title %></h2>
-		</div>
+			</div>
+
+			
+				<% @postarticle.postarticle_images.each do |image| %>
+				<div class="postarticle_image_box">
+					<p><%= attachment_image_tag image, :image, size: "555x300", fallback: "no_image.jpg"%></p>
+					<%= link_to "画像の編集", edit_postarticle_image_path(image), class: "btn-sm btn-success edit_postarticle_#{@postarticle.id}" %>
+				</div>
+				<% end %>
+
+
+			
 		<div class="pstarticle_body">
 			<P class="pstarticle_body_text"><%= @postarticle.body %></P>
+		</div>
+		<div class="postarticle_date">
+			<p>投稿日:<%= @postarticle.created_at.strftime('%Y/%m/%d') %></p>
 		</div>
 		<div class="postarticle_address">
 			<p class="postarticle_address_text"><%= @postarticle.address %></p>
@@ -21,6 +27,16 @@
 
 				<%= link_to "テキストの編集", edit_postarticle_path(@postarticle), class: "btn-sm btn-success edit_postarticle_#{@postarticle.id}" %>
 				<%= link_to "投稿記事の削除",@postarticle, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_postarticle_#{@postarticle.id}" %>
+		</div>
+		<div class="add_postarticle_iamge">
+			<p>画像の追加</p>
+			<%= form_with(model: [@postarticle, @postarticle_image], url: {controller: 'postarticle_images', action: 'create'}, local: true) do |form| %>
+			<%= form.attachment_field :image %>
+			
+			<%= form.hidden_field :a, value: @postarticle.id %>
+
+			<%= form.submit  "送信", class:"pull-right"%>
+			<% end %>
 		</div>
 	</div>
 </div>
