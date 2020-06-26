@@ -1,3 +1,5 @@
+//showのスタイル
+
 .postarticle_title_box{
 	width: 100%;
 	padding: 0.5px 1px;
@@ -12,13 +14,18 @@
 
 .pstarticle_body{
 	width: 100%;
-	margin-top: 10px;
+	padding-top: 10px;
+	border-top : solid 10px rgba(255,60,0,0.9);
 }
 
 .postarticle_image_box {
 	width: 100%;
 	margin-top: 10px;
 	padding-bottom: 15px;
+}
+
+.add_postarticle_iamge{
+	margin-bottom: 10px;
 }
 
 .pstarticle_body_text{
@@ -36,7 +43,7 @@
 	font-size:14px;
 }
 
-
+//indexのcss
 .index_box {
 	width :50%;
 	margin:10px;

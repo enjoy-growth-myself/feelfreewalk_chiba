@@ -9,6 +9,7 @@
 
 						<p class="index_title">
 							<%= attachment_image_tag image, :image, size: "200x200", fallback: "no_image.jpg"%></p>
+							
 					<% end %>
 					<%= link_to article.title, postarticle_path(article), class: "index_title" %>
 					<p>投稿日:<%= article.created_at.strftime('%Y/%m/%d') %></p>

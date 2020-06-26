@@ -10,7 +10,7 @@ class PostarticleImagesController < ApplicationController
 	end
 
 	def create
-		@postarticle = Postarticle.find(params[:a].to_i)
+		@postarticle = Postarticle.find(params[:postarticle_id])
 		@postarticle_image = PostarticleImage.new(image_params)
 		@postarticle_image.postarticle_id = @postarticle.id
 		if @postarticle_image.save
@@ -21,9 +21,8 @@ class PostarticleImagesController < ApplicationController
 	end
 
 	def destroy
-	  	@postarticle_image = PostarticleImage.find(params[:id])
-	  	@postarticle.destroy
-	  	redirect_to postarticles_path, notice: "画像の削除に成功しました"
+	  	postarticle_image = PostarticleImage.find(params[:id])
+	  	postarticle_image.destroy
 	  	redirect_back(fallback_location: root_path)
   	end
 

@@ -22,6 +22,7 @@ class PostarticlesController < ApplicationController
 	def show
 		@postarticle = Postarticle.find(params[:id])
 		@postarticle_image = PostarticleImage.new
+		@max_image = $image_par_article
 	end
 
 	def edit
