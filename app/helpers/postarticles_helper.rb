@@ -1,0 +1,2 @@
+module PostarticlesHelper
+end

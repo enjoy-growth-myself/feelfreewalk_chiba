@@ -1,0 +1,58 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-6 col-xs-offset-2">
+			<div class="postarticle_title_box">
+				<h2 class="postarticle_title"><%= @postarticle.title %></h2>
+			</div>
+
+			
+			<% @postarticle.postarticle_images.each do |image| %>
+			<div class="postarticle_image_box text-center">
+				<p><%= attachment_image_tag image, :image, size: "300x200", fallback: "no_image.jpg"%></p>
+				<% if @postarticle.user_id == current_user.id %>
+					<%= link_to "画像の編集",  edit_postarticle_image_path(image), class: "btn-sm btn-success edit_postarticle_#{@postarticle.id}" %>
+					<%= link_to "画像の削除", postarticle_image_path(image), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_postarticle_#{@postarticle_image.id}" %>
+				<% end %>
+			</div>
+			<% end %>
+	</div>
+	<div class="row">
+		<div class="col-xs-6 col-xs-offset-2">
+			<div class="add_postarticle_iamge">
+			<% if @postarticle.user_id == current_user.id %>
+				<% if @postarticle.postarticle_images.count < @max_image %>
+					<p class="add_postarticle_iamge_text">
+					写真を追加しますか？</p>
+					<p>写真はあと<%= @max_image - @postarticle.postarticle_images.count %>枚追加できます</p>
+					<p>全部で<%= @max_image %>枚投稿できます</p>
+
+					<%= form_with(model: [@postarticle, @postarticle_image], local: true) do |form| %>
+					<%= form.attachment_field :image %>
+					<%= form.submit  "送信", class:"pull-right"%>
+					<% end %>
+				<% else %>
+					<P>たくさん写真と投稿してくれてありがとう！</P>
+				<% end %>
+			</div>
+			<% end %>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-6 col-xs-offset-2">
+			<div class="pstarticle_body">
+				<P class="pstarticle_body_text"><%= @postarticle.body %></P>
+			</div>
+			<div class="postarticle_date">
+				<p>投稿日:<%= @postarticle.created_at.strftime('%Y/%m/%d') %></p>
+			</div>
+			<div class="postarticle_address">
+				<p class="postarticle_address_text">所在地：<%= @postarticle.address %></p>
+			</div>
+			<% if @postarticle.user_id == current_user.id %>
+				<%= link_to "テキストの編集", edit_postarticle_path(@postarticle), class: "btn-sm btn-success edit_postarticle_#{@postarticle.id}" %>
+				<%= link_to "投稿記事の削除",@postarticle, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_postarticle_#{@postarticle.id}" %>
+			<% end %>
+		</div>
+	</div>
+</div>
