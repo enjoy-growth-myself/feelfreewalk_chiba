@@ -11,5 +11,6 @@ class PostarticleImage < ApplicationRecord
 		image_id = PostarticleImage.find_by(postarticle_id)
 		if image_id > $image_par_article
 			errors.add(:postarticle_id, "写真は1つの記事に対して5枚までしか投稿できません")
+		end
 	end
 end
