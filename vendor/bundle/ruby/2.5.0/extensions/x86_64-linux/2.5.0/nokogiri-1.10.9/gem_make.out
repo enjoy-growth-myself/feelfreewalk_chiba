@@ -1,44 +1,25 @@
 current directory: /home/vagrant/work/chibacity_walk/vendor/bundle/ruby/2.5.0/gems/nokogiri-1.10.9/ext/nokogiri
-/home/vagrant/.rbenv/versions/2.5.7/bin/ruby -r ./siteconf20200627-9450-1zyrt.rb extconf.rb
+/home/vagrant/.rbenv/versions/2.5.7/bin/ruby -r ./siteconf20200627-31243-6hqfbr.rb extconf.rb --use-system-libraries
 checking if the C compiler accepts ... yes
-Building nokogiri using packaged libraries.
-Using mini_portile version 2.4.0
-checking for gzdopen() in -lz... yes
-checking for iconv... yes
-************************************************************************
-IMPORTANT NOTICE:
+Building nokogiri using system libraries.
+pkg-config could not be used to find libxslt
+Please install either `pkg-config` or the pkg-config gem per
 
-Building Nokogiri with a packaged version of libxml2-2.9.10
-with the following patches applied:
-	- 0001-Revert-Do-not-URI-escape-in-server-side-includes.patch
-	- 0002-Remove-script-macro-support.patch
-	- 0003-Update-entities-to-remove-handling-of-ssi.patch
-	- 0004-libxml2.la-is-in-top_builddir.patch
-	- 0005-Fix-infinite-loop-in-xmlStringLenDecodeEntities.patch
+    gem install pkg-config -v "~> 1.1"
 
-Team Nokogiri will keep on doing their best to provide security
-updates in a timely manner, but if this is a concern for you and want
-to use the system library instead; abort this installation process and
-reinstall nokogiri as follows:
+pkg-config could not be used to find libexslt
+Please install either `pkg-config` or the pkg-config gem per
 
-    gem install nokogiri -- --use-system-libraries
-        [--with-xml2-config=/path/to/xml2-config]
-        [--with-xslt-config=/path/to/xslt-config]
+    gem install pkg-config -v "~> 1.1"
 
-If you are using Bundler, tell it to use the option:
-
-    bundle config build.nokogiri --use-system-libraries
-    bundle install
-
-Note, however, that nokogiri is not fully compatible with arbitrary
-versions of libxml2 provided by OS/package vendors.
-************************************************************************
-Extracting libxml2-2.9.10.tar.gz into tmp/x86_64-pc-linux-gnu/ports/libxml2/2.9.10... ERROR, review '/home/vagrant/work/chibacity_walk/vendor/bundle/ruby/2.5.0/gems/nokogiri-1.10.9/ext/nokogiri/tmp/x86_64-pc-linux-gnu/ports/libxml2/2.9.10/extract.log' to see what happened. Last lines are:
-========================================================================
-gtar: libxml2-2.9.10/test/relaxng/ambig_name-class2.rng: Cannot hard link to `libxml2-2.9.10/test/relaxng/ambig_name-class.xml': Operation not permitted
-gtar: libxml2-2.9.10/test/relaxng/ambig_name-class.rng: Cannot hard link to `libxml2-2.9.10/test/relaxng/tutorA.rng': Operation not permitted
-gtar: Exiting with failure status due to previous errors
-========================================================================
+WARNING: libxml2 version 2.9.3 or later is highly recommended, but proceeding anyway.
+checking for xmlParseDoc() in libxml/parser.h... yes
+checking for xsltParseStylesheetDoc() in libxslt/xslt.h... no
+checking for xsltParseStylesheetDoc() in -lxslt... no
+checking for xsltParseStylesheetDoc() in -llibxslt... no
+-----
+libxslt is missing.  Please locate mkmf.log to investigate how it is failing.
+-----
 *** extconf.rb failed ***
 Could not create Makefile due to some reason, probably lack of necessary
 libraries and/or headers.  Check the mkmf.log file for more details.  You may
@@ -59,32 +40,42 @@ Provided configuration options:
 	--help
 	--clean
 	--use-system-libraries
-	--enable-static
-	--disable-static
 	--with-zlib-dir
 	--without-zlib-dir
 	--with-zlib-include
 	--without-zlib-include=${zlib-dir}/include
 	--with-zlib-lib
 	--without-zlib-lib=${zlib-dir}/lib
-	--enable-cross-build
-	--disable-cross-build
-/home/vagrant/work/chibacity_walk/vendor/bundle/ruby/2.5.0/gems/mini_portile2-2.4.0/lib/mini_portile2/mini_portile.rb:402:in `block in execute': Failed to complete extract task (RuntimeError)
-	from /home/vagrant/work/chibacity_walk/vendor/bundle/ruby/2.5.0/gems/mini_portile2-2.4.0/lib/mini_portile2/mini_portile.rb:373:in `chdir'
-	from /home/vagrant/work/chibacity_walk/vendor/bundle/ruby/2.5.0/gems/mini_portile2-2.4.0/lib/mini_portile2/mini_portile.rb:373:in `execute'
-	from /home/vagrant/work/chibacity_walk/vendor/bundle/ruby/2.5.0/gems/mini_portile2-2.4.0/lib/mini_portile2/mini_portile.rb:367:in `extract_file'
-	from /home/vagrant/work/chibacity_walk/vendor/bundle/ruby/2.5.0/gems/mini_portile2-2.4.0/lib/mini_portile2/mini_portile.rb:62:in `block in extract'
-	from /home/vagrant/work/chibacity_walk/vendor/bundle/ruby/2.5.0/gems/mini_portile2-2.4.0/lib/mini_portile2/mini_portile.rb:60:in `each'
-	from /home/vagrant/work/chibacity_walk/vendor/bundle/ruby/2.5.0/gems/mini_portile2-2.4.0/lib/mini_portile2/mini_portile.rb:60:in `extract'
-	from /home/vagrant/work/chibacity_walk/vendor/bundle/ruby/2.5.0/gems/mini_portile2-2.4.0/lib/mini_portile2/mini_portile.rb:151:in `cook'
-	from extconf.rb:365:in `block (2 levels) in process_recipe'
-	from extconf.rb:257:in `block in chdir_for_build'
-	from extconf.rb:256:in `chdir'
-	from extconf.rb:256:in `chdir_for_build'
-	from extconf.rb:364:in `block in process_recipe'
-	from extconf.rb:262:in `tap'
-	from extconf.rb:262:in `process_recipe'
-	from extconf.rb:557:in `<main>'
+	--with-xml2-dir
+	--without-xml2-dir
+	--with-xml2-include
+	--without-xml2-include=${xml2-dir}/include
+	--with-xml2-lib
+	--without-xml2-lib=${xml2-dir}/lib
+	--with-libxml-2.0-config
+	--without-libxml-2.0-config
+	--with-pkg-config
+	--without-pkg-config
+	--with-xslt-dir
+	--without-xslt-dir
+	--with-xslt-include
+	--without-xslt-include=${xslt-dir}/include
+	--with-xslt-lib
+	--without-xslt-lib=${xslt-dir}/lib
+	--with-libxslt-config
+	--without-libxslt-config
+	--with-exslt-dir
+	--without-exslt-dir
+	--with-exslt-include
+	--without-exslt-include=${exslt-dir}/include
+	--with-exslt-lib
+	--without-exslt-lib=${exslt-dir}/lib
+	--with-libexslt-config
+	--without-libexslt-config
+	--with-xsltlib
+	--without-xsltlib
+	--with-libxsltlib
+	--without-libxsltlib
 
 To see why this extension failed to compile, please check the mkmf.log which can be found here:
 
