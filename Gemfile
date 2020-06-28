@@ -85,3 +85,7 @@ gem 'geocoder'
 
 gem 'popper_js', '~> 1.9.9'
 
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
