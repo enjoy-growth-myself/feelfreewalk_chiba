@@ -35,8 +35,7 @@ class UsersController < ApplicationController
   	end
 
   	def bookmark
-		@postarticles = current_user.postarticles.includes(:user).recent
-		redirect_to(user_bookmarks_path(current_user))
+		@bookmark_postarticles = current_user.bookmark_postarticles.includes(:user)
 	end
 
   	private

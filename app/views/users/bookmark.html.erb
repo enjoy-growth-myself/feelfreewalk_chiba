@@ -2,7 +2,7 @@
 	<div class="col-9 offset-1 index_title">
 		<h2>新着記事一覧</h2>
 	</div>
-		<% @postarticles.each do |article| %>
+		<% @bookmark_postarticles.each do |article| %>
 			<div class="row index_box" >
 				<div class="col-4 offset-1">
 					<% article.postarticle_images.first(1).each do |image| %>
