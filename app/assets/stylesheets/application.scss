@@ -13,9 +13,12 @@
  *= require_tree .
  *= require_self
  */
+
 @import "bootstrap";
 @import url(https://fonts.googleapis.com/earlyaccess/hannari.css);
 @import url(https://fonts.googleapis.com/earlyaccess/sawarabigothic.css);
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
 
 .navbar {
 	background-color:rgba(0,0,128,0.4);
