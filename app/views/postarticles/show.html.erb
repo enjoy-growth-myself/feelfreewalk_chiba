@@ -1,23 +1,25 @@
 <div class="container">
-	<div class="row d-flex">
-		<div class="col-xs-6 col-xs-offset-2">
+	<div class="row justify-content-center">
 			<div class="postarticle_title_box">
 				<h2 class="postarticle_title"><%= @postarticle.title %></h2>
 			</div>
+	</div>
+	<div class="row flex-row">
 
-			
+		
 			<% @postarticle.postarticle_images.each do |image| %>
-			<div class="postarticle_image_box text-center">
-				<p><%= attachment_image_tag image, :image, size: "300x200", fallback: "no_image.jpg"%></p>
+			<div class=" col-4 show_image">
+				<%= attachment_image_tag image, :image, size: "187x125", fallback: "no_image.jpg"%>
 				<% if @postarticle.user_id == current_user.id %>
-					<%= link_to "画像の編集",  edit_postarticle_image_path(image), class: "btn-sm btn-success edit_postarticle_#{@postarticle.id}" %>
-					<%= link_to "画像の削除", postarticle_image_path(image), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_postarticle_#{@postarticle_image.id}" %>
+					<p><%= link_to "画像の編集",  edit_postarticle_image_path(image), class: "btn-sm btn-success edit_postarticle_#{@postarticle.id}" %></p>
+					<p><%= link_to "画像の削除", postarticle_image_path(image), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_postarticle_#{@postarticle_image.id}" %></p>
 				<% end %>
 			</div>
 			<% end %>
+		
 	</div>
 	<div class="row">
-		<div class="col-xs-6 col-xs-offset-2">
+		<div class="col-sm-12">
 			<div class="add_postarticle_iamge">
 			<% if @postarticle.user_id == current_user.id %>
 				<% if @postarticle.postarticle_images.count < @max_image %>
@@ -31,6 +33,7 @@
 					<%= form.submit  "送信", class:"pull-right"%>
 					<% end %>
 				<% else %>
+					<p>写真は1つの記事に対して<%= @max_image %>枚までです！</p>
 					<P>たくさん写真と投稿してくれてありがとう！</P>
 				<% end %>
 			</div>
@@ -39,20 +42,26 @@
 	</div>
 
 	<div class="row">
-		<div class="col-xs-6 col-xs-offset-2">
+		<div class=""></div>
+		<div class="col-sm-5">
 			<div class="pstarticle_body">
 				<P class="pstarticle_body_text"><%= @postarticle.body %></P>
 			</div>
+			<% if current_user.own_board?(@postarticle) %>
+				<%= link_to "テキストの編集", edit_postarticle_path(@postarticle), class: "btn-sm btn-success edit_postarticle_#{@postarticle.id}" %>
+				<%= link_to "投稿記事の削除",@postarticle, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_postarticle_#{@postarticle.id}" %>
+			<% else %>
+				<%= render 'bookmarks/bookmark', postarticle: @postarticle %>
+			<% end %>
 			<div class="postarticle_date">
 				<p>投稿日:<%= @postarticle.created_at.strftime('%Y/%m/%d') %></p>
 			</div>
+		</div>
+		<div class="col-sm-7">
 			<div class="postarticle_address">
 				<p class="postarticle_address_text">所在地：<%= @postarticle.address %></p>
 			</div>
-			<% if @postarticle.user_id == current_user.id %>
-				<%= link_to "テキストの編集", edit_postarticle_path(@postarticle), class: "btn-sm btn-success edit_postarticle_#{@postarticle.id}" %>
-				<%= link_to "投稿記事の削除",@postarticle, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_postarticle_#{@postarticle.id}" %>
-			<% end %>
+			
 		</div>
 	</div>
 </div>

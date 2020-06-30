@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 	before_action :authenticate_user!
-	before_action :only_current_user, only: [:update,:edit]
+	before_action :only_current_user, only: [:update, :edit, :bookmarks]
 
 	def index
 		@users = User.all
@@ -33,6 +33,11 @@ class UsersController < ApplicationController
 			render "edit"
 		end
   	end
+
+  	def bookmark
+		@postarticles = current_user.postarticles.includes(:user).recent
+		redirect_to(user_bookmarks_path(current_user))
+	end
 
   	private
   def user_params

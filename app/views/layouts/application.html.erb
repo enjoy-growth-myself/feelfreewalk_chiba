@@ -18,7 +18,7 @@
                         <p class="navbar-text">ようこそ、<%= current_user.name %> さん！</p>
                     <ul class="nav_text">
                         <li><%=  link_to 'マイページ',user_path(current_user), class: 'nav_li'%></li>
-                        <li class="nav_li"><%=  'お気に入り' %></li>
+                        <li class="nav_li"><%=link_to  'お気に入り', user_bookmarks_path(current_user), class: 'nav_li' %></li>
 
                         <li><%=  link_to '投稿一覧',postarticles_path, class: 'nav_li'%></li>
                         <li><%= link_to 'logout', destroy_user_session_path, method: :delete, class: 'nav_li' %></li>

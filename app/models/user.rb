@@ -4,8 +4,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :name, presence: true,length: {maximum: 20, minimum: 2}
+  validates :name, presence: true, length: {maximum: 20, minimum: 2}
   
   attachment :profile_image, destroy: false
   has_many :postarticles
+  has_many :postarticles, through: :bookmarks, source: :postaricle
+
+  def own_board?(postarticle)
+ 	self.id == postarticle.user_id
+  end
 end

@@ -4,18 +4,22 @@
 	width: 100%;
 	padding: 0.5px 1px;
     margin: 2px 0;
-    border-bottom: solid 10px rgba(255,60,0,0.9);
+    border-bottom: solid 10px rgba(51,204,0,0.7);
 }
 
 .postarticle_title {
-	font-family:"Arial", "メイリオ";
+	font-family: 'Sawarabi Gothic','Arial', 'メイリオ';
 	font-size:32px;
+}
+
+.show_image {
+	margin-top:10 px;
 }
 
 .pstarticle_body{
 	width: 100%;
 	padding-top: 10px;
-	border-top : solid 10px rgba(255,60,0,0.9);
+	border-top : solid 10px rgba(51,204,0,0.7);
 }
 
 .postarticle_image_box {
@@ -25,11 +29,12 @@
 }
 
 .add_postarticle_iamge{
+	margin-top: 10px;
 	margin-bottom: 10px;
 }
 
 .pstarticle_body_text{
-	font-family:"Arial", "メイリオ";
+	font-family: 'Sawarabi Gothic','Arial', 'メイリオ';
 	font-size:21px;
 }
 
@@ -39,24 +44,46 @@
 }
 
 .postarticle_address_text{
-	font-family:"Arial", "メイリオ";
+	font-family: 'Sawarabi Gothic','Arial', 'メイリオ';
 	font-size:14px;
 }
 
 //indexのcss
+
+.index_title{
+	font-family: 'Hannari','Arial', 'メイリオ';
+	margin_bottom: 10px;
+	border-bottom: solid 10px rgba(51,204,0,0.7);
+}
+
 .index_box {
-	width :50%;
-	margin:10px;
-	font-size:21px;
+	margin:20px;
+	padding:10px;
 	width:100%;
 }
 
-.index_title {
-	font-family:"Arial", "メイリオ";
-	font-size:21px;
+
+.article_title {
+	display: block;
+	width: 100%;
+	font-family: 'Sawarabi Gothic','Arial', 'メイリオ';
+	font-size:24px;
+	overflow: hidden;
+  	white-space: nowrap;
+  	text-overflow: ellipsis;
 }
 
+.article_body{
+	display: block;
+	font-family: 'Sawarabi Gothic','Arial', 'メイリオ';
+	font-size:21px;
+	line-height: 25px;
+	width: 100%;
+	height: calc( 25px * 5 );
+	overflow: hidden;
 
-.index_flex {
-	display: flex;
+}
+
+.article_date{
+	font-family: 'Sawarabi Gothic','Arial', 'メイリオ';
 }

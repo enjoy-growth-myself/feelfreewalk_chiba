@@ -1,10 +1,11 @@
 class PostarticleImage < ApplicationRecord
 
 	belongs_to :postarticle, optional: true
+	has_many :bookmark, dependent: :destroy
 	attachment :image
 	
-	# 1つの記事に対して投稿できる画像の上限。今回は5枚とした。
-	$image_par_article = 5
+	# 1つの記事に対して投稿できる画像の上限。今回は6枚とした。
+	$image_par_article = 6
 
 	# def max_image(article_id)
 	#  	image = PostarticleImage.where(postarticle_id: article_id)

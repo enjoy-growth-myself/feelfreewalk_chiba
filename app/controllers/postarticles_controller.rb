@@ -40,7 +40,9 @@ class PostarticlesController < ApplicationController
 	  	@postarticle.destroy
 	  	redirect_to postarticles_path, notice: "画像の削除に成功しました"
   	end
-		
+
+	
+
 	private
 	def postarticle_params
     	params.require(:postarticle).permit(:title, :body, :address, :user_id, postarticle_images_attributes: [:image])
