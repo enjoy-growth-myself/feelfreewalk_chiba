@@ -8,7 +8,8 @@ class User < ApplicationRecord
   
   attachment :profile_image, destroy: false
   has_many :postarticles
-  has_many :postarticles, through: :bookmarks, source: :postaricle
+  #has_many :bookmarks, dependent: :destroy
+  #has_many :postarticles, through: :bookmarks, source: :postaricle
 
   def own_board?(postarticle)
  	self.id == postarticle.user_id
