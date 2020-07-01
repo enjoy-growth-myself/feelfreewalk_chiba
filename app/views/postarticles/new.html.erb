@@ -1,18 +1,19 @@
 <div class="container">
     <div class="row">
-        <h2 class="col-6 offset-3 edit_title">新規登録</h2>
+        <h2 class="col-6 offset-3 edit-title">新規登録</h2>
 	</div>
-		<%= render 'layouts/error_messages', error: @postarticle %>
+
 		<%= form_with(model: @postarticle, local: true) do |form| %>
 		
 		<div class="row">
-	        <div class="col-6 offset-3 edit_field ">
-		        <p class="post_text">タイトル</p>
-	        	<%= form.text_field :title %>
+	        <div class="col-6 offset-3 edit-field ">
+	        	<%= render 'layouts/error_messages', error: @postarticle %>
+		        <p class="post-text">タイトル(16文字以内)</p>
+	        	<%= form.text_field :title, class: 'form-control'  %>
 
-		         <p class="post_text" rows="">本文</p>
+		         <p class="post-text" rows="">本文</p>
 	        	<%= form.text_area :body, class: "form-control input-lg" , size: "20x20" %>
-		        <p class="post_text">住所</p>
+		        <p class="post-text">住所</p>
 	        	<%= form.text_field :address, class: 'form-control' %><br>
 	        	<%= form.fields_for :postarticle_images do |image| %>
 	        			<%= image.attachment_field :image %>

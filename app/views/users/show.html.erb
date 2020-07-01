@@ -8,13 +8,13 @@
 
 			<table class="table .thead-light">
 				<tr>
-					<th>name</th>
-					<th><%= @user.name %></th>
+					<th>ニックネーム</th>
+					<th class="table-user-text"><%= @user.name %></th>
 				</tr>
 
 				<tr>
-					<th>introduction</th>
-					<th><%= @user.introduction %></th>
+					<th>自己紹介</th>
+					<th class="table-user-text"><%= @user.introduction %></th>
 				</tr>
 			</table>
 
@@ -32,18 +32,18 @@
 				<table class="table table-hover">
 					<thead>
 						<tr>
-							<th class="table_title">タイトル</th>
-							<th class="table_body">本文</th>
-							<th class="table_link"></th>
+							<th class="table-text">タイトル</th>
+							<th class="table-text">本文</th>
+							<th class="table-text"></th>
 						</tr>
 					</thead>
 
 					<tbody>
 						<% @postarticles.each do |article| %>
 						<tr>
-							<td><%= article.title %></td>
-							<td height="30"><%= article.body %></td>
-							<td><%= link_to "詳細画面", postarticle_path(article), class: "" %></td>
+							<td class="table-text"><%= article.title %></td>
+							<td class="table-text"><%= article.body %></td>
+							<td class="table-text"><%= link_to "詳細画面", postarticle_path(article), class: "" %></td>
 						</tr>
 						<% end %>
 					</tbody>

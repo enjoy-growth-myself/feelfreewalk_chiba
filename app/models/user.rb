@@ -5,11 +5,13 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :name, presence: true, length: {maximum: 20, minimum: 2}
+  validates :introduction, length: {maximum: 50}
   
   attachment :profile_image, destroy: false
   has_many :postarticles
   has_many :bookmarks, dependent: :destroy
   has_many :bookmark_postarticles, through: :bookmarks, source: :postarticle
+
 
   def own_board?(postarticle)
  	self.id == postarticle.user_id

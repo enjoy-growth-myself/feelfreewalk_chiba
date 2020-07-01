@@ -1,17 +1,17 @@
 <div class="container">
 	<div class="row justify-content-center">
-			<div class="postarticle_title_box">
-				<h2 class="postarticle_title"><%= @postarticle.title %></h2>
+			<div class="postarticle-title-box">
+				<h2 class="postarticle-title"><%= @postarticle.title %></h2>
 			</div>
 	</div>
 	<div class="row flex-row">
 
 		
 			<% @postarticle.postarticle_images.each do |image| %>
-			<div class=" col-4 show_image">
+			<div class=" col-4 show-image">
 				<%= attachment_image_tag image, :image, size: "187x125", fallback: "no_image.jpg"%>
 				<% if @postarticle.user_id == current_user.id %>
-					<p><%= link_to "画像の編集",  edit_postarticle_image_path(image), class: "btn-sm btn-success edit_postarticle_#{@postarticle.id}" %></p>
+					<p><%= link_to "画像の編集",  edit_postarticle_image_path(image), class: "btn-sm btn-success edit-postarticle_#{@postarticle.id}" %></p>
 					<p><%= link_to "画像の削除", postarticle_image_path(image), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_postarticle_#{@postarticle_image.id}" %></p>
 				<% end %>
 			</div>
@@ -20,10 +20,10 @@
 	</div>
 	<div class="row">
 		<div class="col-sm-12">
-			<div class="add_postarticle_iamge">
+			<div class="add-postarticle-iamge">
 			<% if @postarticle.user_id == current_user.id %>
 				<% if @postarticle.postarticle_images.count < @max_image %>
-					<p class="add_postarticle_iamge_text">
+					<p class="add-postarticle-iamge-text">
 					写真を追加しますか？</p>
 					<p>写真はあと<%= @max_image - @postarticle.postarticle_images.count %>枚追加できます</p>
 					<p>全部で<%= @max_image %>枚投稿できます</p>
@@ -44,8 +44,8 @@
 	<div class="row">
 		<div class=""></div>
 		<div class="col-sm-5">
-			<div class="pstarticle_body">
-				<P class="pstarticle_body_text"><%= @postarticle.body %></P>
+			<div class="pstarticle-body">
+				<P class="pstarticle-body-text"><%= @postarticle.body %></P>
 			</div>
 			<% if current_user.own_board?(@postarticle) %>
 				<%= link_to "テキストの編集", edit_postarticle_path(@postarticle), class: "btn-sm btn-success edit_postarticle_#{@postarticle.id}" %>
@@ -53,13 +53,13 @@
 			<% else %>
 				<%= render 'bookmarks/bookmark', postarticle: @postarticle %>
 			<% end %>
-			<div class="postarticle_date">
+			<div class="postarticle-date">
 				<p>投稿日:<%= @postarticle.created_at.strftime('%Y/%m/%d') %></p>
 			</div>
 		</div>
 		<div class="col-sm-7">
-			<div class="postarticle_address">
-				<p class="postarticle_address_text">所在地：<%= @postarticle.address %></p>
+			<div class="postarticle-address">
+				<p class="postarticle-address-text">所在地：<%= @postarticle.address %></p>
 			</div>
 			
 		</div>
