@@ -19,6 +19,7 @@
 	        <%= form.text_field :address %>
 	        		<%= form.fields_for :postarticle_images do |image| %>
 	        			<%= image.attachment_field :image %>
+
 	      <div class="actions">
 	      	<h4>subumitボタン確認</h4>
 	        <%= form.submit "新規投稿", class: "btn btn-primary pull-right" %>

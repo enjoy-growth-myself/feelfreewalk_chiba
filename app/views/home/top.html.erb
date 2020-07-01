@@ -1,28 +1,27 @@
-<h1>TOP</h1>
-
-
-<div class="d-flex">
-			<div>子要素1</div>
-		    <div>子要素2</div>
-		  	<div>子要素3</div>
-		</div>
-
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-6">box1</div>
-    <div class="col-6">box2</div>
+  <div class="col-9 offset-1 index_title">
+    <h2>人気ランキング</h2>
   </div>
+    <% @all_ranks.each.with_index(1) do |article, i| %>
+      <div class="row index_box" >
+        <div class="col-4 offset-1">
+          <p>第<%= i %>位</p>
+          <% article.postarticle_images.first(1).each do |image| %>
+            <%= attachment_image_tag image, :image, size: "300x200", fallback: "no_image.jpg"%>
+          <% end %>
+        </div>
+        <div class="col-5" >
+          <div class="article_title">
+          <%= link_to article.title, postarticle_path(article), class: "" %><br>
+          </div>
+          <div>
+            <p class="article_body"><%= article.body  %></p>
+          </div>
+          <div class="float-right">
+            <p class="article_date">投稿日:<%= article.created_at.strftime('%Y/%m/%d') %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
 </div>
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-2">１</div>
-    <div class="col-2">２</div>
-    <div class="col-2">３</div>
-    <div class="col-2">４</div>
-    <div class="col-2">５</div>
-    <div class="col-2">６</div>
-  </div>
-</div>
-
-<i class="fa fa-home"></i>
