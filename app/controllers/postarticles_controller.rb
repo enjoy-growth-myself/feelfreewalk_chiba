@@ -1,5 +1,6 @@
 class PostarticlesController < ApplicationController
 	def new
+		#投稿記事と画像のnewの2つを用意
 		@postarticle = Postarticle.new
 		@postarticle.postarticle_images.build
 	end
@@ -10,13 +11,12 @@ class PostarticlesController < ApplicationController
     	if @postarticle.save
       		redirect_to postarticle_path(@postarticle.id), notice: '新規投稿に成功しました'
     	else
-	    	@postarticle = Postarticle.new
-	    	render :index
+	    	render :new
     	end
 	end
 
 	def index
-		@postarticles = Postarticle.all
+		@postarticles = Postarticle.page(params[3]).per(3).reverse_order
 	end
 
 	def show
