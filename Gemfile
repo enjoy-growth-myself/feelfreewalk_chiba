@@ -94,3 +94,5 @@ gem 'ed25519'
 gem 'bcrypt_pbkdf'
 
 gem 'font-awesome-sass', '~> 5.2.0'
+
+gem 'rails-i18n'
