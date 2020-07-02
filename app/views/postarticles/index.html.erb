@@ -1,6 +1,15 @@
 <div class="container-fluid">
-	<div class="col-9 offset-1 index-title">
-		<h2>新着記事一覧</h2>
+	<div class="row">
+		<div class="col-9 offset-1 index-title">
+			<h2>新着記事一覧</h2>
+		</div>
+		<div class="col-1">
+			<p>検索窓</p>
+			<%= form_with url: search_path, method: :get, local: true do |f| %>
+			<%= f.text_field :title %>
+			<%= f.submit :search %>
+			<% end %>
+		</div>
 	</div>
 		<% @postarticles.each do |article| %>
 			<div class="row index-box" >
@@ -20,12 +29,13 @@
 						<p class="article-date">投稿日:<%= article.created_at.strftime('%Y/%m/%d') %></p>
 					</div>
 				</div>
+
 			</div>
 		<% end %>
 	<div class="row">
 		<div class="offset-4 text-center">
-			<%= paginate @postarticles %>
-		<div>
+				<%= paginate @postarticles %>
+		</div>
 	</div>
 </div>
 

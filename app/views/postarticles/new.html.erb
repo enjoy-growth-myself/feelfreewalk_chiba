@@ -14,7 +14,7 @@
 		         <p class="post-text" rows="">本文</p>
 	        	<%= form.text_area :body, class: "form-control input-lg" , size: "20x20" %>
 		        <p  class="post-text">住所</p>
-	        	<%= form.text_field :address,id:'', class: 'form-control' %><br>
+	        	<%= form.text_field :address, class: 'form-control' %><br>
 	        	
 	       		<input type="button" value="googlemapに場所を表示" onclick="codeAddress()">
 	       		<div id="display">緯度経度</div>
@@ -71,7 +71,6 @@ function initMap(){
   // クリックイベントを追加
   let address;
    map.addListener('click', function(e) {
-     	// getClickLatLng(e.latLng, map);
         geocoder.geocode({
           location: e.latLng
         }, function(results, status) {
@@ -94,7 +93,7 @@ function initMap(){
           }
           document.getElementById('lat').textContent = e.latLng.lat();
           document.getElementById('lng').textContent = e.latLng.lng();
-          document.getElementById('address').textContent = address;
+          document.getElementById('postarticle_address').value = address;
         });
       });
     }

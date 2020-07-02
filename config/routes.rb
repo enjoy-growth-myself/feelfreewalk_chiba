@@ -15,4 +15,5 @@ Rails.application.routes.draw do
   end
 
   resources :postarticle_images
+  get '/search', to: 'search#search'
 end
