@@ -25,8 +25,8 @@
                         <li><%=  link_to '投稿一覧',postarticles_path, class: 'nav-li'%></li>
                         <li><%= link_to 'logout', destroy_user_session_path, method: :delete, class: 'nav-li' %></li>
                 <% else %>
-                        <li class="nav-li"><%= 'home' %></li>
-                        <li class="nav-li"><%= 'about' %></li>
+                        <li><%=link_to 'home',root_path, class: 'nav-li' %></li>
+                        <li><%=link_to 'about',home_about_path, class: 'nav-li' %></li>
                         <li><%= link_to '新規登録', new_user_registration_path, class: 'nav-li' %></li>
                         <li><%= link_to 'ログイン', new_user_session_path, class: 'nav-li' %></li>
                 <% end %>

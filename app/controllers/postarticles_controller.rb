@@ -16,7 +16,7 @@ class PostarticlesController < ApplicationController
 	end
 
 	def index
-		@postarticles = Postarticle.page(params[3]).per(3).reverse_order
+		@postarticles = Postarticle.page(params[:page]).per(3).reverse_order
 	end
 
 	def show
