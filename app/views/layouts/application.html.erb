@@ -17,7 +17,7 @@
                 <% if user_signed_in? %>
                         <p class="navbar-text">ようこそ、<%= current_user.name %> さん！</p>
                     <ul class="nav-text">
-                        <li ><%=link_to 'home',root_path, class: 'nav-li' %></li>
+                        <li ><%=link_to 'top',root_path, class: 'nav-li' %></li>
                         <li class="nav-li"><%=link_to 'about',home_about_path, class: 'nav-li' %></li>
                         <li><%=  link_to 'マイページ',user_path(current_user), class: 'nav-li'%></li>
                         <li class="nav-li"><%=link_to  'お気に入り', user_bookmarks_path(current_user), class: 'nav-li' %></li>
@@ -25,7 +25,7 @@
                         <li><%=  link_to '投稿一覧',postarticles_path, class: 'nav-li'%></li>
                         <li><%= link_to 'logout', destroy_user_session_path, method: :delete, class: 'nav-li' %></li>
                 <% else %>
-                        <li><%=link_to 'home',root_path, class: 'nav-li' %></li>
+                        <li><%=link_to 'top',root_path, class: 'nav-li' %></li>
                         <li><%=link_to 'about',home_about_path, class: 'nav-li' %></li>
                         <li><%= link_to '新規登録', new_user_registration_path, class: 'nav-li' %></li>
                         <li><%= link_to 'ログイン', new_user_session_path, class: 'nav-li' %></li>
