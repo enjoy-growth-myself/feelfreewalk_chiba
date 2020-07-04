@@ -1,0 +1,2 @@
+module PostarticleImagesHelper
+end

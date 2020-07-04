@@ -1,15 +1,62 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>ChibacityWalk</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+    <head>
+        <title>chibacity_walk</title>
+            <%= csrf_meta_tags %>
+            <%= csp_meta_tag %>
+            <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+            <%= stylesheet_link_tag    'application', media: 'all' %>
+            <!--, 'data-turbolinks-track': 'reload'を削除-->
+            <%= javascript_include_tag 'application', data: {"turbolinks" => false} %>
+    </head>
+    <body>
+    <header class="navbar ">
+        <div class="container">
+            <span class="logo">chibacitywalk</span>
+            <nav class="nav">
+                <% if user_signed_in? %>
+                        <p class="navbar-text">ようこそ、<%= current_user.name %> さん！</p>
+                    <ul class="nav-text">
+                        <li ><%=link_to 'home',root_path, class: 'nav-li' %></li>
+                        <li class="nav-li"><%=link_to 'about',home_about_path, class: 'nav-li' %></li>
+                        <li><%=  link_to 'マイページ',user_path(current_user), class: 'nav-li'%></li>
+                        <li class="nav-li"><%=link_to  'お気に入り', user_bookmarks_path(current_user), class: 'nav-li' %></li>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+                        <li><%=  link_to '投稿一覧',postarticles_path, class: 'nav-li'%></li>
+                        <li><%= link_to 'logout', destroy_user_session_path, method: :delete, class: 'nav-li' %></li>
+                <% else %>
+                        <li><%=link_to 'home',root_path, class: 'nav-li' %></li>
+                        <li><%=link_to 'about',home_about_path, class: 'nav-li' %></li>
+                        <li><%= link_to '新規登録', new_user_registration_path, class: 'nav-li' %></li>
+                        <li><%= link_to 'ログイン', new_user_session_path, class: 'nav-li' %></li>
+                <% end %>
+                    </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+      <p id="notice"><%= notice %></p> <!--デバイスでnotice設定されているので呼び出してるだけ-->
+      <%= yield %>
+    </div>
 
-  <body>
-    <%= yield %>
-  </body>
+    <div id="footer">
+    <footer class="container-fluid bg-4 text-center">
+        <div class="row text-center">
+            <div class="col-md-6">
+                <div class="social">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="col-12">
+                <hr class="light">
+                <h5>@CopyRight chibacity_walk.inc</h5>
+            </div>
+        </div>
+    </footer>
+    </div>
+
+    </body>
 </html>
+

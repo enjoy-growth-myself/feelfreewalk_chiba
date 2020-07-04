@@ -1,0 +1,99 @@
+//newのスタイル
+.post-text {
+	font-family: 'Sawarabi Gothic','Arial', 'メイリオ';
+	font-size:21px;
+	margin-top: 10px;
+}
+
+.actions {
+	margin-top:10px;
+}
+
+//showのスタイル
+
+.postarticle-title-box{
+	width: 100%;
+	padding: 0.5px 1px;
+    margin: 2px 0;
+    border-bottom: solid 10px rgba(51,204,0,0.7);
+}
+
+.postarticle-title {
+	font-family: 'Sawarabi Gothic','Arial', 'メイリオ';
+	font-size:32px;
+}
+
+.show-image {
+	margin-top:10 px;
+}
+
+.pstarticle-body{
+	width: 100%;
+	padding-top: 10px;
+	border-top : solid 10px rgba(51,204,0,0.7);
+}
+
+.postarticle-image-box {
+	width: 100%;
+	margin-top: 10px;
+	padding-bottom: 15px;
+}
+
+.add-postarticle-iamge{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.pstarticle-body-text{
+	font-family: 'Sawarabi Gothic','Arial', 'メイリオ';
+	font-size:21px;
+}
+
+.address-body{
+	width: 100%;
+	margin-top: 10px;
+}
+
+.postarticle-address-text {
+	font-family: 'Sawarabi Gothic','Arial', 'メイリオ';
+	font-size:21px;
+}
+
+//indexのcss
+
+.index-title{
+	font-family: 'Sawarabi Gothic','Arial', 'メイリオ';
+	margin-bottom: 10px;
+	border-bottom: solid 10px rgba(51,204,0,0.7);
+}
+
+.index-box {
+	margin:20px;
+	padding:10px;
+	width:100%;
+}
+
+
+.article-title {
+	display: block;
+	width: 100%;
+	font-family: 'Sawarabi Gothic','Arial', 'メイリオ';
+	font-size:24px;
+	overflow: hidden;
+  	white-space: nowrap;
+  	text-overflow: ellipsis;
+}
+
+.article-body{
+	display: block;
+	font-family: 'Sawarabi Gothic','Arial', 'メイリオ';
+	font-size:21px;
+	line-height: 25px;
+	width: 100%;
+	height: calc( 25px * 5 );
+	overflow: hidden;
+}
+
+.article-date{
+	font-family: 'Sawarabi Gothic','Arial', 'メイリオ';
+}
