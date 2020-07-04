@@ -1,4 +1,5 @@
 class PostarticleImagesController < ApplicationController
+	# 画像のみの編集、アップデート、削除はこのコントローラーで行う
 	def edit
 		@postarticle_image = PostarticleImage.find(params[:id])
 	end

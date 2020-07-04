@@ -1,27 +1,30 @@
 <div class="container-fluid">
-  <div class="col-9 offset-1 index_title">
-    <h2>人気ランキング</h2>
-  </div>
+    <div class="col-1">
+        <%= render 'search/search_form' %>
+    </div>
+    <div class="col-9 index_title">
+        <h2>人気ランキング</h2>
+    </div>
     <% @all_ranks.each.with_index(1) do |article, i| %>
-      <div class="row index-box" >
+    <div class="row index-box" >
         <div class="col-4 offset-1">
-          <p>第<%= i %>位</p>
-          <% article.postarticle_images.first(1).each do |image| %>
+            <p>第<%= i %>位</p>
+            <% article.postarticle_images.first(1).each do |image| %>
             <%= attachment_image_tag image, :image, size: "300x200", fallback: "no_image.jpg"%>
-          <% end %>
+            <% end %>
         </div>
         <div class="col-5" >
-          <div class="article-title">
-          <%= link_to article.title, postarticle_path(article), class: "" %><br>
-          </div>
-          <div>
-            <p class="article-body"><%= article.body  %></p>
-          </div>
-          <div class="float-right">
-            <p class="article-date">投稿日:<%= article.created_at.strftime('%Y/%m/%d') %></p>
-          </div>
+            <div class="article-title">
+            <%= link_to article.title, postarticle_path(article), class: "" %><br>
+            </div>
+            <div>
+                <p class="article-body"><%= article.body  %></p>
+            </div>
+            <div class="float-right">
+                <p class="article-date">投稿日:<%= article.created_at.strftime('%Y/%m/%d') %></p>
+            </div>
         </div>
-      </div>
+    </div>
     <% end %>
 </div>
 

@@ -1,58 +1,61 @@
 <div class="container">
     <div class="row">
         <h2 class="col-6 offset-3 edit-title">新規登録</h2>
-	</div>
+    </div>
+    <%= form_with(model: @postarticle, local: true) do |form| %>
+    <div class="row">
+        <div class="col-6 offset-3 edit-field ">
+            <%= render 'layouts/error_messages', error: @postarticle %>
+            <p class="post-text">タイトル(16文字以内)</p>
+            <%= form.text_field :title, class: 'form-control'  %>
 
-		<%= form_with(model: @postarticle, local: true) do |form| %>
-		
-		<div class="row">
-	        <div class="col-6 offset-3 edit-field ">
-	        	<%= render 'layouts/error_messages', error: @postarticle %>
-		        <p class="post-text">タイトル(16文字以内)</p>
-	        	<%= form.text_field :title, class: 'form-control'  %>
+            <p class="post-text" rows="">本文</p>
+            <%= form.text_area :body, class: "form-control input-lg" , size: "20x20" %>
+            <p class="post-text">住所</p>
+            <%= form.text_field :address, class: 'form-control' %><br>
 
-		         <p class="post-text" rows="">本文</p>
-	        	<%= form.text_area :body, class: "form-control input-lg" , size: "20x20" %>
-		        <p  class="post-text">住所</p>
-	        	<%= form.text_field :address, class: 'form-control' %><br>
-	        	
-	       		<input type="button" value="googlemapに場所を表示" onclick="codeAddress()">
-	       		<div id="display">緯度経度</div>
-	       		<%= form.fields_for :postarticle_images do |image| %>
-	        			<%= image.attachment_field :image %>
-			      <div class="actions">
-			        <%= form.submit "新規投稿", class: "btn btn-primary pull-right" %>
-			      </div>
-			</div>
-	    <% end %>
-    	<% end %>
+            <input type="button" value="googlemapに場所を表示" onclick="codeAddress()">
+            <p class="post-text">緯度</p>
+            <%= form.text_field :latitude, class: 'form-control' %>
+
+            <p class="post-text">経度</p>
+            <%= form.text_field :longitude, class: 'form-control' %>
+
+
+            <%= form.fields_for :postarticle_images do |image| %>
+            <%= image.attachment_field :image %>
+            <div class="actions">
+                <%= form.submit "新規投稿", class: "btn btn-primary pull-right" %>
+            </div>
+
+        </div>
+        <% end %>
+        <% end %>
     </div>
 </div>
 
-<h2>googlemap</h2>
-
-<div id='map'></div>
-<ul>
-    <li>lat: <span id="lat"></span></li>
-    <li>lng: <span id="lng"></span></li>
-    <li>address: <span id="address"></span></li>
-  </ul>
+<div class="row">
+    <div class="col-6 offset-3">
+        <h2 >googlemap</h2>
+        <div id='map'></div>
+    </div>
+</div>
 
 <style>
 /*エラーチェック用*/
 
 #map{
-  height: 1000px;
-  width: 1000px;
+  height: 750px;
+  width: 750px;
 }
 </style>
 
 <script>
 
- let map
- let geocoder
+let map
+let geocoder
 
- const display = document.getElementById('display')
+const display = document.getElementById('display')
 
 function initMap(){
   geocoder = new google.maps.Geocoder()
@@ -91,21 +94,18 @@ function initMap(){
             alert('No results found');
             return;
           }
-          document.getElementById('lat').textContent = e.latLng.lat();
-          document.getElementById('lng').textContent = e.latLng.lng();
+          document.getElementById('postarticle_latitude').value = e.latLng.lat();
+          document.getElementById('postarticle_longitude').value = e.latLng.lng();
           document.getElementById('postarticle_address').value = address;
         });
       });
     }
 
-    
-
-
 
 function codeAddress(){
-  let inputAddress = document.getElementById('address').value;
+  let inputAddress = document.getElementById('postarticle_address').value;
 
-  geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+  geocoder.geocode( { 'postarticle_address': inputAddress}, function(results, status) {
     if (status == 'OK') {
       map.setCenter(results[0].geometry.location);
       var marker = new google.maps.Marker({
@@ -121,4 +121,4 @@ function codeAddress(){
 
 
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=AIzaSyAr3I1ZY04jp61VXJPMRAwnRcfKrFeWP1s&callback=initMap" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
