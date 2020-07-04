@@ -67,10 +67,17 @@
 	width: 100%;
 	paddring: 10px;
 	background-color: rgba(240,248,255,1);
-	border:solid 3px rgba(255,0,0,1);
+	border:solid 3px rgba(255,0,0,1)
 }
 
 .errormessage-text {
+	font-family: 'Sawarabi Gothic','Arial', 'メイリオ';
+	font-size: 21px;
+	color:rgba(255,0,0,1)
+}
+
+//top画面のscss
+.ranks-text:first-child {
 	font-family: 'Sawarabi Gothic','Arial', 'メイリオ';
 	font-size: 21px;
 	color:rgba(255,0,0,1)

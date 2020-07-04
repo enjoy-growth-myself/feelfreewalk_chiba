@@ -51,12 +51,15 @@
 				<%= render 'bookmarks/bookmark', postarticle: @postarticle %>
 			<% end %>
 			<div class="postarticle-date">
-				<p>投稿日:<%= @postarticle.created_at.strftime('%Y/%m/%d') %></p>
+				<p id="show_address">投稿日:<%= @postarticle.created_at.strftime('%Y/%m/%d') %></p>
 			</div>
 		</div>
 		<div class="col-md-7">
 			<div class="postarticle-address">
-				<p class="postarticle-address-text">所在地：<%= @postarticle.address %></p>
+				<p class="postarticle-address-text"><%= @postarticle.address %></p>
+				<input id="address" type="textbox" value="Sydney, NSW">
+
+				<input type="button" value="クリックすればマップを表示" onclick="codeAddress()">
 				<h2>map</h2>
 				<div id='map'></div>
 			</div>
@@ -64,9 +67,10 @@
 		</div>
 	</div>
 </div>
-
-
-
+<!-- 
+<input id="address" type="textbox" value="">
+<input type="button" value="Encode" onclick="codeAddress()">
+ -->
 <style>
 #map{
   height: 600px;
@@ -76,20 +80,58 @@
 
 <script>
  let map
-
-function initMap(){
+ let geocoder
+ function initMap(){
   geocoder = new google.maps.Geocoder()
 
   map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 35.6071334, lng: 140.1052183},
+    center: {lat: <%= @postarticle.latitude %>, lng: <%= @postarticle.longitude %>},
     zoom: 17,
   });
 
   marker = new google.maps.Marker({
-    position: {lat: 35.6071334, lng: 140.1052183},
+    position: {lat: <%= @postarticle.latitude %>, lng: <%= @postarticle.longitude %>},
     map: map
   });
 }
 
+
+
+
+function codeAddress(){
+  let inputAddress = document.getElementById('address').value;
+
+  geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+    if (status == 'OK') {
+      map.setCenter(results[0].geometry.location);
+      var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+      });
+    } else {
+      alert('該当する結果がありませんでした：' + status);
+    }
+  });   
+}
+
+
+
+
+function codeAddress(){
+  let inputAddress = document.getElementById('address').value;
+
+  geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+    if (status == 'OK') {
+      map.setCenter(results[0].geometry.location);
+      var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+      });
+    } else {
+      alert('該当する結果がありませんでした：' + status);
+    }
+  });   
+}
+
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script> function 

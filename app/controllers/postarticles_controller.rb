@@ -45,6 +45,6 @@ class PostarticlesController < ApplicationController
 
 	private
 	def postarticle_params
-    	params.require(:postarticle).permit(:title, :body, :address, :user_id, postarticle_images_attributes: [:image])
+    	params.require(:postarticle).permit(:title, :body, :address, :user_id,:latitude,:longitude, postarticle_images_attributes: [:image])
   	end
 end

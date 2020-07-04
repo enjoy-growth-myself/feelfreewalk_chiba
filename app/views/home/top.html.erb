@@ -8,10 +8,12 @@
     <% @all_ranks.each.with_index(1) do |article, i| %>
     <div class="row index-box" >
         <div class="col-4 offset-1">
-            <p>第<%= i %>位</p>
+            <p class="ranks-text">第<%= i %>位</p>
             <% article.postarticle_images.first(1).each do |image| %>
-            <%= attachment_image_tag image, :image, size: "300x200", fallback: "no_image.jpg"%>
-            <% end %>
+                <div class="index-img-box">
+                    <%= attachment_image_tag image, :image, size: "300x200", fallback: "no_image.jpg"%>
+                <% end %>
+            </div>
         </div>
         <div class="col-5" >
             <div class="article-title">
