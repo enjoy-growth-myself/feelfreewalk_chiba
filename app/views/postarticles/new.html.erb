@@ -1,29 +1,124 @@
-<h2>新規投稿</h2>
-
 <div class="container">
-	<h1>新規登録</h1>
-		
-      <div>
-		<%= form_with(model: @postarticle, local: true) do |form| %>
+    <div class="row">
+        <h2 class="col-6 offset-3 edit-title">新規登録</h2>
+    </div>
+    <%= form_with(model: @postarticle, local: true) do |form| %>
+    <div class="row">
+        <div class="col-6 offset-3 edit-field ">
+            <%= render 'layouts/error_messages', error: @postarticle %>
+            <p class="post-text">タイトル(16文字以内)</p>
+            <%= form.text_field :title, class: 'form-control'  %>
 
-	        <h4>タイトル</he>
-	        <%= form.label :title %>
-	        <%= form.text_field :title %></p>
-	        
-	        <h4>内容</h4>
-	        <%= form.label :body %>
-	        <%= form.text_area :body %>
+            <p class="post-text" rows="">本文</p>
+            <%= form.text_area :body, class: "form-control input-lg" , size: "20x20" %>
+            <p class="post-text">住所</p>
+            <%= form.text_field :address, class: 'form-control' %><br>
 
-	        <h4>住所</h4>
-	        <%= form.label :address %>
-	        <%= form.text_field :address %>
-	        		<%= form.fields_for :postarticle_images do |image| %>
-	        			<%= image.attachment_field :image %>
-	      <div class="actions">
-	      	<h4>subumitボタン確認</h4>
-	        <%= form.submit "新規投稿", class: "btn btn-primary pull-right" %>
-	      </div>
-	    <% end %>
-    	<% end %>
+            <input type="button" value="googlemapに場所を表示" onclick="codeAddress()">
+            <p class="post-text">緯度</p>
+            <%= form.text_field :latitude, class: 'form-control' %>
+
+            <p class="post-text">経度</p>
+            <%= form.text_field :longitude, class: 'form-control' %>
+
+
+            <%= form.fields_for :postarticle_images do |image| %>
+            <%= image.attachment_field :image %>
+            <div class="actions">
+                <%= form.submit "新規投稿", class: "btn btn-primary pull-right" %>
+            </div>
+
+        </div>
+        <% end %>
+        <% end %>
     </div>
 </div>
+
+<div class="row">
+    <div class="col-6 offset-3">
+        <h2 >googlemap</h2>
+        <div id='map'></div>
+    </div>
+</div>
+
+<style>
+/*エラーチェック用*/
+
+#map{
+  height: 750px;
+  width: 750px;
+}
+</style>
+
+<script>
+
+let map
+let geocoder
+
+const display = document.getElementById('display')
+
+function initMap(){
+  geocoder = new google.maps.Geocoder()
+
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 35.6071334, lng: 140.1052183},
+    zoom: 15,
+  });
+
+  // 新規投稿なので初期マーカーは不要
+  // marker = new google.maps.Marker({
+  //   position: {lat: 35.6071334, lng: 140.1052183},
+  //   map: map
+  // });
+
+  // クリックイベントを追加
+  let address;
+   map.addListener('click', function(e) {
+        geocoder.geocode({
+          location: e.latLng
+        }, function(results, status) {
+        	address =  results[0].formatted_address;
+          if (status !== 'OK') {
+            alert('Failed: ' + status);
+            return;
+          }
+          // results[0].formatted_address
+          if (results[0]) {
+            new google.maps.Marker({
+               position: e.latLng,
+ 	           map: map,
+               title: results[0].formatted_address,
+               animation: google.maps.Animation.DROP
+            });
+          } else {
+            alert('No results found');
+            return;
+          }
+          document.getElementById('postarticle_latitude').value = e.latLng.lat();
+          document.getElementById('postarticle_longitude').value = e.latLng.lng();
+          document.getElementById('postarticle_address').value = address;
+        });
+      });
+    }
+
+
+function codeAddress(){
+  let inputAddress = document.getElementById('postarticle_address').value;
+
+  geocoder.geocode( { 'postarticle_address': inputAddress}, function(results, status) {
+    if (status == 'OK') {
+      map.setCenter(results[0].geometry.location);
+      var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+      });
+      display.textContent = "検索結果：" + results[ 0 ].geometry.location
+    } else {
+      alert('該当する場所がありませんでした：' + status);
+    }
+  });   
+}
+
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>

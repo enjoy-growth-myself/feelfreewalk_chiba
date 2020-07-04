@@ -10,35 +10,30 @@
             <%= javascript_include_tag 'application', data: {"turbolinks" => false} %>
     </head>
     <body>
-    <div id="container">
-        <div id="header">
-            <header class="navbar ">
-            <div class="container">
-                <nav class="navbar-header navbar-left">
-                    <span class="logo">chibacitywalk</span>
-                </nav>
-                <nav class="nav_text">
-                    <ul class="nav navbar-nav navbar-right" data-hover="dropdown" data-animations="zoomIn fadeIn fadeInUp fadeIn">
-                        <% if user_signed_in? %>
-                            <p class="navbar-text navbar-left">ようこそ、<%= current_user.name %> さん！</p>
-                            
-                            <li><%=  link_to 'マイページ',user_path(current_user), class: 'glyphicon glyphicon-user nav_li_text'%></li>
-                            <li class="nav_li"><%=  'お気に入り' %></li>
+    <header class="navbar ">
+        <div class="container">
+            <span class="logo">chibacitywalk</span>
+            <nav class="nav">
+                <% if user_signed_in? %>
+                        <p class="navbar-text">ようこそ、<%= current_user.name %> さん！</p>
+                    <ul class="nav-text">
+                        <li ><%=link_to 'home',root_path, class: 'nav-li' %></li>
+                        <li class="nav-li"><%=link_to 'about',home_about_path, class: 'nav-li' %></li>
+                        <li><%=  link_to 'マイページ',user_path(current_user), class: 'nav-li'%></li>
+                        <li class="nav-li"><%=link_to  'お気に入り', user_bookmarks_path(current_user), class: 'nav-li' %></li>
 
-                            <li class="nav_li"><%=  link_to '投稿一覧',postarticles_path, class: 'glyphicon glyphicon-book books nav_li_text'%></li>
-                            <li class="nav_li"><%= link_to 'logout', destroy_user_session_path, method: :delete, class: 'glyphicon glyphicon-log-out logout nav_li_text' %></li>
-                        <% else %>
-                          <li class="nav_li"><%= 'home' %></li>
-                          <li class="nav_li"><%= 'about' %></li>
-                          <li><%= link_to '新規登録', new_user_registration_path, class: 'glyphicon glyphicon-edit sign_up nav_li_text' %></li>
-                          <li><%= link_to 'ログイン', new_user_session_path, class: 'glyphicon glyphicon-log-in sign_in nav_li_text' %></li>
-                        <% end %>
+                        <li><%=  link_to '投稿一覧',postarticles_path, class: 'nav-li'%></li>
+                        <li><%= link_to 'logout', destroy_user_session_path, method: :delete, class: 'nav-li' %></li>
+                <% else %>
+                        <li><%=link_to 'home',root_path, class: 'nav-li' %></li>
+                        <li><%=link_to 'about',home_about_path, class: 'nav-li' %></li>
+                        <li><%= link_to '新規登録', new_user_registration_path, class: 'nav-li' %></li>
+                        <li><%= link_to 'ログイン', new_user_session_path, class: 'nav-li' %></li>
+                <% end %>
                     </ul>
-                </nav>
-            </div>
-            </header>
+            </nav>
         </div>
-    </div>
+    </header>
     <div class="container">
       <p id="notice"><%= notice %></p> <!--デバイスでnotice設定されているので呼び出してるだけ-->
       <%= yield %>

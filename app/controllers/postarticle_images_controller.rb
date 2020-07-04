@@ -1,4 +1,5 @@
 class PostarticleImagesController < ApplicationController
+	# 画像のみの編集、アップデート、削除はこのコントローラーで行う
 	def edit
 		@postarticle_image = PostarticleImage.find(params[:id])
 	end
@@ -13,11 +14,8 @@ class PostarticleImagesController < ApplicationController
 		@postarticle = Postarticle.find(params[:postarticle_id])
 		@postarticle_image = PostarticleImage.new(image_params)
 		@postarticle_image.postarticle_id = @postarticle.id
-		if @postarticle_image.save
-			redirect_to postarticle_path(@postarticle)
-		else
-			render postarticle_path(@postarticle)
-		end
+		@postarticle_image.save
+		redirect_to postarticle_path(@postarticle)
 	end
 
 	def destroy

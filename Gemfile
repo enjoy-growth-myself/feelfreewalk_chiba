@@ -48,6 +48,10 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano3-puma'
+  gem 'capistrano-rbenv'
 end
 
 group :test do
@@ -66,8 +70,9 @@ gem 'devise'
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 
-gem 'bootstrap-sass', '~> 3.3.6'
+gem 'bootstrap', '~> 4.0.0.alpha6'
 gem 'jquery-rails'
+gem 'popper_js', '~> 1.9.9'
 gem 'kaminari'
 
 gem 'jp_prefecture'
@@ -75,3 +80,19 @@ gem 'jp_prefecture'
 gem 'faker'
 
 gem 'pry-byebug'
+
+gem 'geocoder'
+
+gem 'popper_js', '~> 1.9.9'
+
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
+
+gem 'ed25519'
+gem 'bcrypt_pbkdf'
+
+gem 'font-awesome-sass', '~> 5.2.0'
+
+gem 'rails-i18n'
