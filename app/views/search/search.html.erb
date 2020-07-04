@@ -6,9 +6,8 @@
 		<div class="col-1">
 			<p>検索窓</p>
 			<%= form_with url: search_path, method: :get, local: true do |f| %>
-			<%= f.select :keyword,[["タイトル","title"],["住所","address"]] %>
-			<%= f.text_field :searchword %>
-			<%= f.submit :検索 %>
+			<%= f.text_field :title %>
+			<%= f.submit :search %>
 			<% end %>
 		</div>
 	</div>

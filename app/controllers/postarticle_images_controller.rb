@@ -13,13 +13,8 @@ class PostarticleImagesController < ApplicationController
 		@postarticle = Postarticle.find(params[:postarticle_id])
 		@postarticle_image = PostarticleImage.new(image_params)
 		@postarticle_image.postarticle_id = @postarticle.id
-		if max_image(@postarticle)
-			if @postarticle_image.save
-				redirect_to postarticle_path(@postarticle)
-			else
-				render postarticle_path(@postarticle)
-			end
-		end
+		@postarticle_image.save
+		redirect_to postarticle_path(@postarticle)
 	end
 
 	def destroy

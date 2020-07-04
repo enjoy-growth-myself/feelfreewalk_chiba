@@ -1,27 +1,29 @@
 <div class="container">
-	<div class="row d-flex">
-		<div class="col-xs-6 col-xs-offset-2">
-			<div class="postarticle_title_box">
-				<h2 class="postarticle_title"><%= @postarticle.title %></h2>
+	<div class="row justify-content-center">
+			<div class="postarticle-title-box">
+				<h2 class="postarticle-title"><%= @postarticle.title %></h2>
 			</div>
+	</div>
+	<div class="row flex-row">
 
-			
+		
 			<% @postarticle.postarticle_images.each do |image| %>
-			<div class="postarticle_image_box text-center">
-				<p><%= attachment_image_tag image, :image, size: "300x200", fallback: "no_image.jpg"%></p>
+			<div class=" col-4 show-image">
+				<%= attachment_image_tag image, :image, size: "187x125", fallback: "no_image.jpg"%>
 				<% if @postarticle.user_id == current_user.id %>
-					<%= link_to "画像の編集",  edit_postarticle_image_path(image), class: "btn-sm btn-success edit_postarticle_#{@postarticle.id}" %>
-					<%= link_to "画像の削除", postarticle_image_path(image), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_postarticle_#{@postarticle_image.id}" %>
+					<p><%= link_to "画像の編集",  edit_postarticle_image_path(image), class: "btn-sm btn-success edit-postarticle_#{@postarticle.id}" %></p>
+					<p><%= link_to "画像の削除", postarticle_image_path(image), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_postarticle_#{@postarticle_image.id}" %></p>
 				<% end %>
 			</div>
 			<% end %>
+		
 	</div>
 	<div class="row">
-		<div class="col-xs-6 col-xs-offset-2">
-			<div class="add_postarticle_iamge">
+		<div class="col-sm-12">
+			<div class="add-postarticle-iamge">
 			<% if @postarticle.user_id == current_user.id %>
 				<% if @postarticle.postarticle_images.count < @max_image %>
-					<p class="add_postarticle_iamge_text">
+					<p class="add-postarticle-iamge-text">
 					写真を追加しますか？</p>
 					<p>写真はあと<%= @max_image - @postarticle.postarticle_images.count %>枚追加できます</p>
 					<p>全部で<%= @max_image %>枚投稿できます</p>
@@ -31,6 +33,7 @@
 					<%= form.submit  "送信", class:"pull-right"%>
 					<% end %>
 				<% else %>
+					<p>写真は1つの記事に対して<%= @max_image %>枚までです！</p>
 					<P>たくさん写真と投稿してくれてありがとう！</P>
 				<% end %>
 			</div>
@@ -39,20 +42,56 @@
 	</div>
 
 	<div class="row">
-		<div class="col-xs-6 col-xs-offset-2">
-			<div class="pstarticle_body">
-				<P class="pstarticle_body_text"><%= @postarticle.body %></P>
+		<div class=""></div>
+		<div class="col-sm-5">
+			<div class="pstarticle-body">
+				<P class="pstarticle-body-text"><%= @postarticle.body %></P>
 			</div>
-			<div class="postarticle_date">
-				<p>投稿日:<%= @postarticle.created_at.strftime('%Y/%m/%d') %></p>
-			</div>
-			<div class="postarticle_address">
-				<p class="postarticle_address_text">所在地：<%= @postarticle.address %></p>
-			</div>
-			<% if @postarticle.user_id == current_user.id %>
+			<% if current_user.own_board?(@postarticle) %>
 				<%= link_to "テキストの編集", edit_postarticle_path(@postarticle), class: "btn-sm btn-success edit_postarticle_#{@postarticle.id}" %>
 				<%= link_to "投稿記事の削除",@postarticle, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_postarticle_#{@postarticle.id}" %>
+			<% else %>
+				<%= render 'bookmarks/bookmark', postarticle: @postarticle %>
 			<% end %>
+			<div class="postarticle-date">
+				<p>投稿日:<%= @postarticle.created_at.strftime('%Y/%m/%d') %></p>
+			</div>
+		</div>
+		<div class="col-sm-7">
+			<div class="postarticle-address">
+				<p class="postarticle-address-text">所在地：<%= @postarticle.address %></p>
+			</div>
+			
 		</div>
 	</div>
 </div>
+
+<h2>gmap</h2>
+<div id='map'></div>
+
+<style>
+#map{
+  height: 600px;
+  width: 600px;
+}
+</style>
+
+<script>
+ let map
+
+function initMap(){
+  geocoder = new google.maps.Geocoder()
+
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 35.6071334, lng: 140.1052183},
+    zoom: 12,
+  });
+
+  marker = new google.maps.Marker({
+    position: {lat: 35.6071334, lng: 140.1052183},
+    map: map
+  });
+}
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAr3I1ZY04jp61VXJPMRAwnRcfKrFeWP1s&callback=initMap" async defer></script>
