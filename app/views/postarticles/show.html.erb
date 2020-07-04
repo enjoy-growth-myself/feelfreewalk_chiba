@@ -9,8 +9,8 @@
 		<div class=" col-4 show-image">
 			<%= attachment_image_tag image, :image, size: "187x125", fallback: "no_image.jpg"%>
 			<% if @postarticle.user_id == current_user.id %>
-				<p><%= link_to "画像の編集",  edit_postarticle_image_path(image), class: "btn-sm btn-success edit-postarticle_#{@postarticle.id}" %></p>
-				<p><%= link_to "画像の削除", postarticle_image_path(image), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_postarticle_#{@postarticle_image.id}" %></p>
+				<p><%= link_to "画像の編集",  edit_postarticle_image_path(image), class: "btn-sm btn-success edit-postarticle_#{@postarticle.id}" %>
+				<%= link_to "画像の削除", postarticle_image_path(image), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_postarticle_#{@postarticle_image.id}" %></p>
 			<% end %>
 		</div>
 		<% end %>
@@ -44,22 +44,21 @@
 			<div class="pstarticle-body">
 				<P class="pstarticle-body-text"><%= @postarticle.body %></P>
 			</div>
+			
+			<div class="postarticle-data">
+				<P>投稿者:<%= @postarticle.user.name %>
+				<p>投稿日:<%= @postarticle.created_at.strftime('%Y/%m/%d') %></p>
+			</div>
 			<% if current_user.own_board?(@postarticle) %>
-				<%= link_to "テキストの編集", edit_postarticle_path(@postarticle), class: "btn-sm btn-success edit_postarticle_#{@postarticle.id}" %>
+				<%= link_to "テキストの編集", edit_postarticle_path(@postarticle), class: "btn-sm btn-success edit_postarticle_#{@postarticle.id}" %>  
 				<%= link_to "投稿記事の削除",@postarticle, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_postarticle_#{@postarticle.id}" %>
 			<% else %>
 				<%= render 'bookmarks/bookmark', postarticle: @postarticle %>
 			<% end %>
-			<div class="postarticle-date">
-				<p id="show_address">投稿日:<%= @postarticle.created_at.strftime('%Y/%m/%d') %></p>
-			</div>
 		</div>
 		<div class="col-md-7">
 			<div class="postarticle-address">
 				<p class="postarticle-address-text"><%= @postarticle.address %></p>
-				<input id="address" type="textbox" value="Sydney, NSW">
-
-				<input type="button" value="クリックすればマップを表示" onclick="codeAddress()">
 				<h2>map</h2>
 				<div id='map'></div>
 			</div>

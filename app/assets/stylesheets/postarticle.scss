@@ -73,6 +73,10 @@
 	width:100%;
 }
 
+.index_image {
+	width:300px;
+	height:200px;
+}
 
 .index-img-box:hover {
 	transform: scale(1.25, 1.25);
@@ -99,6 +103,14 @@
 	overflow: hidden;
 }
 
-.article-date{
+.postarticle-data{
+	margin-top:15px;
 	font-family: 'Sawarabi Gothic','Arial', 'メイリオ';
+}
+
+@media screen and (max-width:768px) { 
+.index_image {
+	width:150px;
+	height:100px;
+}
 }

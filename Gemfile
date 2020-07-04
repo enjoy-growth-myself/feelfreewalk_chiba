@@ -70,9 +70,9 @@ gem 'devise'
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 
-gem 'bootstrap', '~> 4.0.0.alpha6'
+gem 'bootstrap', '~> 4.1.1'
 gem 'jquery-rails'
-gem 'popper_js', '~> 1.9.9'
+
 gem 'kaminari'
 
 gem 'jp_prefecture'
@@ -83,7 +83,6 @@ gem 'pry-byebug'
 
 gem 'geocoder'
 
-gem 'popper_js', '~> 1.9.9'
 
 gem 'dotenv-rails'
 group :production do
