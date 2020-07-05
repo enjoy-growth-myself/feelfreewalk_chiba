@@ -4,14 +4,14 @@
 				<h2><%= @postarticle.title %></h2>
 			</div>
 	</div>
-	<div class="row flex-row">
+	<div class="row">
 		<div class="show-article-body">
 			<P class="show-article-body-text"><%= @postarticle.body %></P>
 		</div>
+	</div>
 
-	<div class ="row">
-		
-		<div class=" col-5">
+	<div class ="row clearfix">
+		<div class="col-12 col-md-5">
 			<% @postarticle.postarticle_images.each do |image| %>
 				<%= attachment_image_tag image, :image, class: "show_image", fallback: "no_image.jpg"%>
 				<% if @postarticle.user_id == current_user.id %>
@@ -19,8 +19,8 @@
 					<%= link_to "画像の削除", postarticle_image_path(image), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_postarticle_#{@postarticle_image.id}" %></p>
 				<% end %>
 			<% end %>
-			<div class="add-postarticle-iamge">
 			<% if @postarticle.user_id == current_user.id %>
+			<div class="add-postarticle-iamge">
 				<% if @postarticle.postarticle_images.count < @max_image %>
 					<p class="add-postarticle-iamge-text">
 					写真を追加しますか？</p>
@@ -37,8 +37,19 @@
 				<% end %>
 			</div>
 			<% end %>
-			<div class="postarticle-data float-right">
-				<P>投稿者:<%= @postarticle.user.name %>
+		</div>
+		<div class="col-12 col-md-7">
+			<div class="postarticle-address">
+				<div id='map'></div>
+				<p class="postarticle-address-text">位置情報</p>
+				<p class="postarticle-address-text"><%= @postarticle.address %></p>
+			</div>
+		</div>
+	</div>
+	<div class="row clearfix">
+		<div class="col-12">
+			<div class="float-right postarticle-data">
+				<P>投稿者:<%=link_to @postarticle.user.name,user_path(@postarticle.user)  %>
 				<p>投稿日:<%= @postarticle.created_at.strftime('%Y/%m/%d') %></p>
 				<% if current_user.own_board?(@postarticle) %>
 				<%= link_to "テキストの編集", edit_postarticle_path(@postarticle), class: "btn-sm btn-success edit_postarticle_#{@postarticle.id}" %>  
@@ -48,15 +59,8 @@
 				<% end %>
 			</div>
 		</div>
-		<div class="col-7">
-			<div class="postarticle-address">
-				<p class="postarticle-address-text"><%= @postarticle.address %></p>
-				<h2>map</h2>
-				<div id='map'></div>
-			</div>
-			
-		</div>
 	</div>
+
 </div>
 <!-- 
 <input id="address" type="textbox" value="">
@@ -103,4 +107,4 @@ function codeAddress(){
 }
 
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script> function 
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
