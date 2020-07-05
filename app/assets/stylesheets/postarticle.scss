@@ -10,58 +10,32 @@
 }
 
 //showのスタイル
-
-.postarticle-title-box{
-	width: 100%;
-	padding: 0.5px 1px;
-    margin: 2px 0;
-    border-bottom: solid 10px rgba(51,204,0,0.7);
-}
-
-.postarticle-title {
+.postarticle-title-box {
+	width:100%;
 	font-family: 'Sawarabi Gothic','Arial', 'メイリオ';
-	font-size:32px;
+	margin-bottom: 10px;
+	border-bottom: solid 5px rgba(51,204,0,0.7);
 }
 
-.show-image {
-	margin-top:10 px;
-}
-
-.pstarticle-body{
-	width: 100%;
-	padding-top: 10px;
-	border-top : solid 10px rgba(51,204,0,0.7);
-}
-
-.postarticle-image-box {
-	width: 100%;
-	margin-top: 10px;
-	padding-bottom: 15px;
-}
-
-.add-postarticle-iamge{
-	margin-top: 10px;
+.show-article-body {
 	margin-bottom: 10px;
 }
 
-.pstarticle-body-text{
+.show-article-body-text {
 	font-family: 'Sawarabi Gothic','Arial', 'メイリオ';
 	font-size:21px;
 }
 
-.address-body{
-	width: 100%;
-	margin-top: 10px;
+.show_image {
+	margin-top:10px;
+	marfin-right: 10px;
+	width:70%;
 }
 
-.postarticle-address-text {
-	font-family: 'Sawarabi Gothic','Arial', 'メイリオ';
-	font-size:21px;
-}
-
-.postarticle-data{
-	margin-top:15px;
-	font-family: 'Sawarabi Gothic','Arial', 'メイリオ';
+.show_image::before{
+  content: '';
+  display:block;
+  padding-top:66%;
 }
 
 

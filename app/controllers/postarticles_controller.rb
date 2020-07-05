@@ -3,6 +3,7 @@ class PostarticlesController < ApplicationController
 		#投稿記事と画像のnewの2つを用意
 		@postarticle = Postarticle.new
 		@postarticle.postarticle_images.build
+		@max_image = $image_par_article
 	end
 
 	def create
@@ -45,6 +46,6 @@ class PostarticlesController < ApplicationController
 
 	private
 	def postarticle_params
-    	params.require(:postarticle).permit(:title, :body, :address, :user_id,:latitude,:longitude, postarticle_images_attributes: [:image])
+    	params.require(:postarticle).permit(:title, :body, :address, :user_id,:latitude,:longitude, postarticle_images_images: [])
   	end
 end

@@ -4,7 +4,7 @@
 
 <%= f.label :image %>
 <%= f.attachment_field :image, class: "user_image" %>
-
+<%= link_to "詳細画面にもどる", postarticle_path(@postarticle_image.postarticle), class: "btn btn-info" %>
 <%= f.submit "投稿内容更新", class: "btn btn-primary pull-right" %>
 
 <% end %>

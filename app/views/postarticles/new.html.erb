@@ -21,18 +21,56 @@
             <p class="post-text">経度</p>
             <%= form.text_field :longitude, class: 'form-control' %>
 
+            <%= form.attachment_field :postarticle_images_images, multiple: true %>
 
-            <%= form.fields_for :postarticle_images do |image| %>
-            <%= image.attachment_field :image %>
             <div class="actions">
                 <%= form.submit "新規投稿", class: "btn btn-primary pull-right" %>
             </div>
+            <img id="preview0" style="width:20%;">
+            <img id="preview1" style="width:20%;">
+            <img id="preview2" style="width:20%;">
+            <img id="preview3" style="width:20%;">
+            <img id="preview4" style="width:20%;">
 
         </div>
         <% end %>
-        <% end %>
+        
     </div>
 </div>
+
+<script>
+
+$('#postarticle_postarticle_images_images').on('change', function (e) {
+    if(e.target.files.length > <%= @max_image %>){
+      alert('1つの記事の投稿できる写真は3枚までです。');
+      // 選択したファイルをリセット
+      document.getElementById("postarticle_postarticle_images_images").value = "";
+      // 画像のプレビューが残っていた場合は、
+      // リセットしないと選択できていると勘違いを誘発するため初期化。
+      for( var i=0; i < <%= @max_image %>; i++) {
+        $(`#preview${i}`).attr('src', "");
+      }
+    }else{
+      var reader = new Array(<%= @max_image %>);
+      // 画像選択を二回した時、一回目より数が少なかったりすると画面上に残るので初期化
+      for( var i=0; i < <%= @max_image %>; i++) {
+        $(`#preview${i}`).attr('src', "");
+      }
+      for(var i=0; i<e.target.files.length; i++) {
+        reader[i] = new FileReader();
+        reader[i].onload = finisher(i,e); 
+        reader[i].readAsDataURL(e.target.files[i]);
+        // onloadは別関数で準備しないとfor文内では使用できないので、関数を準備。
+        function finisher(i,e){
+          return function(e){
+          $(`#preview${i}`).attr('src', e.target.result);
+          console.log(`#preview${i}`);
+          }
+        }
+      }
+  }
+});
+</script>
 
 <div class="row">
     <div class="col-6 offset-3">
