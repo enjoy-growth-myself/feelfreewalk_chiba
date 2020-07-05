@@ -59,6 +59,12 @@
 	font-size:21px;
 }
 
+.postarticle-data{
+	margin-top:15px;
+	font-family: 'Sawarabi Gothic','Arial', 'メイリオ';
+}
+
+
 //indexのcss
 
 .index-title{
@@ -103,10 +109,6 @@
 	overflow: hidden;
 }
 
-.postarticle-data{
-	margin-top:15px;
-	font-family: 'Sawarabi Gothic','Arial', 'メイリオ';
-}
 
 @media screen and (max-width:768px) { 
 .index_image {

@@ -7,7 +7,7 @@ class PostarticleImagesController < ApplicationController
 	def update
 		@postarticle_image = PostarticleImage.find(params[:id])
 		@postarticle_image.update(image_params)
-		redirect_to postarticles_path
+		redirect_to postarticle_path(@postarticle_image.postarticle)
 	end
 
 	def create

@@ -1,12 +1,13 @@
 
 <% if postarticle.bookmark_by?(current_user) %>
 	<%= link_to postarticle_bookmark_path(postarticle),method: :delete do %>
-	<i class="glyphicon glyphicon-heart" aria-hidden="true" style = "color: red;"></i>
-	<%= postarticle.bookmark.count %> お気に入りを外す
+	<p class="bookmark-text">
+		<i class="fa fa-check" aria-hidden="true" style = "color: rgb(255,204,0);"></i><%= postarticle.bookmark.count %> お気に入りを外す</p>
 	<% end %>
 <% else %>
 	<%= link_to postarticle_bookmark_path(postarticle), method: :post do%>
-	<i class="glyphicon glyphicon-heart" aria-hidden="true"  style = "color: black;"></i>
-	お気に入りに追加
+	<p class="bookmark-text">
+		<i class="fa fa-check" aria-hidden="true"  style = "color: rgb(221,221,221);"></i>
+		お気に入りに追加</p>
 	<% end %>
 <% end %>

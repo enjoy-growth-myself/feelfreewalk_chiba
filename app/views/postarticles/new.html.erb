@@ -40,7 +40,6 @@
         <div id='map'></div>
     </div>
 </div>
-<script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
 
 <style>
 /*エラーチェック用*/
@@ -59,8 +58,9 @@ let geocoder
 const display = document.getElementById('display')
 
 function initMap(){
+  // geoccoderを初期化
   geocoder = new google.maps.Geocoder()
-
+  // 新しいmapを用意
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 35.6071334, lng: 140.1052183},
     zoom: 15,
