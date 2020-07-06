@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :postarticles
   has_many :bookmarks
   has_many :bookmark_postarticles, through: :bookmarks, source: :postarticle
-  has_many :postarticle_comment,
+  has_many :postarticle_comment
 
 
   def own_board?(postarticle)

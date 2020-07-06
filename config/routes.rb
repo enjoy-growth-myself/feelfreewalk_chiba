@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :postarticles, shallow: true do
     resources :postarticle_images
   	resource :bookmark, only: [:create, :destroy]
+    resources :postarticle_comments, only: [:create, :destroy]
   	 
   end
 
