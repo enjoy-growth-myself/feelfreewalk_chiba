@@ -11,7 +11,16 @@
 
             <p class="post-text" rows="">本文</p>
             <%= form.text_area :body, class: "form-control input-lg" , size: "20x20" %>
-            <p class="post-text">住所</p>
+            <P class="post-text">写真は<%= $image_par_article %>枚まで投稿できます</P>
+            <p><%= form.attachment_field :postarticle_images_images, multiple: true %></p>
+
+            <img id="preview0" style="width:20%;">
+            <img id="preview1" style="width:20%;">
+            <img id="preview2" style="width:20%;">
+            <img id="preview3" style="width:20%;">
+            <img id="preview4" style="width:20%;">
+
+             <p class="post-text">住所</p>
             <%= form.text_field :address, class: 'form-control' %><br>
 
             <input type="button" value="googlemapに場所を表示" onclick="codeAddress()">
@@ -20,26 +29,16 @@
 
             <p class="post-text">経度</p>
             <%= form.text_field :longitude, class: 'form-control' %>
-
-            <%= form.attachment_field :postarticle_images_images, multiple: true %>
-
             <div class="actions">
                 <%= form.submit "新規投稿", class: "btn btn-primary pull-right" %>
             </div>
-            <img id="preview0" style="width:20%;">
-            <img id="preview1" style="width:20%;">
-            <img id="preview2" style="width:20%;">
-            <img id="preview3" style="width:20%;">
-            <img id="preview4" style="width:20%;">
-
         </div>
         <% end %>
-        
     </div>
 </div>
 
 <script>
-let maxImage = <%= @max_image %>
+let maxImage = "<%= $image_par_article %>"
 $('#postarticle_postarticle_images_images').on('change', function (e) {
     if(e.target.files.length > maxImage){
       alert(`1つの記事の投稿できる写真は${maxImage}枚までです。`);

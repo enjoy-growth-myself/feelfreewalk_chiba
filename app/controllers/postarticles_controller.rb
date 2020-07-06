@@ -3,7 +3,6 @@ class PostarticlesController < ApplicationController
 		#投稿記事と画像のnewの2つを用意
 		@postarticle = Postarticle.new
 		@postarticle.postarticle_images.build
-		@max_image = $image_par_article
 	end
 
 	def create

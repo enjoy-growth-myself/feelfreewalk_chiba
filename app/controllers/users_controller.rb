@@ -3,18 +3,18 @@ class UsersController < ApplicationController
 	before_action :only_current_user, only: [:update, :edit, :bookmarks]
 
 	def index
-		@users = User.all
-		@user = current_user
+		@users = User
+		@user = current_user.all
 	end
 
 	def show
     	params_user = User.find(params[:id])
 	    if current_user == params_user
 	       @user = User.find(current_user.id)
-	       @postarticles = @user.postarticles
+	       @postarticles = @user.postarticles.page(params[:page]).per(10).reverse_order
 	    else
 	       @user = User.find(params[:id])
-	       @postarticles = @user.postarticles
+	       @postarticles = @user.postarticles.page(params[:page]).per(10).reverse_order
 	    end
 	end
 

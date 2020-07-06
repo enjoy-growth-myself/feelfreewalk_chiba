@@ -28,6 +28,8 @@
     <div class="col-6 offset-3">
         <h2 >googlemap</h2>
         <div id='map'></div>
+        <input id="location" type="textbox" value="">
+		<input type="button" value="Encode" onclick="locationAddress()">
     </div>
 </div>
 <style>
@@ -52,7 +54,8 @@ let geocoder
 	  <% @bookmark_postarticles.each do |place| %>
 	  	marker = new google.maps.Marker({
 	    position: {lat: <%= place.latitude %>, lng: <%= place.longitude %>},
-	    map: map
+	    map: map,
+	    title: "<%= place.title %>"
 	  });
 	  <% end %>
 	}
