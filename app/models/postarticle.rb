@@ -5,6 +5,7 @@ class Postarticle < ApplicationRecord
 	has_many :postarticle_images, dependent: :destroy
 	accepts_attachments_for :postarticle_images, attachment: :image
 	validates :title, presence: true, length: { maximum: 16 }
+	has_many :postarticle_comments, dependent: :destroy
 	
 	geocoded_by :address
 	# 住所だけ登録しても緯度、経度情報を保存(緯度経度情報でgooglemap上にマーカーを表示させている)

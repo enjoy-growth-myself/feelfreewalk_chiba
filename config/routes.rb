@@ -8,13 +8,11 @@ Rails.application.routes.draw do
     get 'users/bookmark' => 'users#bookmark', as: 'bookmarks'
   end
 
-  resources :postarticles, shallow: true do
-    resources :postarticle_images
-  	resource :bookmark, only: [:create, :destroy]
+  resources :postarticles  do
     resources :postarticle_comments, only: [:create, :destroy]
-  	 
+    resources :postarticle_images, shallow: true
+  	resource :bookmark, only: [:create, :destroy], shallow: true
   end
 
-  resources :postarticle_images
   get '/search', to: 'search#search'
 end
