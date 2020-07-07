@@ -1,6 +1,7 @@
 <div class="container">
 	<div class="row">
 			<div class="postarticle-title-box">
+			<%= render 'layouts/error_messages', error: @postarticle_comment %>
 				<h2><%= @postarticle.title %></h2>
 			</div>
 	</div>
@@ -15,8 +16,8 @@
 			<% @postarticle.postarticle_images.each do |image| %>
 				<%= attachment_image_tag image, :image, class: "show_image", fallback: "no_image.jpg"%>
 				<% if @postarticle.user_id == current_user.id %>
-					<p><%= link_to "画像の編集",  edit_postarticle_image_path(image), class: "btn-sm btn-success edit-postarticle_#{@postarticle.id}" %>
-					<%= link_to "画像の削除", postarticle_image_path(image), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_postarticle_#{@postarticle_image.id}" %></p>
+					<p><%= link_to "画像の編集",  edit_postarticle_image_path(image), class: "btn-sm btn-success " %>
+					<%= link_to "画像の削除", postarticle_image_path(image), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger" %></p>
 				<% end %>
 			<% end %>
 			<% if @postarticle.user_id == current_user.id %>
@@ -61,9 +62,9 @@
 	</div>
 
 	<div class ="row">
-		<div class="col-12 col-md-5">
-			<h3 >コメント</h3>
-			<%= form_with(model: [@postarticle, @postarticle_comment], remote: true) do |f| %>
+		<div class="col-12 col-md-7">
+			<h4>コメント(16文字以内)</h4>
+			<%= form_with(model: [@postarticle, @postarticle_comment], local: true) do |f| %>
 			<%= f.text_area :comment, class:"form-group form-control" %>
 			<%= f.submit "送信", class:"pull-right" %>
 			<% end %>
@@ -71,15 +72,15 @@
 	</div>
 
 	<div class="row">
-		<div class="col-12 col-md-5">
-			<table>
+		<div class="col-12 col-md-7">
+			<table class="table">
 				<tr>
 					<th>user</th>
 					<th>comment</th>
 				</tr>
 					<% @postarticle.postarticle_comments.each do |postarticle_comment| %>
 				<tr>
-					<td><%= link_to "user-name", user_path(postarticle_comment.user) %>
+					<td><%= link_to @postarticle.user.name, user_path(postarticle_comment.user) %>
 					</td>
 					<td><%= postarticle_comment.comment %></td>
 						<% if  postarticle_comment.user_id == current_user.id %>

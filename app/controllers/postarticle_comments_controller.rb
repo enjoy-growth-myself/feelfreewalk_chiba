@@ -6,13 +6,14 @@ class PostarticleCommentsController < ApplicationController
 		@comment.user_id = current_user.id
 		@comment.postarticle_id = @postarticle.id
 		if @comment.save
-		   @user = User.find(@postarticle.user_id)
+		   @postarticle = Postarticle.find(@postarticle.id)
 		   redirect_to(postarticle_path(@postarticle),notice: "コメントの投稿に成功しました")
 		else
-		   @user = User.find(@book.user_id)
 		   @postarticle = Postarticle.find(@postarticle.id)
-		   @book_comment = PostarticleComment.new
-		   render postarticle_path
+		   @postarticle_image = PostarticleImage.new
+		   @postarticle_comment = PostarticleComment.new
+		   @max_image = $image_par_article
+		   render "postarticles/show"
 		end
 	end
 
