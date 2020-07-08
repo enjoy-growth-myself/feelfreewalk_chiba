@@ -74,12 +74,12 @@
 	width:100%;
 }
 
-.index_image {
+.index-image {
 	width:300px;
 	height:200px;
 }
 
-.index_image:hover {
+.index-image:hover {
 	transform: scale(1.25, 1.25);
 }
 
@@ -104,8 +104,32 @@
 	overflow: hidden;
 }
 
+.maps{
+	width: 95%;
+	height: 500px;
+}
 
-@media screen and (max-width:768px) { 
+.bookmark-box {
+	margin:25px 0;
+}
+
+.bookmark-image {
+	width:300px;
+	height:200px;
+}
+
+.bookmark-article-body {
+	display: block;
+	font-family: 'Sawarabi Gothic','Arial', 'メイリオ';
+	font-size:21px;
+	line-height: 25px;
+	width: 100%;
+	height: calc( 25px * 10);
+	overflow: hidden;
+}
+
+
+@media screen and (max-width:768px) {
 .index_image {
 	width:150px;
 	height:100px;

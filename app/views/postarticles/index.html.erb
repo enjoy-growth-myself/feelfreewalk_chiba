@@ -15,7 +15,7 @@
 			<div class="row index-box" >
 				<div class="col-12 col-md-4 offset-md-1">
 					<% article.postarticle_images.first(1).each do |image| %>
-						<%= attachment_image_tag image, :image, class: "index_image", fallback: "no_image.jpg"%>
+						<%= attachment_image_tag image, :image, class: "index-image", fallback: "no_image.jpg"%>
 					<% end %>
 				</div>
 				<div class="col-12 col-md-5" >

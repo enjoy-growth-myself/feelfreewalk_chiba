@@ -1,44 +1,40 @@
 <div class="container-fluid">
-	<div class="col-9 offset-1 index_title">
-		<h2>お気に入り記事一覧</h2>
+	<div class="row">
+		<div class="col-12 index-title">
+			<h2>お気に入り登録記事一覧</h2>
+		</div>
 	</div>
-		<% @bookmark_postarticles.each do |article| %>
-			<div class="row index_box" >
-				<div class="col-4 offset-1">
-					<% article.postarticle_images.first(1).each do |image| %>
-						<%= attachment_image_tag image, :image, size: "300x200", fallback: "no_image.jpg"%>
-					<% end %>
-				</div>
-				<div class="col-5" >
-					<div class="article_title">
-					<%= link_to article.title, postarticle_path(article), class: "" %><br>
-					</div>
-					<div>
-						<p class="article_body"><%= article.body  %></p>
-					</div>
-					<div class="float-right">
-						<p class="article_date">投稿日:<%= article.created_at.strftime('%Y/%m/%d') %></p>
+	<div class="row">
+		<div class="col-12 col-md-6">
+			<h4>お気に入り登録地点</h4>
+        	<div id='map' class="maps"></div>
+		</div>
+		<div class="col-12 col-md-6 ">
+			<% @bookmark_postarticles.each do |article| %>
+				<div class="row bookmark-box" >
+					<div class="col-12">
+						<% article.postarticle_images.first(1).each do |image| %>
+							<%= attachment_image_tag image, :image,class: "bookmark-image",  fallback: "no_image.jpg"%>
+						<% end %>
 					</div>
 				</div>
-			</div>
-		<% end %>
+				<div class="row">
+					<div class="col-12" >
+						<div class="article-title">
+						<%= link_to article.title, postarticle_path(article), class: "" %><br>
+						</div>
+						<div>
+							<p class="bookmark-article-body"><%= article.body  %></p>
+						</div>
+						<div class="float-right">
+							<p class="article-date">投稿日:<%= article.created_at.strftime('%Y/%m/%d') %></p>
+						</div>
+					</div>
+				</div>
+			<% end %>
+		</div>
+	</div>
 </div>
-
-<div class="row">
-    <div class="col-6 offset-3">
-        <h2 >googlemap</h2>
-        <div id='map'></div>
-        <input id="location" type="textbox" value="">
-		<input type="button" value="Encode" onclick="locationAddress()">
-    </div>
-</div>
-<style>
-#map{
-  height: 600px;
-  width: 600px;
-}
-</style>
-
 
 <script>
 let map
@@ -49,7 +45,7 @@ let geocoder
 
 	  map = new google.maps.Map(document.getElementById('map'), {
 	    center: {lat: 35.6071334, lng: 140.1052183},
-	    zoom: 15,
+	    zoom: 14,
 	  });
 	  <% @bookmark_postarticles.each do |place| %>
 	  	marker = new google.maps.Marker({

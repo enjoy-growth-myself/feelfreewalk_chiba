@@ -18,3 +18,7 @@
 //= require bootstrap-sprockets
 //= require_tree .
 
+
+$('#postarticle_image_image').on('change', function (e) {
+    alert('Hello World');
+});

@@ -17,11 +17,9 @@
             <img id="preview0" style="width:20%;">
             <img id="preview1" style="width:20%;">
             <img id="preview2" style="width:20%;">
-            <img id="preview3" style="width:20%;">
-            <img id="preview4" style="width:20%;">
 
-             <p class="post-text">住所</p>
-            <%= form.text_field :address, class: 'form-control' %><br>
+             <p class="post-text">住所(googlemapからも入力できます)</p>
+            <%= form.text_field :address, class: 'form-control search-address' %><br>
 
             <input type="button" value="googlemapに場所を表示" onclick="codeAddress()">
             <p class="post-text">緯度</p>
@@ -51,12 +49,12 @@ $('#postarticle_postarticle_images_images').on('change', function (e) {
         $(`#preview${i}`).attr('src', "");
       }
     }else{
-      var reader = new Array(maxImage);
+      let reader = new Array(maxImage);
       // 画像選択を二回した時、一回目より数が少なかったりすると画面上に残るので初期化
-      for( var i=0; i < maxImage; i++) {
+      for( let i=0; i < maxImage; i++) {
         $(`#preview${i}`).attr('src', "");
       }
-      for(var i=0; i<e.target.files.length; i++) {
+      for(let i=0; i<e.target.files.length; i++) {
         reader[i] = new FileReader();
         reader[i].onload = finisher(i,e); 
         reader[i].readAsDataURL(e.target.files[i]);
@@ -75,7 +73,7 @@ $('#postarticle_postarticle_images_images').on('change', function (e) {
 
 <div class="row">
     <div class="col-6 offset-3">
-        <h2 >googlemap</h2>
+        <h3>googlemapから住所入力</h3>
         <div id='map'></div>
     </div>
 </div>
@@ -117,7 +115,7 @@ function initMap(){
         geocoder.geocode({
           location: e.latLng
         }, function(results, status) {
-        	address =  results[0].formatted_address;
+        	address = results[0].formatted_address;
           if (status !== 'OK') {
             alert('Failed: ' + status);
             return;
@@ -142,22 +140,25 @@ function initMap(){
     }
 
 
-function codeAddress(){
-  let inputAddress = document.getElementById('postarticle_address').value;
+// function codeAddress(){
+//   let inputAddress = getElementById('postarticle_address').value;
 
-  geocoder.geocode( { 'postarticle_address': inputAddress}, function(results, status) {
-    if (status == 'OK') {
-      map.setCenter(results[0].geometry.location);
-      var marker = new google.maps.Marker({
-          map: map,
-          position: results[0].geometry.location
-      });
-      display.textContent = "検索結果：" + results[ 0 ].geometry.location
-    } else {
-      alert('該当する場所がありませんでした：' + status);
-    }
-  });   
-}
+//   geocoder.geocode( { 'postarticle_address': inputAddress}, function(results, status) {
+//     if (status == 'OK') {
+//       map.setCenter(results[0].geometry.location);
+//       var marker = new google.maps.Marker({
+//           map: map,
+//           position: results[0].geometry.location
+//       });
+//       display.textContent = "検索結果：" + results[ 0 ].geometry.location
+//     } else {
+//       alert('該当する場所がありませんでした：' + status);
+//     }
+//   });   
+// }
+
+
+
 
 
 </script>
