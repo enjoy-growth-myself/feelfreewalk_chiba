@@ -19,6 +19,11 @@
 //= require_tree .
 
 
-$('#postarticle_image_image').on('change', function (e) {
+
+$('#postarticle_image_image').on('change', function () {
+    alert('Hello World');
+});
+
+$('#test').mouseover(function () {
     alert('Hello World');
 });

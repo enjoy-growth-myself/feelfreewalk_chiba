@@ -139,23 +139,23 @@ function initMap(){
       });
     }
 
+$('#postarticle_address').on('change', function (){
+  let inputAddress = getElementById('postarticle_address').value;
 
-// function codeAddress(){
-//   let inputAddress = getElementById('postarticle_address').value;
+  geocoder.geocode( { 'postarticle_address': inputAddress}, function(results, status) {
+    if (status == 'OK') {
+      map.setCenter(results[0].geometry.location);
+      var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+      });
+      display.textContent = "検索結果：" + results[ 0 ].geometry.location
+    } else {
+      alert('該当する場所がありませんでした：' + status);
+    }
+  });   
+  });
 
-//   geocoder.geocode( { 'postarticle_address': inputAddress}, function(results, status) {
-//     if (status == 'OK') {
-//       map.setCenter(results[0].geometry.location);
-//       var marker = new google.maps.Marker({
-//           map: map,
-//           position: results[0].geometry.location
-//       });
-//       display.textContent = "検索結果：" + results[ 0 ].geometry.location
-//     } else {
-//       alert('該当する場所がありませんでした：' + status);
-//     }
-//   });   
-// }
 
 
 
