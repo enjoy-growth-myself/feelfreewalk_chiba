@@ -1,46 +1,47 @@
-<h2>画像の編集画面</h2>
-<%= form_for(@postarticle_image) do |f| %>
-<p><%= attachment_image_tag @postarticle_image, :image, size: "555x300", fallback: "no_image.jpg"%></p>
+<div class="container">
+    <div class="row">
+    	<div class="col-12 col-md-6">
+			<h2>投稿写真の変更</h2>
+			<%= form_for(@postarticle_image) do |f| %>
+			<p><%= attachment_image_tag @postarticle_image, :image, size: "555x300", fallback: "no_image.jpg"%></p>
 
-<%= f.label :image %>
-<%= f.attachment_field :image, class: "user_image" %>
-<img id="img1" style="width:50%" />
-<%= link_to "詳細画面にもどる", postarticle_path(@postarticle_image.postarticle), class: "btn btn-info" %>
-<%= f.submit "投稿内容更新", class: "btn btn-primary pull-right" %>
-
-<% end %>
-
-<img id="preview0" style="width:20%;">
-
-
-<div id="test">test</div>
+			<%= f.label :image %>
+			<%= f.attachment_field :image, class: "user_image" %>
+			<img id="img1" style="width:50%;">
+			<div class="d-flex">
+				<div class="edit-btn">
+					<%= f.submit "投稿内容更新", class: "btn btn-primary" %>
+				</div>
+				<div class="edit-btn">
+					<%= link_to "詳細画面にもどる", postarticle_path(@postarticle_image.postarticle), class: "btn btn-info" %>
+				</div>
+			</div>
+			<% end %>
+		</div>
+	</div>
+</div>
 
 <script>
-// $('#postarticle_image_image').on('change', function () {
-//     alert('Hello World');
-// });
 
 $(function(){
   $('#postarticle_image_image').change(function(e){
     //ファイルオブジェクトを取得する
     let file = e.target.files[0];
     let reader = new FileReader();
- 
     //画像でない場合は処理終了
     if(file.type.indexOf("image") < 0){
       alert("画像ファイルを指定してください。");
       return false;
     }
- 
     //アップロードした画像を設定する
     reader.onload = (function(file){
       return function(e){
         $("#img1").attr("src", e.target.result);
-        $("#img1").attr("title", file.name);
       };
     })(file);
     reader.readAsDataURL(file);
- 
   });
 });
+
+
 </script>
