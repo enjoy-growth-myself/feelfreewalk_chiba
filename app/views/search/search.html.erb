@@ -1,10 +1,14 @@
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-9 offset-1 index-title">
-			<h2>新着記事一覧</h2>
+		<div class="col-12">
+			<div class="float-right">
+				<%= render 'search/search_form' %>
+			</div>
 		</div>
-		<div class="col-1">
-			<%= render 'search/search_form' %>
+	</div>
+	<div class="row">
+		<div class="col-12 col-md-8 offset-md-1 index-title">
+			<h2>検索結果一覧</h2>
 		</div>
 	</div>
 		<% @postarticles.each do |article| %>

@@ -27,17 +27,18 @@
 					写真を追加しますか？</p>
 					<p>写真はあと<%= @max_image - @postarticle.postarticle_images.count %>枚追加できます</p>
 					<p>全部で<%= @max_image %>枚投稿できます</p>
-
 					<%= form_with(model: [@postarticle, @postarticle_image], local: true) do |form| %>
 					<%= form.attachment_field :image %>
-					<%= form.submit  "送信", class:"pull-right"%>
+					<%= form.submit  "画像を投稿する", class:"pull-right btn btn-primary"%>
 					<% end %>
 				<% else %>
 					<p>写真は1つの記事に対して<%= @max_image %>枚までです！</p>
 				<% end %>
 			</div>
 			<% end %>
-			<img id="img1" style="width:30%;">
+			<div class="show-preview">
+				<img id="img1" style="width:70%;">
+			</div>
 		</div>
 		<div class="col-12 col-md-7">
 			<div class="postarticle-address">
