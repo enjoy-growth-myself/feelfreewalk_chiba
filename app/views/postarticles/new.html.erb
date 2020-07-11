@@ -20,12 +20,7 @@
 
             <p class="post-text">住所(googlemapから探せます！)</p>
             <%= form.text_field :address, class: 'form-control search-address' %><br>
-
-            <input type="button" value="googlemapに場所を表示" onclick="codeAddress()">
-            <p class="post-text">緯度</p>
             <%= form.hidden_field :latitude,id:"postarticle_latitude" %>
-
-            <p class="post-text">経度</p>
             <%= form.hidden_field :longitude, id:"postarticle_longitude" %>
             <div class="actions">
                 <%= form.submit "新規投稿", class: "btn btn-primary pull-right" %>
@@ -38,8 +33,7 @@
 <div class="row">
     <div class="col-6 offset-3 googlemap-text">
         <h3>googlemapから住所入力</h3>
-        <p>登録地点をクリックすると住所が自動で入力されます</p>
-        <input onclick="deleteMarkers();" type="button" value="地図上のマーカーを削除" id="delmarker">
+        <p>登録したい場所をクリックすると住所が自動で入力されます</p>
         <div id='map'></div>
     </div>
 </div>
@@ -105,30 +99,6 @@ function initMap(){
         });
       });
     }
-
-
-
-
-$('#postarticle_address').on('change', function (){
-  let inputAddress = getElementById('postarticle_address').value;
-
-  geocoder.geocode( { 'postarticle_address': inputAddress}, function(results, status) {
-    if (status == 'OK') {
-      map.setCenter(results[0].geometry.location);
-      var marker = new google.maps.Marker({
-          map: map,
-          position: results[0].geometry.location
-      });
-      display.textContent = "検索結果：" + results[ 0 ].geometry.location
-    } else {
-      alert('該当する場所がありませんでした：' + status);
-    }
-  });   
-  });
-
-
-
-
 
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
