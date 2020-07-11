@@ -24,21 +24,29 @@
             </div>
         </div>
     </header>
-        <nav class="nav navbar sticky-top">
+        <nav class="nav navbar navbar-expand-md sticky-top">
             <div class="container justify-content-center">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-sample" >
+            <span class="navbar-toggler-icon"></span>
+            </button>
                 <% if user_signed_in? %>
-                        <li><%=link_to 'top',root_path, class: 'nav-item ' %></li>
-                        <li><%=link_to 'about',home_about_path, class: 'nav-item' %></li>
-                        <li><%=  link_to 'マイページ',user_path(current_user), class: 'nav-item'%></li>
-                        <li><%=link_to  'お気に入り', user_bookmarks_path(current_user), class: 'nav-item' %></li>
-                        <li><%=  link_to '投稿一覧',postarticles_path, class: 'nav-item'%></li>
-                        <li><%= link_to 'logout', destroy_user_session_path, method: :delete, class: 'nav-item' %></li>
+                <div class="collapse navbar-collapse" id="navbar-sample">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item"><%=link_to 'top',root_path, class: 'nav-list ' %></li>
+                        <li class="nav-item"><%=link_to 'about',home_about_path, class: 'nav-list' %></li>
+                        <li class="nav-item"><%=  link_to 'マイページ',user_path(current_user), class: 'nav-list'%></li>
+                        <li class="nav-item"><%=link_to  'お気に入り', user_bookmarks_path(current_user), class: 'nav-list' %></li>
+                        <li class="nav-item"><%=  link_to '投稿一覧',postarticles_path, class: 'nav-list'%></li>
+                        <li class="nav-item"><%= link_to 'logout', destroy_user_session_path, method: :delete, class: 'nav-list' %></li>
                 <% else %>
-                        <li><%=link_to 'top',root_path, class: 'nav-item' %></li>
-                        <li><%=link_to 'about',home_about_path, class: 'nav-item' %></li>
-                        <li><%= link_to '新規登録', new_user_registration_path, class: 'nav-item' %></li>
-                        <li><%= link_to 'ログイン', new_user_session_path, class: 'nav-item' %></li>
+                        <li class="nav-item"><%=link_to 'top',root_path, class: 'nav-list' %></li>
+                        <li class="nav-item"><%=link_to 'about',home_about_path, class: 'nav-list' %></li>
+                        <li class="nav-item"><%= link_to '新規登録', new_user_registration_path, class: 'nav-list' %></li>
+                        <li class="nav-item"><%= link_to 'ログイン', new_user_session_path, class: 'nav-list' %></li>
+                    </ul>
+                </div>
                 <% end %>
+            
             </div>
         </nav>
     <div class="container">
