@@ -57,6 +57,7 @@
 				<%= link_to "テキストの編集", edit_postarticle_path(@postarticle), class: "btn-sm btn-success edit_postarticle_#{@postarticle.id}" %>
 				<%= link_to "投稿記事の削除",@postarticle, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_postarticle_#{@postarticle.id}" %>
 				<% else %>
+					<div id="bookmark-<%= @postarticle.id %>" >
 					<%= render 'bookmarks/bookmark', postarticle: @postarticle %>
 				<% end %>
 			</div>
