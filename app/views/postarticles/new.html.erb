@@ -18,15 +18,15 @@
             <img id="preview1" style="width:20%;">
             <img id="preview2" style="width:20%;">
 
-             <p class="post-text">住所(googlemapから探せます！)</p>
+            <p class="post-text">住所(googlemapから探せます！)</p>
             <%= form.text_field :address, class: 'form-control search-address' %><br>
 
             <input type="button" value="googlemapに場所を表示" onclick="codeAddress()">
             <p class="post-text">緯度</p>
-            <%= form.text_field :latitude, class: 'form-control' %>
+            <%= form.hidden_field :latitude,id:"postarticle_latitude" %>
 
             <p class="post-text">経度</p>
-            <%= form.text_field :longitude, class: 'form-control' %>
+            <%= form.hidden_field :longitude, id:"postarticle_longitude" %>
             <div class="actions">
                 <%= form.submit "新規投稿", class: "btn btn-primary pull-right" %>
             </div>
