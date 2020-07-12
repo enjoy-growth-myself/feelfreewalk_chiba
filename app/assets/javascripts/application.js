@@ -43,7 +43,7 @@ $(document).ready(function () {
 });
 
 $(document).ready(function(){
-let maxImage = "3"
+let maxImage = 3
 $('#postarticle_postarticle_images_images').on('change', function (e) {
     if(e.target.files.length > maxImage){
       alert(`1つの記事の投稿できる写真は${maxImage}枚までです。`);
