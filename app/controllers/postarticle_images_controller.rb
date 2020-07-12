@@ -1,5 +1,7 @@
 class PostarticleImagesController < ApplicationController
 	# 画像のみの編集、アップデート、削除はこのコントローラーで行う
+	before_action :authenticate_user!
+	before_action :only_current_user, only: [:edit, :update, :create, :destroy]
 	def edit
 		@postarticle_image = PostarticleImage.find(params[:id])
 	end
@@ -25,8 +27,13 @@ class PostarticleImagesController < ApplicationController
   	end
 
 	private
+	def image_params
+		params.require(:postarticle_image).permit(:image)
+	end
 
-  def image_params
-  	params.require(:postarticle_image).permit(:image)
-  end
+  	def only_current_user
+	  	unless params[:id].to_i == current_user.id
+	  		redirect_to user_path(current_user)
+	  	end
+	end
 end

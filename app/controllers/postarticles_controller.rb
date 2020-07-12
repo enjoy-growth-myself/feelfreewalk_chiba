@@ -1,4 +1,6 @@
 class PostarticlesController < ApplicationController
+	before_action :authenticate_user!
+	before_action :only_current_user, only: [:update, :edit]
 	def new
 		#投稿記事と画像のnewの2つを用意
 		@postarticle = Postarticle.new
@@ -47,5 +49,11 @@ class PostarticlesController < ApplicationController
 	private
 	def postarticle_params
     	params.require(:postarticle).permit(:title, :body, :address, :user_id,:latitude,:longitude, postarticle_images_images: [])
+  	end
+
+  	def only_current_user
+	  	unless params[:id].to_i == current_user.id
+	  		redirect_to user_path(current_user)
+	  	end
   	end
 end

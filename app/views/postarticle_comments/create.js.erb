@@ -1,0 +1,3 @@
+$('#comment-<%= @postarticle.id %>').html("<%= j(render partial: 'postarticle_comments/comment', locals: {postarticle: @postarticle, postarticle_comment: @postarticle_comment}) %>");
+
+$('.form-group').val('')

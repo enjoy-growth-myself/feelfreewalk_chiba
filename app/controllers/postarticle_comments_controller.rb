@@ -1,5 +1,5 @@
 class PostarticleCommentsController < ApplicationController
-
+	#コメントはAjax使用
 	def create
 		@postarticle = Postarticle.find(params[:postarticle_id])
 		@comment = PostarticleComment.new(postarticle_comment_params)
@@ -7,7 +7,6 @@ class PostarticleCommentsController < ApplicationController
 		@comment.postarticle_id = @postarticle.id
 		if @comment.save
 		   @postarticle = Postarticle.find(@postarticle.id)
-		   redirect_to(postarticle_path(@postarticle),notice: "コメントの投稿に成功しました")
 		else
 		   @postarticle = Postarticle.find(@postarticle.id)
 		   @postarticle_image = PostarticleImage.new
@@ -21,7 +20,6 @@ class PostarticleCommentsController < ApplicationController
 		@postarticle = Postarticle.find(params[:postarticle_id])
 		@comment = @postarticle.postarticle_comments.find(params[:id])
 		@comment.destroy
-		redirect_to(postarticle_path(@postarticle.id),notice: "コメントの削除に成功しました")
 	end
 
 	private

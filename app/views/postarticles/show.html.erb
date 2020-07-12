@@ -60,14 +60,15 @@
 					<div id="bookmark-<%= @postarticle.id %>" >
 					<%= render 'bookmarks/bookmark', postarticle: @postarticle %>
 				<% end %>
+					</div>
 			</div>
 		</div>
 	</div>
 
 	<div class ="row">
-		<div class="col-12 col-md-7">
+		<div class="col-12 col-md-8">
 			<h4>コメント(16文字以内)</h4>
-			<%= form_with(model: [@postarticle, @postarticle_comment], local: true) do |f| %>
+			<%= form_with(model: [@postarticle, @postarticle_comment], remote: true) do |f| %>
 			<%= f.text_area :comment, class:"form-group form-control" %>
 			<%= f.submit "送信", class:"pull-right" %>
 			<% end %>
@@ -75,22 +76,9 @@
 	</div>
 
 	<div class="row">
-		<div class="col-12 col-md-7">
-			<table class="table">
-				<tr>
-					<th>user</th>
-					<th>comment</th>
-				</tr>
-					<% @postarticle.postarticle_comments.each do |postarticle_comment| %>
-				<tr>
-					<td><%= link_to @postarticle.user.name, user_path(postarticle_comment.user) %>
-					</td>
-					<td><%= postarticle_comment.comment %></td>
-						<% if  postarticle_comment.user_id == current_user.id %>
-					<td><%= link_to "削除",postarticle_postarticle_comment_path(@postarticle, postarticle_comment), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger " %></td>
-						<% end %>
-					<% end %>
-				</tr>
+		<div class="col-12 col-md-8">
+			<table  id = "comment-<%= @postarticle.id %>" class="table">
+				<%= render 'postarticle_comments/comment', postarticle: @postarticle, postarticle_comment: @postarticle_comment %>
 			</table>
 		</div>
 	</div>
