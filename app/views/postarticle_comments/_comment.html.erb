@@ -4,7 +4,7 @@
 </tr>
 	<% @postarticle.postarticle_comments.each do |postarticle_comment| %>
 <tr>
-	<td><%= link_to @postarticle.user.name, user_path(postarticle_comment.user) %>
+	<td><%= link_to postarticle_comment.user.name, user_path(postarticle_comment.user) %>
 	</td>
 	<td><%= postarticle_comment.comment %></td>
 		<% if  postarticle_comment.user_id == current_user.id %>
