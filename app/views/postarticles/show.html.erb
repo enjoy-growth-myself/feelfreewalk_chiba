@@ -42,7 +42,7 @@
 		</div>
 		<div class="col-12 col-md-7">
 			<div class="postarticle-address">
-				<div id='map'></div>
+				<div id='map' class="map"></div>
 				<p class="postarticle-address-text">位置情報</p>
 				<p class="postarticle-address-text"><%= @postarticle.address %></p>
 			</div>
@@ -84,13 +84,6 @@
 	</div>
 
 </div>
-
-<style>
-#map{
-  height: 600px;
-  width: 600px;
-}
-</style>
 
 <script>
  let map
