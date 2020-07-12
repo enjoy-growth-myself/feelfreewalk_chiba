@@ -24,15 +24,14 @@
             </div>
         </div>
     </header>
-        <nav class="nav navbar navbar-expand-md sticky-top">
-            <div class="container justify-content-center">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-sample" >
+        <nav class="nav navbar navbar-expand-md  navbar-light sticky-top">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="ナビゲーションの切替">
             <span class="navbar-toggler-icon"></span>
             </button>
                 <% if user_signed_in? %>
-                <div class="collapse navbar-collapse" id="navbar-sample">
+                <div class="collapse navbar-collapse" id="navbar">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item"><%=link_to 'top',root_path, class: 'nav-list ' %></li>
+                        <li class="nav-item active"><%=link_to 'top',root_path, class: 'nav-list ' %></li>
                         <li class="nav-item"><%=link_to 'about',home_about_path, class: 'nav-list' %></li>
                         <li class="nav-item"><%=  link_to 'マイページ',user_path(current_user), class: 'nav-list'%></li>
                         <li class="nav-item"><%=link_to  'お気に入り', user_bookmarks_path(current_user), class: 'nav-list' %></li>
@@ -46,9 +45,8 @@
                     </ul>
                 </div>
                 <% end %>
-            
-            </div>
         </nav>
+
     <div class="container">
         <p id="notice"><%= notice %></p> <!--デバイスでnotice設定されているので呼び出してるだけ-->
       <%= yield %>
