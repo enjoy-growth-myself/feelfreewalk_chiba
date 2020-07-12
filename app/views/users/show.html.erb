@@ -1,7 +1,7 @@
 <h2>ユーザー詳細</h2>
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-3">
+		<div class="col-12 col-md-3">
 		 	<div class = "profile_image">
 				<%= attachment_image_tag @user, :profile_image, size: "100x100", class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg"%>
 			</div>
@@ -24,7 +24,7 @@
 			    </tr>
 			<% end %>
 		</div>
-		<div class="col-9">
+		<div class="col-12 col-md-9">
 			<%= link_to '新規投稿', new_postarticle_path %>
 			<h2>投稿記事一覧</h2>
 			<div class="row">

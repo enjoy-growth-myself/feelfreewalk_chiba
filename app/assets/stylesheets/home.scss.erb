@@ -16,34 +16,28 @@
 	color: rgba(255,165,0,1);
 }
 
-
 .image1 {
-	width:100%;
-	height:300px;
+	background-size:contain;
 	background-image: image-url("<%= asset_path('image_4.jpg') %>");
 }
 
 .image2 {
-	width:100%;
-	height:300px;
+	background-size:contain;
 	background-image: image-url("<%= asset_path('image_6.jpg') %>");
 }
 
 .image3 {
-	width:100%;
-	height:300px;
+	background-size:contain;
 	background-image: image-url("<%= asset_path('image_7.jpg') %>");
 }
 
 .image4 {
-	width:100%;
-	height:300px;
+	background-size:contain;
 	background-image: image-url("<%= asset_path('image_10.jpg') %>");
 }
 
 .image5 {
-	width:100%;
-	height:300px;
+	background-size:contain;
 	background-image: image-url("<%= asset_path('image_11.jpg') %>");
 }
 
@@ -78,4 +72,36 @@
 
 .about-text {
 	font-size:17px;
+}
+
+@media screen and (max-width:768px) {
+.image1 {
+	width:150px;
+	height:100px;
+	background-image: image-url("<%= asset_path('image_4.jpg') %>");
+}
+
+.image2 {
+	width:150px;
+	height:100px;
+	background-image: image-url("<%= asset_path('image_6.jpg') %>");
+}
+
+.image3 {
+	width:150px;
+	height:100px;
+	background-image: image-url("<%= asset_path('image_7.jpg') %>");
+}
+
+.image4 {
+	width:150px;
+	height:100px;
+	background-image: image-url("<%= asset_path('image_10.jpg') %>");
+}
+
+.image5 {
+	width:150px;
+	height:100px;
+	background-image: image-url("<%= asset_path('image_11.jpg') %>");
+}
 }
