@@ -28,23 +28,24 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="ナビゲーションの切替">
             <span class="navbar-toggler-icon"></span>
             </button>
-                <% if user_signed_in? %>
+                
                 <div class="collapse navbar-collapse" id="navbar">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active"><%=link_to 'top',root_path, class: 'nav-list ' %></li>
-                        <li class="nav-item"><%=link_to 'about',home_about_path, class: 'nav-list' %></li>
-                        <li class="nav-item"><%=  link_to 'マイページ',user_path(current_user), class: 'nav-list'%></li>
-                        <li class="nav-item"><%=link_to  'お気に入り', user_bookmarks_path(current_user), class: 'nav-list' %></li>
-                        <li class="nav-item"><%=  link_to '投稿一覧',postarticles_path, class: 'nav-list'%></li>
-                        <li class="nav-item"><%= link_to 'logout', destroy_user_session_path, method: :delete, class: 'nav-list' %></li>
-                <% else %>
-                        <li class="nav-item"><%=link_to 'top',root_path, class: 'nav-list' %></li>
-                        <li class="nav-item"><%=link_to 'about',home_about_path, class: 'nav-list' %></li>
-                        <li class="nav-item"><%= link_to '新規登録', new_user_registration_path, class: 'nav-list' %></li>
-                        <li class="nav-item"><%= link_to 'ログイン', new_user_session_path, class: 'nav-list' %></li>
+                        <% if user_signed_in? %>
+                            <li class="nav-item active"><%=link_to 'top',root_path, class: 'nav-list ' %></li>
+                            <li class="nav-item"><%=link_to 'about',home_about_path, class: 'nav-list' %></li>
+                            <li class="nav-item"><%=  link_to 'マイページ',user_path(current_user), class: 'nav-list'%></li>
+                            <li class="nav-item"><%=link_to  'お気に入り', user_bookmarks_path(current_user), class: 'nav-list' %></li>
+                            <li class="nav-item"><%=  link_to '投稿一覧',postarticles_path, class: 'nav-list'%></li>
+                            <li class="nav-item"><%= link_to 'logout', destroy_user_session_path, method: :delete, class: 'nav-list' %></li>
+                        <% else %>
+                            <li class="nav-item"><%=link_to 'top',root_path, class: 'nav-list' %></li>
+                            <li class="nav-item"><%=link_to 'about',home_about_path, class: 'nav-list' %></li>
+                            <li class="nav-item"><%= link_to '新規登録', new_user_registration_path, class: 'nav-list' %></li>
+                            <li class="nav-item"><%= link_to 'ログイン', new_user_session_path, class: 'nav-list' %></li>
+                        <% end %>
                     </ul>
                 </div>
-                <% end %>
         </nav>
 
     <div class="container">
