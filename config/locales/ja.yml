@@ -1,12 +1,3 @@
-# 記事投稿時のエラーメッセージの日本語
-ja:
-  activerecord:
-    attributes:
-      postarticle:
-        title: タイトル
-        body: 本文
-
-
 # ページネーションの日本語化
 ja:
   views:

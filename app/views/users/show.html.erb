@@ -7,21 +7,21 @@
 			</div>
 
 			<table class="table .thead-light">
-				<tr>
+				<tr class="d-flex">
 					<th>ニックネーム</th>
 					<th class="table-user-text"><%= @user.name %></th>
 				</tr>
-
-				<tr>
+				<tr class="d-flex">
 					<th>自己紹介</th>
 					<th class="table-user-text"><%= @user.introduction %></th>
 				</tr>
 			</table>
-
 			<% if @user == current_user %>
-				<tr>
+			<table>
+				<tr class="d-flex">
 			        <%= link_to '',edit_user_path(@user), class:"fa fa-wrench  fa-lg btn btn-outline-info btn-block" %>
 			    </tr>
+			</table>
 			<% end %>
 		</div>
 		<div class="col-12 col-md-9">
@@ -31,19 +31,19 @@
 			<!--books一覧 -->
 				<table class="table table-hover">
 					<thead>
-						<tr>
-							<th class="table-text">タイトル</th>
-							<th class="table-text">本文</th>
-							<th class="table-text"></th>
+						<tr class="d-flex">
+							<th class="col-4 col-md-3 table-text">タイトル</th>
+							<th class="col-4 col-md-7 table-text">本文</th>
+							<th class="col-4 col-md-2 table-text"></th>
 						</tr>
 					</thead>
 
 					<tbody>
 						<% @postarticles.each do |article| %>
-						<tr>
-							<td class="table-text"><%= article.title %></td>
-							<td class="table-text"><%= article.body %></td>
-							<td class="table-text"><%= link_to "詳細画面", postarticle_path(article), class: "" %></td>
+						<tr class="d-flex">
+							<td class="col-4 col-md-3 table-text"><%= article.title %></td>
+							<td class="col-4 col-md-7 table-text"><%= article.body %></td>
+							<td class="col-4 col-md-2 table-text"><%= link_to "詳細画面", postarticle_path(article), class: "" %></td>
 						</tr>
 						<% end %>
 					</tbody>

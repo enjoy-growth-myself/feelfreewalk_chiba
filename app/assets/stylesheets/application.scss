@@ -69,10 +69,24 @@
 	list-style: none;
 }
 
+//top画面のscss
+.ranks-text:first-child {
+	font-family: 'Sawarabi Gothic','Arial', 'メイリオ';
+	font-size: 21px;
+	color:rgba(255,0,0,1)
+}
+
+//bookmarkのscss
+.bookmark-text {
+	font-family: 'Sawarabi Gothic','Arial', 'メイリオ';
+	font-size: 17px;
+}
+
+
 //エラーメッセージのscss
 .errormessage-box {
 	width: 100%;
-	paddring: 10px;
+	padding: 10px 30px;
 	background-color: rgba(240,248,255,1);
 	border:solid 3px rgba(255,0,0,1)
 }
@@ -88,16 +102,10 @@
     margin-right: 200px;
 }
 
-//top画面のscss
-.ranks-text:first-child {
-	font-family: 'Sawarabi Gothic','Arial', 'メイリオ';
-	font-size: 21px;
-	color:rgba(255,0,0,1)
-}
-
-//bookmarkのscss
-.bookmark-text {
+//noticeのscss
+.notice-text {
 	font-family: 'Sawarabi Gothic','Arial', 'メイリオ';
 	font-size: 17px;
+	color: rgba(255,140,0,1);
+	background-color: rgba(240,248,255,1);
 }
-//検索フォームのscss

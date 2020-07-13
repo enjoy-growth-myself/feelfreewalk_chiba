@@ -14,10 +14,10 @@
     
     <header class="containerr-fluid header ">
         <div class="row">
-            <div class="col-7 offset-1">
+            <div class="col-12 col-md-7 offset-1">
                 <span class="logo">chibacitywalk<span class="fas fa-walking " style = "color: rgb(255,165,0);"></span></span>
             </div>
-            <div class="col-4 float-right">
+            <div class="col-12 col-md-4 float-right">
                 <% if user_signed_in? %>
                     <p class="wellcome-text">ようこそ、<%= current_user.name %> さん！</p>
                 <% end %>
@@ -28,7 +28,6 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="ナビゲーションの切替">
             <span class="navbar-toggler-icon"></span>
             </button>
-                
                 <div class="collapse navbar-collapse" id="navbar">
                     <ul class="navbar-nav mr-auto">
                         <% if user_signed_in? %>
@@ -48,9 +47,14 @@
                 </div>
         </nav>
 
+    <div class="container-fluid">
+        <div class="row">
+        <!--デバイスでnotice設定されているので呼び出してるだけ-->
+            <p id="notice" class="col-12 text-center notice-text"><%= notice %></p>
+        </div>
+    </div>
     <div class="container">
-        <p id="notice"><%= notice %></p> <!--デバイスでnotice設定されているので呼び出してるだけ-->
-      <%= yield %>
+        <%= yield %>
     </div>
 
     <div id="footer">

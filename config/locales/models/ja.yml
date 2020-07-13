@@ -1,0 +1,8 @@
+# 記事投稿時のエラーメッセージの日本語
+ja:
+  activerecord:
+    attributes:
+      postarticle:
+        title: タイトル
+        body: 本文
+        address: 住所
