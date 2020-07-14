@@ -30,6 +30,7 @@
 					<%= form_with(model: [@postarticle, @postarticle_image], local: true) do |form| %>
 					<%= form.attachment_field :image %>
 					<%= form.submit  "画像を投稿する", class:"pull-right btn btn-primary"%>
+					<img id="img" style="width:50%;">
 					<% end %>
 				<% else %>
 					<p>写真は1つの記事に対して<%= @max_image %>枚までです！</p>
