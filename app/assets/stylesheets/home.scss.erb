@@ -2,53 +2,51 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
-
-#container-skippr{
+#container-skippr {
 	width:600px;
   	height: 300px;
   	transition: 1.0s ;
 }
 
-.top-title{
+.top-title {
 	font-size:21px;
 	font-family: 'Sawarabi Gothic','Arial', 'メイリオ';
 	color: rgba(255,165,0,1);
 }
 
 .image1 {
-	background-size:contain;
 	background-image: image-url("<%= asset_path('image_4.jpg') %>");
 }
 
 .image2 {
-	background-size:contain;
 	background-image: image-url("<%= asset_path('image_6.jpg') %>");
 }
 
 .image3 {
-	background-size:contain;
 	background-image: image-url("<%= asset_path('image_7.jpg') %>");
 }
 
 .image4 {
-	background-size:contain;
 	background-image: image-url("<%= asset_path('image_10.jpg') %>");
 }
 
 .image5 {
-	background-size:contain;
 	background-image: image-url("<%= asset_path('image_11.jpg') %>");
 }
 
-.top-text{
+.top-text {
 	font-size:21px;
 	font-family: 'Sawarabi Gothic','Arial', 'メイリオ';
 }
 
-.top-search{
+.top-search {
 	margin-top:10px;
 	margin-bottom:10px;
+}
+
+.top-image {
+	width:300px;
+	height:200px;
 }
 
 //abouyのscss
@@ -74,34 +72,23 @@
 	font-size:17px;
 }
 
-@media screen and (max-width:768px) {
-.image1 {
-	width:150px;
-	height:100px;
-	background-image: image-url("<%= asset_path('image_4.jpg') %>");
+@media screen and (max-width:800px) {
+#container-skippr {
+	width:450px;
+  	height:225px;
+  	transition: 1.0s ;
+}
 }
 
-.image2 {
-	width:150px;
-	height:100px;
-	background-image: image-url("<%= asset_path('image_6.jpg') %>");
+@media screen and (max-width:430px) {
+#container-skippr {
+	width:300px;
+  	height:200px;
+  	transition: 1.0s ;
 }
 
-.image3 {
-	width:150px;
-	height:100px;
-	background-image: image-url("<%= asset_path('image_7.jpg') %>");
-}
-
-.image4 {
-	width:150px;
-	height:100px;
-	background-image: image-url("<%= asset_path('image_10.jpg') %>");
-}
-
-.image5 {
-	width:150px;
-	height:100px;
-	background-image: image-url("<%= asset_path('image_11.jpg') %>");
+.top-image {
+	width:300px;
+	height:200px;
 }
 }
