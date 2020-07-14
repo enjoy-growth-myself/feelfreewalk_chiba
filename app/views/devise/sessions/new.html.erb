@@ -5,11 +5,11 @@
     </div>
     <div class="row">
         <% flash.each do |name, msg| %>
-             <div class="col-md-6 offset-md-3 errormessage-box">
-                    <% unless msg == "ログアウトしました。" %>
-                    <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
-                    <% end %>
+            <% unless msg == "ログアウトしました。" %>
+            <div class="col-md-6 offset-md-3 errormessage-box">
+                <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
             </div>
+        <% end %>
         <% end %>
     </div>
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
