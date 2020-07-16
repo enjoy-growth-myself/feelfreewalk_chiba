@@ -1,0 +1,99 @@
+<div class="container">
+    <div class="row">
+        <h2 class="col-12 col-md-8 offset-2 edit-title">新規登録</h2>
+    </div>
+    <%= form_with(model: @postarticle, local: true) do |form| %>
+    <div class="row">
+        <div class="col-12 col-md-8 offset-2 edit-field ">
+            <%= render 'layouts/error_messages', error: @postarticle %>
+            <p class="post-text">タイトル(16文字以内)</p>
+            <%= form.text_field :title, class: 'form-control'  %>
+
+            <p class="post-text" rows="">本文</p>
+            <%= form.text_area :body, class: "form-control input-lg" , size: "10x10" %>
+            <P class="post-text">写真は<%= $image_par_article %>枚まで投稿できます</P>
+            <p><%= form.attachment_field :postarticle_images_images, multiple: true %></p>
+
+            <img id="preview0" style="width:20%;">
+            <img id="preview1" style="width:20%;">
+            <img id="preview2" style="width:20%;">
+
+            <p class="post-text">住所(googlemapから探せます！)</p>
+            <%= form.text_field :address, class: 'form-control search-address' %><br>
+            <%= form.hidden_field :latitude,id:"postarticle_latitude" %>
+            <%= form.hidden_field :longitude, id:"postarticle_longitude" %>
+            <div class="actions">
+                <%= form.submit "新規投稿", class: "btn btn-primary pull-right" %>
+            </div>
+        </div>
+        <% end %>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 col-md-8 offset-2 googlemap-text">
+        <h3>googlemapから住所入力</h3>
+        <p>登録したい場所をクリックすると住所が自動で入力されます</p>
+        <div id='map' class="new-map"></div>
+    </div>
+</div>
+
+<style>
+
+</style>
+
+<script>
+
+let map
+let geocoder
+
+const display = document.getElementById('display')
+
+function initMap(){
+    'use strict';
+  // geoccoderを初期化
+  geocoder = new google.maps.Geocoder()
+  // 新しいmapを用意
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 35.6071334, lng: 140.1052183},
+    zoom: 15,
+  });
+
+  // 新規投稿なので初期マーカーは不要
+  // marker = new google.maps.Marker({
+  //   position: {lat: 35.6071334, lng: 140.1052183},
+  //   map: map
+  // });
+
+  // クリックイベントを追加
+  let address;
+   map.addListener('click', function(e) {
+        geocoder.geocode({
+          location: e.latLng
+        }, function(results, status) {
+        	address = results[0].formatted_address;
+          if (status !== 'OK') {
+            alert('Failed: ' + status);
+            return;
+          }
+          // results[0].formatted_address
+          if (results[0]) {
+            new google.maps.Marker({
+               position: e.latLng,
+ 	           map: map,
+               title: results[0].formatted_address,
+               animation: google.maps.Animation.DROP
+            });
+          } else {
+            alert('住所見つかりませんでした');
+            return;
+          }
+          document.getElementById('postarticle_latitude').value = e.latLng.lat();
+          document.getElementById('postarticle_longitude').value = e.latLng.lng();
+          document.getElementById('postarticle_address').value = address;
+        });
+      });
+    }
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>

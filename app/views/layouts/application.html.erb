@@ -1,15 +1,72 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>ChibacityWalk</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+    <head>
+        <title>chibacity_walk</title>
+            <%= csrf_meta_tags %>
+            <%= csp_meta_tag %>
+            <meta name="viewport" content="width=device-width,initial-scale=1.0">
+            <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+            <%= stylesheet_link_tag    'application', media: 'all' %>
+            <!--, 'data-turbolinks-track': 'reload'を削除-->
+            <%= javascript_include_tag 'application', data: {"turbolinks" => false} %>
+    </head>
+    <body>
+    <header class="containerr-fluid header ">
+        <div class="row">
+            <div class="col-12 col-md-7 offset-1">
+                <span class="logo">chibacitywalk<span class="fas fa-walking " style = "color: rgb(255,165,0);"></span></span>
+            </div>
+            <div class="col-12 col-md-4 float-right">
+                <% if user_signed_in? %>
+                    <p class="wellcome-text">ようこそ、<%= current_user.name %> さん！</p>
+                <% end %>
+            </div>
+        </div>
+    </header>
+        <nav class="nav navbar navbar-expand-md  navbar-light sticky-top">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="ナビゲーションの切替">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+                <div class="collapse navbar-collapse" id="navbar">
+                    <ul class="navbar-nav mr-auto">
+                        <% if user_signed_in? %>
+                            <li class="nav-item active"><%=link_to 'top',root_path, class: 'nav-list ' %></li>
+                            <li class="nav-item"><%=link_to 'about',home_about_path, class: 'nav-list' %></li>
+                            <li class="nav-item"><%=  link_to 'マイページ',user_path(current_user), class: 'nav-list'%></li>
+                            <li class="nav-item"><%=link_to  'お気に入り', user_bookmarks_path(current_user), class: 'nav-list' %></li>
+                            <li class="nav-item"><%=  link_to '投稿一覧',postarticles_path, class: 'nav-list'%></li>
+                            <li class="nav-item"><%= link_to 'logout', destroy_user_session_path, method: :delete, class: 'nav-list' %></li>
+                        <% else %>
+                            <li class="nav-item"><%=link_to 'top',root_path, class: 'nav-list' %></li>
+                            <li class="nav-item"><%=link_to 'about',home_about_path, class: 'nav-list' %></li>
+                            <li class="nav-item"><%= link_to '新規登録', new_user_registration_path, class: 'nav-list' %></li>
+                            <li class="nav-item"><%= link_to 'ログイン', new_user_session_path, class: 'nav-list' %></li>
+                        <% end %>
+                    </ul>
+                </div>
+        </nav>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+    <div class="container-fluid">
+        <div class="row">
+        <!--デバイスでnotice設定されているので呼び出してるだけ-->
+            <p id="notice" class="col-12 text-center notice-text"><%= notice %></p>
+        </div>
+    </div>
+    <div class="container">
+        <%= yield %>
+    </div>
 
-  <body>
-    <%= yield %>
-  </body>
+    <div id="footer">
+    <footer class="container-fluid bg-4 text-center">
+        <div class="row text-center">
+            <div class="col-12">
+                <hr class="light">
+                <h5>@CopyRight chibacity_walk.inc</h5>
+            </div>
+        </div>
+    </footer>
+    </div>
+
+    </body>
 </html>
+

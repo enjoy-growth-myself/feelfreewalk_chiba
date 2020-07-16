@@ -1,0 +1,44 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.edit-field {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.edit-text {
+	font-family: 'Sawarabi Gothic','Arial', 'メイリオ';
+	font-size:21px;
+	margin-top: 10px;
+}
+
+.table {
+	table-layout: fixed;
+}
+
+.table-user-text{
+	font-family: 'Sawarabi Gothic','Arial', 'メイリオ';
+}
+
+.table-text {
+	width: 200px;
+	height: 50px;
+	font-family: 'Sawarabi Gothic','Arial', 'メイリオ';
+	overflow: hidden;
+  	white-space: nowrap;
+  	text-overflow: ellipsis;
+}
+
+.table-body {
+	width:60%;
+	height: 30px;
+	font-family: 'Sawarabi Gothic','Arial', 'メイリオ';
+	overflow: hidden;
+}
+
+.table-link {
+	width:15%;
+	height: 30px;
+	font-family: 'Sawarabi Gothic','Arial', 'メイリオ';
+}

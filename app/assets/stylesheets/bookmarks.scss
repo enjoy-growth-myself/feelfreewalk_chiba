@@ -1,0 +1,30 @@
+// Place all the styles related to the bookmarks controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.bookmark-box {
+	margin:25px 0;
+}
+
+.bookmark-image {
+	width:300px;
+	height:200px;
+}
+
+.bookmark-article-body {
+	display: block;
+	font-family: 'Sawarabi Gothic','Arial', 'メイリオ';
+	font-size:21px;
+	line-height: 25px;
+	width: 100%;
+	height: calc( 25px * 10);
+	overflow: hidden;
+}
+
+@media screen and (max-width:768px) {
+.bookmark-image {
+	width:180px;
+	height:120px;
+}
+}

@@ -1,0 +1,13 @@
+<%= form_with url: search_path, method: :get, local: true do |form| %>
+	<div class="d-flex">
+		<div>
+			<%= form.select :keyword,[["タイトル","title"],["住所","address"]],{},{class: "form-control"} %>
+		</div>
+		<div>
+			<%= form.text_field :searchword,class: 'form-control' %>
+		</div>
+		<div>
+			<%= button_tag '<i class="fa fa-search"></i>'.html_safe, :type => "submit", :class =>"btn btn-primary" %>
+		</div>
+	</div>
+<% end %>

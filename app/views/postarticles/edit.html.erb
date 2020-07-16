@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="row">
+        <h2 class="col-6 offset-3 edit-title">投稿内容の編集</h2>
+    </div>
+		<%= form_with(model: @postarticle, local: true) do |form| %>
+		<%= render 'layouts/error_messages', error: @postarticle %>
+		<div class="row">
+        	<div class="col-6 offset-3 edit-field ">
+		        <p class="post-text">タイトル</p>
+		        <%= form.text_field :title, class: 'form-control' %>
+		         <p class="post-text" rows="">本文</p>
+		        <%= form.text_area :body, class: "form-control input-lg" , size: "20x20"%>
+		        <p class="post-text">住所</p>
+		        <%= form.text_field :address, class: 'form-control' %>
+		      	<%= link_to "詳細画面に戻る", postarticle_path, class: "btn btn-info" %>
+		        <%= form.submit "更新", class: "btn btn-primary " %>
+	   		</div>
+    	<% end %>
+    </div>
+</div>
+
+

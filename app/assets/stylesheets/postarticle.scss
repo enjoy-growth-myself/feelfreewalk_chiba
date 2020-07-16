@@ -1,0 +1,155 @@
+//newのスタイル
+.post-text {
+	font-family: 'Sawarabi Gothic','Arial', 'メイリオ';
+	font-size:21px;
+	margin-top: 10px;
+}
+
+.actions {
+	margin-top:10px;
+}
+
+.googlemap-text{
+	font-family: 'Sawarabi Gothic','Arial', 'メイリオ';
+}
+
+.new-map{
+	width: 100%;
+	height: 600px;
+}
+
+//showのスタイル
+.postarticle-title-box {
+	width:100%;
+	font-family: 'Sawarabi Gothic','Arial', 'メイリオ';
+	margin-bottom: 10px;
+	border-bottom: solid 5px rgba(51,204,0,0.7);
+}
+
+.show-article-body {
+	margin-bottom: 10px;
+}
+
+.show-article-body-text {
+	font-family: 'Sawarabi Gothic','Arial', 'メイリオ';
+	font-size:21px;
+}
+
+.show_image {
+	margin-top:10px;
+	marfin-right: 10px;
+	width:70%;
+}
+
+.show_image::before{
+  content: '';
+  display:block;
+  padding-top:66%;
+}
+
+.show-preview{
+	margin-top:10px;
+	
+}
+
+.add-postarticle-iamge-text{
+	margin:15px 0;
+	font-family: 'Sawarabi Gothic','Arial', 'メイリオ';
+	font-size:17px;
+}
+
+.postarticle-address{
+	margin-top:25px;
+}
+
+.postarticle-address-text{
+	margin-top:15px;
+	font-family: 'Sawarabi Gothic','Arial', 'メイリオ';
+	font-size:17px;
+}
+
+.postarticle-data{
+	margin-top:15px;
+	font-family: 'Sawarabi Gothic','Arial', 'メイリオ';
+	font-size:14px;
+}
+
+
+.map{
+	width: 100%;
+	height: 600px;
+}
+
+//indexのcss
+
+.index-title{
+	font-family: 'Sawarabi Gothic','Arial', 'メイリオ';
+	margin-bottom: 10px;
+	border-bottom: solid 10px rgba(51,204,0,0.7);
+}
+
+.index-box {
+	margin:20px;
+	padding:10px;
+	width:100%;
+}
+
+.index-image {
+	width:300px;
+	height:200px;
+}
+
+.index-image:hover {
+	transform: scale(1.25, 1.25);
+}
+
+
+.article-title {
+	display: block;
+	width: 100%;
+	font-family: 'Sawarabi Gothic','Arial', 'メイリオ';
+	font-size:24px;
+	overflow: hidden;
+  	white-space: nowrap;
+  	text-overflow: ellipsis;
+}
+
+.article-body{
+	display: block;
+	font-family: 'Sawarabi Gothic','Arial', 'メイリオ';
+	font-size:21px;
+	line-height: 25px;
+	width: 100%;
+	height: calc( 25px * 5 );
+	overflow: hidden;
+}
+
+
+.maps{
+	width: 95%;
+	height: 500px;
+}
+
+
+
+@media screen and (max-width:768px) {
+.index_image {
+	width:150px;
+	height:100px;
+}
+
+.new-map{
+	width: 100%;
+	height: 300px;
+}
+
+.maps{
+	width: 100%;
+	height: 300px;
+}
+
+.map{
+	width: 100%;
+	height: 300px;
+}
+}

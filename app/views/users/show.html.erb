@@ -1,0 +1,58 @@
+<h2>ユーザー詳細</h2>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-12 col-md-3">
+		 	<div class = "profile_image">
+				<%= attachment_image_tag @user, :profile_image, size: "100x100", class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg"%>
+			</div>
+
+			<table class="table .thead-light">
+				<tr class="d-flex">
+					<th>ニックネーム</th>
+					<th class="table-user-text"><%= @user.name %></th>
+				</tr>
+				<tr class="d-flex">
+					<th>自己紹介</th>
+					<th class="table-user-text"><%= @user.introduction %></th>
+				</tr>
+			</table>
+			<% if @user == current_user %>
+			<table>
+				<tr class="d-flex">
+			        <%= link_to '',edit_user_path(@user), class:"fa fa-wrench  fa-lg btn btn-outline-info btn-block" %>
+			    </tr>
+			</table>
+			<% end %>
+		</div>
+		<div class="col-12 col-md-9">
+			<%= link_to '新規投稿', new_postarticle_path %>
+			<h2>投稿記事一覧</h2>
+			<div class="row">
+			<!--books一覧 -->
+				<table class="table table-hover">
+					<thead>
+						<tr class="d-flex">
+							<th class="col-4 col-md-3 table-text">タイトル</th>
+							<th class="col-4 col-md-7 table-text">本文</th>
+							<th class="col-4 col-md-2 table-text"></th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<% @postarticles.each do |article| %>
+						<tr class="d-flex">
+							<td class="col-4 col-md-3 table-text"><%= article.title %></td>
+							<td class="col-4 col-md-7 table-text"><%= article.body %></td>
+							<td class="col-4 col-md-2 table-text"><%= link_to "詳細画面", postarticle_path(article), class: "" %></td>
+						</tr>
+						<% end %>
+					</tbody>
+				</table>
+				<div class="mx-auto">
+					<%= paginate @postarticles %>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>

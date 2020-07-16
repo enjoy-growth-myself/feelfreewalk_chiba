@@ -1,0 +1,41 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-12">
+			<div class="float-right">
+				<%= render 'search/search_form' %>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12 col-md-8 offset-md-1 index-title">
+			<h2>新着記事一覧</h2>
+		</div>
+	</div>
+		<% @postarticles.each do |article| %>
+			<div class="row index-box" >
+				<div class="col-12 col-md-4 offset-md-1">
+					<% article.postarticle_images.first(1).each do |image| %>
+						<%= attachment_image_tag image, :image, class: "index-image", fallback: "no_image.jpg"%>
+					<% end %>
+				</div>
+				<div class="col-12 col-md-5" >
+					<div class="article-title">
+					<%= link_to article.title, postarticle_path(article), class: "" %><br>
+					</div>
+					<div>
+						<p class="article-body"><%= article.body  %></p>
+					</div>
+					<div class="float-right">
+						<p class="article-date">投稿日:<%= article.created_at.strftime('%Y/%m/%d') %></p>
+					</div>
+				</div>
+
+			</div>
+		<% end %>
+	<div class="row">
+		<div class="offset-md-4 text-center">
+				<%= paginate @postarticles %>
+		</div>
+	</div>
+</div>
+

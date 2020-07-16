@@ -1,0 +1,61 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-12 index-title">
+			<h2>お気に入り登録記事一覧</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12 col-md-6">
+			<h4>お気に入り登録地点</h4>
+        	<div id='map' class="maps"></div>
+		</div>
+		<div class="col-12 col-md-6 ">
+			<% @bookmark_postarticles.each do |article| %>
+				<div class="row bookmark-box" >
+					<div class="col-12">
+						<% article.postarticle_images.first(1).each do |image| %>
+							<%= attachment_image_tag image, :image,class: "bookmark-image",  fallback: "no_image.jpg"%>
+						<% end %>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-12" >
+						<div class="article-title">
+						<%= link_to article.title, postarticle_path(article), class: "" %><br>
+						</div>
+						<div>
+							<p class="bookmark-article-body"><%= article.body  %></p>
+						</div>
+						<div class="float-right">
+							<p class="article-date">投稿日:<%= article.created_at.strftime('%Y/%m/%d') %></p>
+						</div>
+					</div>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>
+
+<script>
+let map
+let geocoder
+ 
+	 function initMap(){
+	  geocoder = new google.maps.Geocoder()
+
+	  map = new google.maps.Map(document.getElementById('map'), {
+	    center: {lat: 35.6071334, lng: 140.1052183},
+	    zoom: 12,
+	  });
+	  <% @bookmark_postarticles.each do |place| %>
+	  	marker = new google.maps.Marker({
+	    position: {lat: <%= place.latitude %>, lng: <%= place.longitude %>},
+	    map: map,
+	    title: "<%= place.title %>"
+	  });
+	  <% end %>
+	}
+
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script> 
