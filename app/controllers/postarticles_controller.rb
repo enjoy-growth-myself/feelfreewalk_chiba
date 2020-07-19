@@ -1,5 +1,5 @@
 class PostarticlesController < ApplicationController
-	before_action :authenticate_user!
+	before_action :authenticate_user!, except: :index
 	before_action :only_current_user_postarticle, only: [:update, :edit]
 	def new
 		#投稿記事と画像のnewの2つを用意
@@ -26,6 +26,8 @@ class PostarticlesController < ApplicationController
 		@postarticle_image = PostarticleImage.new
 		@max_image = $image_par_article
 		@postarticle_comment = PostarticleComment.new
+		#binding.pry
+		@total_score = @postarticle_comment.total_score(@postarticle.id)
 	end
 
 	def edit

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_06_150839) do
+ActiveRecord::Schema.define(version: 2020_07_18_093707) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2020_07_06_150839) do
     t.integer "postarticle_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "score", precision: 5, scale: 3
   end
 
   create_table "postarticle_images", force: :cascade do |t|

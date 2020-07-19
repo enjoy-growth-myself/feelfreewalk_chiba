@@ -4,7 +4,9 @@ class PostarticleCommentsController < ApplicationController
 		@postarticle = Postarticle.find(params[:postarticle_id])
 		@comment = PostarticleComment.new(postarticle_comment_params)
 		@comment.user_id = current_user.id
+		@comment.score = Language.get_data(postarticle_comment_params[:comment])
 		@comment.postarticle_id = @postarticle.id
+		@comment.score = Language.get_data(postarticle_comment_params[:comment])
 		if @comment.save
 		   @postarticle = Postarticle.find(@postarticle.id)
 		else
