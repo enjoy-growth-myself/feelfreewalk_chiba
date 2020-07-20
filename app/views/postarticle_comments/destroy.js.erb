@@ -1,1 +1,2 @@
 $('#comment-<%= @postarticle.id %>').html("<%= j(render partial: 'postarticle_comments/comment', locals: {postarticle: @postarticle, postarticle_comment: @postarticle_comment}) %>");
+$('#recommend-<%= @postarticle.id %>').html("<%= j(render partial: 'postarticle_comments/recommend', locals: {postarticle: @postarticle, total_score: @total_score}) %>");
