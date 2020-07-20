@@ -12,6 +12,5 @@ class PostarticleComment < ApplicationRecord
 			end
 		end
 		return total_score
-		
 	 end
 end

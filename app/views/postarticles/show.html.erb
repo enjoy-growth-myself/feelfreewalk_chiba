@@ -78,7 +78,6 @@
 	<div class ="row">
 		<div class="col-12 col-md-8">
 			<h4>コメント(16文字以内)</h4>
-			<p><%= @total_score %></p>
 			<%= form_with(model: [@postarticle, @postarticle_comment], remote: true) do |f| %>
 			<%= f.text_area :comment, class:"form-group form-control" %>
 			<%= f.submit "送信", class:"pull-right" %>
