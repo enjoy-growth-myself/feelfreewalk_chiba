@@ -1,0 +1,21 @@
+<div class="recommend-text">
+	この記事のおすすめ度
+</div>
+	
+<div>
+	<%# binding.pry %>
+	<% if total_score < 0 %>
+		<i class="fas fa-star-half fa-3x" style = "color: rgb(255,204,0);">
+		</i>
+	<% elsif total_score < 1.5 %>
+		<i class="fa fa-star fa-3x" style = "color: rgb(255,204,0);">
+		</i>
+	<% elsif total_score < 2.5 %>
+		<i class="fa fa-star fa-3x" style = "color: rgb(255,204,0);"></i>
+		<i class="fa fa-star fa-3x" style = "color: rgb(255,204,0);"></i>
+	<% else %>
+		<i class="fa fa-star fa-3x" style = "color: rgb(255,204,0);"></i>
+		<i class="fa fa-star fa-3x" style = "color: rgb(255,204,0);"></i>
+		<i class="fa fa-star fa-3x" style = "color: rgb(255,204,0);"></i>
+	<% end %>
+</div>
