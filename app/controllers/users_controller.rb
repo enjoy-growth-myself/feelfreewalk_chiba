@@ -18,9 +18,6 @@ class UsersController < ApplicationController
 	    end
 	end
 
-	def create
-	end
-
 	def edit
 		@user = User.find(params[:id])
 	end
@@ -29,7 +26,7 @@ class UsersController < ApplicationController
 		@user = User.find(params[:id])
 		if @user.update(user_params)
 	   # @book = Book.new
-			 redirect_to(user_path(current_user.id), notice: "successfully updated user!")
+			 redirect_to(user_path(current_user.id), notice: "ユーザー情報の更新に成功しました！")
 		else
 			render "edit"
 		end
