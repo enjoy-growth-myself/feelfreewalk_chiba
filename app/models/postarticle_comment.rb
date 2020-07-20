@@ -6,9 +6,12 @@ class PostarticleComment < ApplicationRecord
 	 def total_score(postarticle_id)
 	 	comments = PostarticleComment.where(postarticle_id: postarticle_id)
 	 	total_score = 0
-	 	comments.each do |comment|
-	 		total_score = total_score + comment.score
-	 	end
-	 	return total_score
+		comments.each do |comment|
+			if comment.score.present?
+			total_score = total_score + comment.score
+			end
+		end
+		return total_score
+		
 	 end
 end
