@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :admins
+  
   root to: 'home#top'
   get 'home/about' => "home#about"
-
   devise_for :users
+  devise_for :admins
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :users, only: [:show,:index,:edit,:create,:update] do
     get 'users/bookmark' => 'users#bookmark', as: 'bookmarks'
