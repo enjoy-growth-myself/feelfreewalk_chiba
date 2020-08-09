@@ -3,9 +3,9 @@ Rails.application.routes.draw do
   get 'home/about' => 'home#about'
 
   #userのログインは、applicationコントローラーを使用
-  devise_for :users, controllers: {
-    sessions: 'application',
-    registrations: 'application'
+  devise_for :users , controllers: {
+    sessions: 'user_devises/sessions',
+    registrations: 'user_devises/registrations'
   }
   #adminのログインは、sessionsコントローラーを使用
   devise_for :admins, controllers: {
