@@ -5,7 +5,7 @@ module Language
   class << self
     def get_data(text)
       # APIのURL作成
-      #binding.pry
+      # binding.pry
       api_url = "https://language.googleapis.com/v1beta1/documents:analyzeSentiment?key=#{ENV['GOOGLE_NATURAL_LANGUAGE_API_KEY']}"
       # APIリクエスト用のJSONパラメータ
       params = {

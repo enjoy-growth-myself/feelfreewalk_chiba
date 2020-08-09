@@ -18,7 +18,7 @@
 # end
 
 Admin.create!(
-   email: 'admin@dmm.com',
-   password: 'password',
-   password_confirmation: 'password',
+  email: 'admin@dmm.com',
+  password: 'password',
+  password_confirmation: 'password'
 )

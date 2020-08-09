@@ -1,8 +1,8 @@
 # config valid for current version and patch releases of Capistrano
-lock "~> 3.14.1"
+lock '~> 3.14.1'
 
-set :application, "chibacity_walk"
-set :repo_url, "git@github.com:rfujino731/chibacity_walk.git"
+set :application, 'chibacity_walk'
+set :repo_url, 'git@github.com:rfujino731/chibacity_walk.git'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
@@ -38,7 +38,7 @@ set :repo_url, "git@github.com:rfujino731/chibacity_walk.git"
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
 
-set :deploy_to, "/home/ec2-user/chibacity_walk"
+set :deploy_to, '/home/ec2-user/chibacity_walk'
 set :rbenv_ruby, '2.5.7'
-set :linked_files, %w{config/master.key .env}
-append :linked_dirs, "log", "public/system", "tmp"
+set :linked_files, %w[config/master.key .env]
+append :linked_dirs, 'log', 'public/system', 'tmp'
