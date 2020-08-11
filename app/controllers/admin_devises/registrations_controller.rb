@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Admins::RegistrationsController < Devise::RegistrationsController
+class AdminDevises::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -63,4 +63,10 @@ class Admins::RegistrationsController < Devise::RegistrationsController
     admin_users_path
   end
 
+  protected
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[name email password password_confirmation])
+    devise_parameter_sanitizer.permit(:sign_in, keys: %i[name password password_confirmation])
+    # sign_upの際にnameのデータ操作を許可する。
+  end
 end
