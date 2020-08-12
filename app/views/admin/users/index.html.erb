@@ -1,12 +1,11 @@
+<div class="container admin_user">
 <h2>ユーザー一覧</h2>
-
-<div class="container">
 	<div class="row">
 		<div class="col-xs-3">
 		</div>
 
 		<div class="col-xs-9">
-			<table class="table admin_user">
+			<table class="table">
 				<thead>
 					<tr>
 						<th>image</th>
@@ -21,7 +20,7 @@
 					<tr>
 						<td><%= attachment_image_tag(user, :profile_image, size: "50x50", fallback: "no-image-mini.jpg") %></td>
 						<td><%= user.name%></td>
-						<td><%= link_to "Show", user_path(user), class: "user_#{user.id}" %></td>
+						<td><%= link_to "Show", admin_user_path(user), class: "user_#{user.id}" %></td>
 						<td>
 							<% if user.is_valid? %>
               					<p>有効</p>
