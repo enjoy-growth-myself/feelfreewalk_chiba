@@ -26,8 +26,12 @@
 			    </tr>
 			</table>
 			<table>
-				<tr class="d-flex">
-			        <%= link_to '',edit_user_path(@user), class:"fa fa-wrench  fa-lg btn btn-outline-info btn-block" %>
+			    <tr class="d-flex">
+			    	<%= form_for(@user, url: {controller: "admin/users", action: "update"}) do |f| %>
+			    	<%= f.radio_button :is_valid, true,  class: :rd %>有効
+            		<%= f.radio_button :is_valid, false,  class: :rd %>退会済み
+            		<%= f.submit '編集内容を保存する', class: "btn btn-primary" %>
+            		<% end %>
 			    </tr>
 			   
 			</table>
