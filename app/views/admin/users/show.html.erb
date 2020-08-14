@@ -1,0 +1,68 @@
+<h2>ユーザー詳細</h2>
+<div class="container-fluid admin_user">
+	<div class="row">
+		<div class="col-12 col-md-3">
+		 	<div class = "profile_image">
+				<%= attachment_image_tag @user, :profile_image, size: "100x100", class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg"%>
+			</div>
+			<table class="table .thead-light admin_user">
+				<tr class="d-flex">
+					<th>user name</th>
+					<th class="table-user-text"><%= @user.name %></th>
+				</tr>
+				<tr class="d-flex">
+					<th>introduction</th>
+					<th class="table-user-text"><%= @user.introduction %></th>
+				</tr>
+				 <tr class="d-flex ">
+			    	<th>member status</th>
+			    	<th class="table-user-text">
+			    		<% if @user.is_valid? %>
+              				<p>有効</p>
+				        <% else %>
+				            <p>退会済</p>
+				        <% end %>
+				    </th>
+			    </tr>
+			</table>
+			<table class=admin_user>
+			    <tr class="d-flex">
+			    	<%= form_for(@user, url: {controller: "admin/users", action: "update"}) do |f| %>
+			    	<%= f.radio_button :is_valid, true,  class: :rd %>有効
+            		<%= f.radio_button :is_valid, false,  class: :rd %>退会
+            		<%= f.submit '会員ステータスを更新する', class: "btn btn-success" %>
+            		<% end %>
+			    </tr>
+			</table>
+		</div>
+		<div class="col-12 col-md-9">
+			<h2>投稿記事一覧</h2>
+			<div class="row">
+			<!--books一覧 -->
+				<table class="table table-hover">
+					<thead>
+						<tr class="d-flex">
+							<th class="col-4 col-md-3 table-text">タイトル</th>
+							<th class="col-4 col-md-7 table-text">本文</th>
+							<th class="col-4 col-md-2 table-text"></th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<% @postarticles.each do |article| %>
+						<tr class="d-flex">
+							<td class="col-4 col-md-3 table-text"><%= article.title %></td>
+							<td class="col-4 col-md-7 table-text"><%= article.body %></td>
+							<td class="col-4 col-md-2 table-text"><%= link_to "詳細画面", postarticle_path(article), class: "" %></td>
+						</tr>
+						<% end %>
+					</tbody>
+				</table>
+				<div class="mx-auto">
+					<%= paginate @postarticles %>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
