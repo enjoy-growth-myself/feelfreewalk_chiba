@@ -27,7 +27,6 @@ Rails.application.routes.draw do
 
   # 管理者のルート
   namespace :admin do
-    get 'home' => 'home#top' #注文件数の合計を表示(管理者のみ)
     resources :users, only: [:index, :show, :update]
   end
 end
