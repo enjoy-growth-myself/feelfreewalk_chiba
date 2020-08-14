@@ -1,0 +1,42 @@
+<div class="container admin_user">
+<h2>ユーザー一覧</h2>
+	<div class="row">
+		<div class="col-xs-3">
+		</div>
+
+		<div class="col-xs-9">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>image</th>
+						<th>name</th>
+						<th>member datails</th>
+						<th>member status</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<% @users.each do |user| %>
+					<tr>
+						<td><%= attachment_image_tag(user, :profile_image, size: "50x50", fallback: "no-image-mini.jpg") %></td>
+						<td><%= user.name%></td>
+						<td><%= link_to "Show", admin_user_path(user), class: "user_#{user.id}" %></td>
+						<td>
+							<% if user.is_valid? %>
+              					<p>有効</p>
+				            <% else %>
+				              <p>退会済</p>
+				            <% end %>
+						</td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="row">
+		<div class="offset-md-4 text-center">
+				<%= paginate @users %>
+		</div>
+	</div>
+</div>
