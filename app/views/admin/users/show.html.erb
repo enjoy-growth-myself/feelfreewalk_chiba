@@ -5,7 +5,7 @@
 		 	<div class = "profile_image">
 				<%= attachment_image_tag @user, :profile_image, size: "100x100", class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg"%>
 			</div>
-			<table class="table .thead-light">
+			<table class="table .thead-light admin_user">
 				<tr class="d-flex">
 					<th>user name</th>
 					<th class="table-user-text"><%= @user.name %></th>
@@ -25,15 +25,14 @@
 				    </th>
 			    </tr>
 			</table>
-			<table>
+			<table class=admin_user>
 			    <tr class="d-flex">
 			    	<%= form_for(@user, url: {controller: "admin/users", action: "update"}) do |f| %>
 			    	<%= f.radio_button :is_valid, true,  class: :rd %>有効
-            		<%= f.radio_button :is_valid, false,  class: :rd %>退会済み
-            		<%= f.submit '編集内容を保存する', class: "btn btn-primary" %>
+            		<%= f.radio_button :is_valid, false,  class: :rd %>退会
+            		<%= f.submit '会員ステータスを更新する', class: "btn btn-success" %>
             		<% end %>
 			    </tr>
-			   
 			</table>
 		</div>
 		<div class="col-12 col-md-9">
