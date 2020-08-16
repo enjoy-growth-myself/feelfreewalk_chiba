@@ -38,8 +38,9 @@ let maxImage = 3
 $('#postarticle_postarticle_images_images').on('change', function (e) {
     if(e.target.files.length > maxImage){
       alert(`1つの記事の投稿できる写真は${maxImage}枚までです。`);
+      // document.getElementById("postarticle_postarticle_images_images").value = "";
       // 選択したファイルをリセット
-      document.getElementById("postarticle_postarticle_images_images").value = "";
+      ("#postarticle_postarticle_images_images").value = "";
       // 画像のプレビューが残っていた場合は、
       // リセットしないと選択できていると勘違いを誘発するため初期化。
       for( var i=0; i < maxImage; i++) {
@@ -47,11 +48,13 @@ $('#postarticle_postarticle_images_images').on('change', function (e) {
       }
     }else{
       let reader = new Array(maxImage);
+
       // 画像選択を二回した時、一回目より数が少なかったりすると画面上に残るので初期化
       for( let i=0; i < maxImage; i++) {
         $(`#preview${i}`).attr('src', "");
       }
-      for(let i=0; i<e.target.files.length; i++) {
+      // プレビューの表示
+      for(let i=0; i < e.target.files.length; i++) {
         reader[i] = new FileReader();
         reader[i].onload = finisher(i,e); 
         reader[i].readAsDataURL(e.target.files[i]);
@@ -59,7 +62,6 @@ $('#postarticle_postarticle_images_images').on('change', function (e) {
         function finisher(i,e){
           return function(e){
           $(`#preview${i}`).attr('src', e.target.result);
-          console.log(`#preview${i}`);
           }
         }
       }
