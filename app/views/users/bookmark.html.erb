@@ -80,18 +80,9 @@ let geocoder
         		let latitude = position.coords.latitude;
             let longitude = position.coords.longitude;
 
-            alert("緯度:"+latitude+",経度"+longitude);
-            
-            // marker = new google.maps.Marker({
-            //  position: e.latLng,
-	           // map: map,
-            //  title: results[0].formatted_address,
-            //  animation: google.maps.Animation.DROP
+            // alert("緯度:"+latitude+",経度"+longitude);
 
-            // let marker = new google.maps.Marker({
-            //   map : map,             // 対象の地図オブジェクト
-            //   position : mapLatLng   // 緯度・経度
-             let marker = new google.maps.Marker({
+            let marker = new google.maps.Marker({
               map : map,             // 対象の地図オブジェクト
               position : {lat: latitude, lng: longitude},   // 緯度・経度
             });

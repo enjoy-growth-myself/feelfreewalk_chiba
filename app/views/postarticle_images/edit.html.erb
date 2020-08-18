@@ -1,10 +1,9 @@
 <div class="container">
-   <div class="row">
+  <div class="row">
     <div class="col-12 col-md-6">
 			<h2>投稿写真の変更</h2>
 			<%= form_for(@postarticle_image) do |f| %>
 				<p><%= attachment_image_tag @postarticle_image, :image, size: "555x300", fallback: "no_image.jpg"%></p>
-
 				<%= f.label :image %>
 				<%= f.attachment_field :image, class: "user_image" %>
 				<img id="img" style="width:50%;">

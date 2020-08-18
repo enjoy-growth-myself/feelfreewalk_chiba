@@ -6,26 +6,22 @@
 		 	<div class="profile_image">
 				<%= attachment_image_tag @user, :profile_image, size: "100x100", class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg"%>
 			</div>
-
 			<table class="table">
 				<tr>
 					<th>name</th>
 					<th><%= @user.name %></th>
 				</tr>
-
 				<tr>
 					<th>introduction</th>
 					<th><%= @user.introduction %></th>
 				</tr>
 			</table>
-
 			<% if @user == current_user %>
 				<tr>
-			        <%= link_to '',edit_user_path(@user), class:"btn btn-default btn-lg btn-block glyphicon glyphicon-wrench" %>
-			    </tr>
+			    <%= link_to '',edit_user_path(@user), class:"btn btn-default btn-lg btn-block glyphicon glyphicon-wrench" %>
+			  </tr>
 			<% end %>
 		</div>
-
 		<div class="col-xs-9">
 			<table class="table">
 				<thead>
@@ -35,14 +31,13 @@
 						<th colspan="5"></th>
 					</tr>
 				</thead>
-
 				<tbody>
 					<% @users.each do |user| %>
-					<tr>
-						<td><%= attachment_image_tag(user, :profile_image, size: "50x50", fallback: "no-image-mini.jpg") %></td>
-						<td><%= user.name%></td>
-						<td><%= link_to "Show", user_path(user), class: "user_#{user.id}" %></td>
-					</tr>
+						<tr>
+							<td><%= attachment_image_tag(user, :profile_image, size: "50x50", fallback: "no-image-mini.jpg") %></td>
+							<td><%= user.name%></td>
+							<td><%= link_to "Show", user_path(user), class: "user_#{user.id}" %></td>
+						</tr>
 					<% end %>
 				</tbody>
 			</table>
