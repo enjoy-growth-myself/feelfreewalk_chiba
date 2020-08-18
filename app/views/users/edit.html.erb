@@ -1,21 +1,21 @@
 <div class="container">
-    <div class="row">
-        <h2 class="col-6 offset-3 edit-title">ユーザー情報の編集</h2>
-    </div>
+  <div class="row">
+      <h2 class="col-6 offset-3 edit-title">ユーザー情報の編集</h2>
+  </div>
 
 	<%= form_for(@user) do |f| %>
-	<!-- エラーメッセージ表示-->
-	<% if @user.errors.any? %>
-		<h3><%= @user.errors.count %>error occurrence</h3><!--エラーメッセ-->
-		<ul>
-			<% @user.errors.full_messages.each do |message| %>
-			<li><%= message %></li>
-			<% end %>
-		</ul>
-	<% end %>
-	<!-- エラーメッセージ表示-->
-	<div class="row">
-        	<div class="col-6 offset-3 edit-field ">
+		<!-- エラーメッセージ表示-->
+		<% if @user.errors.any? %>
+			<h3><%= @user.errors.count %>error occurrence</h3><!--エラーメッセ-->
+			<ul>
+				<% @user.errors.full_messages.each do |message| %>
+					<li><%= message %></li>
+				<% end %>
+			</ul>
+		<% end %>
+		<!-- エラーメッセージ表示-->
+		<div class="row">
+	    <div class="col-6 offset-3 edit-field ">
 				<p class="edit-text">ニックネーム</p>
 				<%= f.text_field :name, class: 'form-control'%>
 				<p class="edit-text">自己紹介(50文字以内)</p>
@@ -27,6 +27,6 @@
 				<%= f.submit "更新", class: "btn btn-primary " %>
 				<%= link_to "マイページに戻る", user_path(current_user), class: "btn btn-info" %>
 			</div>
-	</div>
-<% end %>
+		</div>
+	<% end %>
 </div>

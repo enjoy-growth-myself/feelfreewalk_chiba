@@ -7,7 +7,8 @@
 	<div class="row">
 		<div class="col-12 col-md-6">
 			<h4>お気に入り登録地点</h4>
-        	<div id='map' class="maps"></div>
+        <div id='map' class="maps"></div>
+        	<button onclick="getPosition();">現在地を取得する</button>
 		</div>
 		<div class="col-12 col-md-6 ">
 			<% @bookmark_postarticles.each do |article| %>
@@ -21,7 +22,7 @@
 				<div class="row">
 					<div class="col-12" >
 						<div class="article-title">
-						<%= link_to article.title, postarticle_path(article), class: "" %><br>
+							<%= link_to article.title, postarticle_path(article), class: "" %><br>
 						</div>
 						<div>
 							<p class="bookmark-article-body"><%= article.body  %></p>
@@ -58,4 +59,54 @@ let geocoder
 
 
 </script>
+
+<script>
+    // Geolocation APIに対応しているかどうか確認
+   // このページに遷移したときにアラートが発生する
+    if (navigator.geolocation) {
+      alert("この端末では位置情報が取得できます");
+    // Geolocation APIに対応していない
+    } else {
+      alert("この端末では位置情報が取得できません");
+    }
+
+    // 現在地取得処理
+    function getPosition() {
+      // 現在地を取得
+      navigator.geolocation.getCurrentPosition(
+        // 取得成功した場合
+        function(position) {
+
+        		let latitude = position.coords.latitude;
+            let longitude = position.coords.longitude;
+
+            // alert("緯度:"+latitude+",経度"+longitude);
+
+            let marker = new google.maps.Marker({
+              map : map,             // 対象の地図オブジェクト
+              position : {lat: latitude, lng: longitude},   // 緯度・経度
+            });
+        },
+        // 取得失敗した場合
+        function(error) {
+          switch(error.code) {
+            case 1: //PERMISSION_DENIED
+              alert("位置情報の利用が許可されていません");
+              break;
+            case 2: //POSITION_UNAVAILABLE
+              alert("現在位置が取得できませんでした");
+              break;
+            case 3: //TIMEOUT
+              alert("タイムアウトになりました");
+              break;
+            default:
+              alert("その他のエラー(エラーコード:"+error.code+")");
+              break;
+          }
+        }
+      );
+    }
+  </script>
+
+
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script> 

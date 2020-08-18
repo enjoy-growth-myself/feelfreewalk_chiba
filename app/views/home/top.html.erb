@@ -1,52 +1,52 @@
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-12 col-md-8 offset-md-2">
-            <p class="top-title">千葉市内のお気に入りスポットを共有するサイトです！！！</p>
-            <div id="container-skippr" class="skippr-image">
-              <div id="theTarget">
-                <div class="image1"></div>
-                <div class="image2"></div>
-                <div class="image3"></div>
-                <div class="image4"></div>
-                <div class="image5"></div>
+  <div class="row">
+    <div class="col-12 col-md-8 offset-md-2">
+      <p class="top-title">千葉市内のお気に入りスポットを共有するサイトです！！！</p>
+      <div id="container-skippr" class="skippr-image">
+        <div id="theTarget">
+          <div class="image1"></div>
+          <div class="image2"></div>
+          <div class="image3"></div>
+          <div class="image4"></div>
+          <div class="image5"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 clearfix">
+      <div class="float-md-right">
+        <div class="top-text top-search">投稿記事を検索できます！</div>
+        <div><%= render 'search/search_form' %></div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-md-9 offset-md-2 index-title">
+        <h2>人気記事ランキング</h2>
+    </div>
+    <% @all_ranks.each.with_index(1) do |article, i| %>
+      <div class="row index-box" >
+        <div class="col-12 col-md-5 offset-md-2">
+          <p class="ranks-text">第<%= i %>位</p>
+            <% article.postarticle_images.first(1).each do |image| %>
+              <div class="index-img-box">
+                  <%= attachment_image_tag image, :image, class: "top-image", fallback: "no_image.jpg"%>
               </div>
-            </div>
+            <% end %>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-12 clearfix">
-            <div class="float-md-right">
-                <div class="top-text top-search">投稿記事を検索できます！</div>
-                <div><%= render 'search/search_form' %></div>
-            </div>
+        <div class="col-12 col-md-4" >
+          <div class="article-title">
+            <%= link_to article.title, postarticle_path(article), class: "" %><br>
+          </div>
+          <div>
+            <p class="article-body"><%= article.body  %></p>
+          </div>
+          <div class="float-right">
+            <p class="article-date">投稿日:<%= article.created_at.strftime('%Y/%m/%d') %></p>
+          </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-12 col-md-9 offset-md-2 index-title">
-            <h2>人気記事ランキング</h2>
-        </div>
-        <% @all_ranks.each.with_index(1) do |article, i| %>
-        <div class="row index-box" >
-            <div class="col-12 col-md-5 offset-md-2">
-                <p class="ranks-text">第<%= i %>位</p>
-                <% article.postarticle_images.first(1).each do |image| %>
-                    <div class="index-img-box">
-                        <%= attachment_image_tag image, :image, class: "top-image", fallback: "no_image.jpg"%>
-                    <% end %>
-                </div>
-            </div>
-            <div class="col-12 col-md-4" >
-                <div class="article-title">
-                <%= link_to article.title, postarticle_path(article), class: "" %><br>
-                </div>
-                <div>
-                    <p class="article-body"><%= article.body  %></p>
-                </div>
-                <div class="float-right">
-                    <p class="article-date">投稿日:<%= article.created_at.strftime('%Y/%m/%d') %></p>
-                </div>
-            </div>
-        </div>
-        <% end %>
-    </div>
+      </div>
+    <% end %>
+  </div>
 </div>

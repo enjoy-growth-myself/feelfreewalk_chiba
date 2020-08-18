@@ -10,8 +10,8 @@
 	</div>
 	<div class="row">
 			<div class="postarticle-title-box">
-			<%= render 'layouts/error_messages', error: @postarticle_comment %>
-				<h2><%= @postarticle.title %></h2>
+				<%= render 'layouts/error_messages', error: @postarticle_comment %>
+					<h2><%= @postarticle.title %></h2>
 			</div>
 	</div>
 	<div class="row">
@@ -24,31 +24,31 @@
 		<div class="col-12 col-md-5">
 			<% @postarticle.postarticle_images.each do |image| %>
 				<%= attachment_image_tag image, :image, class: "show_image", fallback: "no_image.jpg"%>
-				<% if @postarticle.user_id == current_user.id %>
-					<p><%= link_to "画像の編集",  edit_postarticle_image_path(image), class: "btn-sm btn-success " %>
-					<%= link_to "画像の削除", postarticle_image_path(image), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger" %></p>
-				<% end %>
+					<% if @postarticle.user_id == current_user.id %>
+						<p><%= link_to "画像の編集",  edit_postarticle_image_path(image), class: "btn-sm btn-success " %>
+						<%= link_to "画像の削除", postarticle_image_path(image), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger" %></p>
+					<% end %>
 			<% end %>
 			<% if @postarticle.user_id == current_user.id %>
-			<div class="add-postarticle-iamge">
-				<% if @postarticle.postarticle_images.count < @max_image %>
-					<p class="add-postarticle-iamge-text">
-					写真を追加しますか？</p>
-					<p>写真はあと<%= @max_image - @postarticle.postarticle_images.count %>枚追加できます</p>
-					<p>全部で<%= @max_image %>枚投稿できます</p>
-					<%= form_with(model: [@postarticle, @postarticle_image], local: true) do |form| %>
-					<%= form.attachment_field :image %>
-					<%= form.submit  "画像を投稿する", class:"pull-right btn btn-primary"%>
-					<img id="img" style="width:50%;">
+				<div class="add-postarticle-iamge">
+					<% if @postarticle.postarticle_images.count < @max_image %>
+						<p class="add-postarticle-iamge-text">
+						写真を追加しますか？</p>
+						<p>写真はあと<%= @max_image - @postarticle.postarticle_images.count %>枚追加できます</p>
+						<p>全部で<%= @max_image %>枚投稿できます</p>
+						<%= form_with(model: [@postarticle, @postarticle_image], local: true) do |form| %>
+							<%= form.attachment_field :image %>
+							<%= form.submit  "画像を投稿する", class:"pull-right btn btn-primary"%>
+							<img id="img" style="width:50%;">
+						<% end %>
+					<% else %>
+						<p>写真は1つの記事に対して<%= @max_image %>枚までです！</p>
 					<% end %>
-				<% else %>
-					<p>写真は1つの記事に対して<%= @max_image %>枚までです！</p>
-				<% end %>
-			</div>
+				</div>
 			<% end %>
-			<div class="show-preview">
-				<img id="img1" style="width:70%;">
-			</div>
+				<div class="show-preview">
+					<img id="img1" style="width:70%;">
+				</div>
 		</div>
 		<div class="col-12 col-md-7">
 			<div class="postarticle-address">
@@ -64,8 +64,8 @@
 				<P>投稿者:<%=link_to @postarticle.user.name,user_path(@postarticle.user)  %>
 				<p>投稿日:<%= @postarticle.created_at.strftime('%Y/%m/%d') %></p>
 				<% if current_user.own_board?(@postarticle) %>
-				<%= link_to "テキストの編集", edit_postarticle_path(@postarticle), class: "btn-sm btn-success edit_postarticle_#{@postarticle.id}" %>
-				<%= link_to "投稿記事の削除",@postarticle, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_postarticle_#{@postarticle.id}" %>
+					<%= link_to "テキストの編集", edit_postarticle_path(@postarticle), class: "btn-sm btn-success edit_postarticle_#{@postarticle.id}" %>
+					<%= link_to "投稿記事の削除",@postarticle, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_postarticle_#{@postarticle.id}" %>
 				<% else %>
 					<div id="bookmark-<%= @postarticle.id %>" >
 					<%= render 'bookmarks/bookmark', postarticle: @postarticle %>
