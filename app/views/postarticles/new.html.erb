@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row">
-    <h2 class="col-12 col-md-8 offset-2 edit-title">新規登録</h2>
+    <h2 class="col-10 col-md-8 offset-2 edit-title">新規登録</h2>
   </div>
   <%= form_with(model: @postarticle, local: true) do |form| %>
     <div class="row">
-      <div class="col-12 col-md-8 offset-2 edit-field ">
+      <div class="col-10 col-md-8 offset-2 edit-field ">
         <%= render 'layouts/error_messages', error: @postarticle %>
         <p class="post-text">タイトル(16文字以内)</p>
         <%= form.text_field :title, class: 'form-control'  %>
@@ -32,7 +32,7 @@
 </div>
 
 <div class="row">
-  <div class="col-12 col-md-8 offset-2 googlemap-text">
+  <div class="col-10 col-md-8 offset-2 googlemap-text">
     <h3>googlemapから住所入力</h3>
     <p>登録したい場所をクリックすると住所が自動で入力されます</p>
     <div id='map' class="new-map"></div>
